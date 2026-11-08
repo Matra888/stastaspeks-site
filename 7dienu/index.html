@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Claude satura veidošanai | Teksti, vizuāļi un video</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Spacing scale (8pt): 8 16 24 32 48 64 96 */
+  :root {
+    --bg: #FFFFFF; --panel: #F5F5F7; --ink: #1D1D1F; --muted: #6E6E73; --line: #D2D2D7;
+    --claude: #C15F3C; --claude-soft: #D97757; --link: #0066CC;
+    --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px; --s6: 64px; --s7: 96px;
+    color-scheme: light;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #000000; --panel: #1C1C1E; --ink: #F5F5F7; --muted: #A1A1A6; --line: #38383A;
+      --link: #2997FF; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #000000; --panel: #1C1C1E; --ink: #F5F5F7; --muted: #A1A1A6; --line: #38383A;
+    --link: #2997FF; color-scheme: dark;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px; line-height: 1.5; letter-spacing: -0.01em; -webkit-font-smoothing: antialiased;
+    text-align: center;
+  }
+  p { margin: 0; }
+  main { max-width: 980px; margin: 0 auto; padding: 0 var(--s3); }
+  section { padding-top: var(--s6); }
+  .narrow { max-width: 680px; margin: 0 auto; }
+
+  /* Logo */
+  .topbar { max-width: 980px; margin: 0 auto; padding: var(--s2) var(--s3) 0; text-align: left; }
+  .topbar img { width: 64px; height: 64px; display: block; }
+
+  /* Type */
+  h1, h2, .stat b { font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; font-weight: 800; }
+  h1 { font-size: clamp(2.5rem, 8vw, 4.75rem); line-height: 1.05; letter-spacing: -0.04em; margin: 0; }
+  h1 .claude { color: var(--claude); }
+  h2 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; letter-spacing: -0.035em; margin: 0 0 var(--s3); }
+  .lines p + p { margin-top: var(--s1); }
+  .lede { font-size: clamp(1.15rem, 2.4vw, 1.4rem); line-height: 1.4; font-weight: 500; letter-spacing: -0.02em; }
+  .body-lg { font-size: clamp(1.08rem, 2vw, 1.25rem); line-height: 1.5; color: var(--muted); }
+  .body-lg strong { color: var(--ink); font-weight: 700; }
+
+  /* Hero */
+  .hero { padding-top: var(--s5); }
+  .eyebrow { color: var(--claude); font-weight: 700; font-size: 1.05rem; margin-bottom: var(--s2); display: inline-flex; align-items: center; gap: var(--s1); }
+  .eyebrow::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: #34C759; box-shadow: 0 0 0 4px rgba(52,199,89,.2); }
+  .hero .sub { font-size: clamp(1.6rem, 4.5vw, 2.5rem); font-weight: 700; letter-spacing: -0.03em; color: var(--muted); margin: var(--s1) 0 var(--s4); line-height: 1.1; }
+  .hero .lede { margin-bottom: var(--s5); }
+
+  /* Buttons */
+  .cta-row { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: var(--s2) var(--s4); }
+  .btn {
+    display: inline-block; text-decoration: none; font: inherit; font-size: 1.05rem; font-weight: 700;
+    padding: 14px 28px; min-height: 48px; border-radius: 980px; border: 0; cursor: pointer;
+  }
+  .btn.primary { background: var(--claude); color: #FFFFFF; box-shadow: 0 8px 24px -10px rgba(193,95,60,.7); }
+  .btn.primary:hover { filter: brightness(1.08); }
+  .more { color: var(--link); text-decoration: none; font-size: 1.05rem; font-weight: 600; }
+  .more:hover { text-decoration: underline; }
+  .btn:focus-visible, .more:focus-visible { outline: 3px solid var(--link); outline-offset: 3px; }
+
+  /* Highlight tiles */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s2); margin-top: var(--s6); }
+  .stat {
+    background: var(--claude); color: #FFFFFF; border-radius: 24px; padding: var(--s4) var(--s2);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 168px;
+    box-shadow: 0 16px 32px -20px rgba(193,95,60,.8);
+  }
+  .stat b { font-size: clamp(2.2rem, 5.5vw, 3.4rem); line-height: 1; letter-spacing: -0.045em; }
+  .stat span { margin-top: var(--s1); font-size: 1rem; font-weight: 600; line-height: 1.3; opacity: .95; }
+  .stat.wide b { font-size: clamp(1.6rem, 3.6vw, 2.2rem); letter-spacing: -0.03em; }
+  .stat b small { font-size: .45em; font-weight: 700; letter-spacing: 0; margin-left: .15em; }
+
+  /* Phases */
+  .phases-intro { margin-bottom: var(--s5); }
+  .tight { padding-top: var(--s6); }
+  .highlight { background: var(--claude); color: #FFFFFF; border-radius: 20px; padding: var(--s3); font-weight: 700; font-size: 1.2rem; margin: 0 0 var(--s3); box-shadow: 0 16px 32px -20px rgba(193,95,60,.8); }
+  .phases { list-style: none; margin: 0 auto; padding: 0; display: grid; gap: var(--s2); max-width: 680px; text-align: left; }
+  .phases li {
+    background: var(--panel); border-radius: 20px; padding: 20px var(--s3);
+    display: grid; grid-template-columns: 44px 1fr; gap: var(--s2); align-items: center; font-size: 1.08rem; line-height: 1.45;
+  }
+  .phases .n {
+    width: 44px; height: 44px; border-radius: 50%; background: var(--bg); color: var(--claude);
+    display: grid; place-items: center; font-weight: 800; font-size: .95rem; font-variant-numeric: tabular-nums;
+  }
+  .phases mark { background: var(--claude); color: #FFFFFF; padding: .05em .4em; border-radius: 6px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+  /* Join */
+  .join { background: var(--panel); border-radius: 32px; padding: var(--s6) var(--s4); }
+  .join h2 { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: var(--s1) var(--s2); margin-bottom: var(--s2); }
+  .badge { font-size: .85rem; font-weight: 700; background: #D61F69; color: #FFFFFF; padding: 6px 14px; border-radius: 999px; display: inline-flex; align-items: center; gap: var(--s1); letter-spacing: 0; }
+  .badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #FFFFFF; animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: .3; } }
+  .join .body-lg { margin-bottom: var(--s4); }
+  .note { font-size: .85rem; color: var(--muted); margin-top: var(--s4); }
+
+  /* Share */
+  .share { background: var(--claude-soft); color: #1A1410; border-radius: 32px; padding: var(--s4) var(--s4); margin-top: var(--s3); }
+  .share h2 { color: #1A1410; font-size: clamp(1.8rem, 4.5vw, 2.6rem); margin-bottom: var(--s2); }
+  .share .lines { font-size: 1.1rem; margin-bottom: var(--s4); }
+  .copyrow { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; max-width: 560px; margin: 0 auto; }
+  .copyrow input { flex: 1 1 260px; min-width: 0; min-height: 48px; font: inherit; font-size: .95rem; color: #1A1410; background: #FFFFFF; border: 0; border-radius: 980px; padding: 12px 20px; text-align: center; }
+  .copyrow input:focus-visible { outline: 3px solid #1A1410; outline-offset: 2px; }
+  .btn.copy { background: #1D1D1F; color: #FFFFFF; }
+  .btn.copy.done { background: #FFFFFF; color: #1D1D1F; }
+  .copied { font-weight: 700; margin-top: var(--s2); min-height: 1.5em; font-size: .95rem; }
+
+  /* Bonus */
+  .gift { border: 2px dashed var(--claude); border-radius: 32px; padding: var(--s6) var(--s4); }
+  .gift h2 { font-size: clamp(1.8rem, 4.5vw, 2.6rem); margin-bottom: var(--s3); }
+  .gift h2 span { color: var(--claude); }
+  .gift .lines { font-size: 1.1rem; color: var(--muted); }
+  .gift .lines strong { color: var(--ink); }
+  .gift a { color: var(--link); text-decoration: none; font-weight: 700; }
+  .gift a:hover { text-decoration: underline; }
+
+  /* FAQ */
+  .faq h2 { margin-bottom: var(--s4); }
+  .faq-list { max-width: 680px; margin: 0 auto; text-align: left; border-top: 1px solid var(--line); }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary { cursor: pointer; list-style: none; padding: 20px 40px 20px 0; position: relative; font-weight: 700; font-size: 1.1rem; line-height: 1.4; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-size: 1.6rem; font-weight: 500; color: var(--claude); transition: transform .2s ease; }
+  .faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+  .faq summary:focus-visible { outline: 3px solid var(--link); outline-offset: 2px; border-radius: 8px; }
+  .faq details p { color: var(--muted); font-size: 1.02rem; line-height: 1.55; margin: 0 0 var(--s2); }
+  .faq details p:last-child { margin-bottom: var(--s3); }
+  .faq details a { color: var(--link); font-weight: 600; text-decoration: none; }
+  .faq details a:hover { text-decoration: underline; }
+  @media (prefers-reduced-motion: reduce) { .faq summary::after { transition: none; } }
+
+  footer { color: var(--muted); font-size: 1rem; padding: var(--s7) var(--s3) var(--s6); }
+
+  @media (max-width: 680px) {
+    main { padding: 0 var(--s2); }
+    section { padding-top: var(--s6); }
+    .topbar { padding: var(--s2) var(--s2) 0; }
+    .topbar img { width: 52px; height: 52px; }
+    .hero { padding-top: var(--s4); }
+    .stats { grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: var(--s5); }
+    .stat { min-height: 140px; padding: var(--s3) var(--s1); }
+    .phases li { grid-template-columns: 40px 1fr; padding: var(--s2); font-size: 1rem; }
+    .phases .n { width: 40px; height: 40px; }
+    .join, .share, .gift { padding: var(--s5) var(--s3); border-radius: 28px; }
+    .cta-row .btn, .join .btn, .copyrow > * { width: 100%; flex: 1 1 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { .badge::before { animation: none; } }
+
+  /* Hosts */
+  .hosts { margin: 0 auto; }
+  .hosts-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: var(--s3); margin-top: var(--s4); }
+  .host { background: var(--panel); border-radius: 24px; padding: var(--s4); text-align: center; }
+  .host-photo { width: 100px; height: 100px; border-radius: 50%; overflow: hidden; background: var(--line); display: block; margin: 0 auto var(--s3); }
+  .host-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .host-name { font-size: 1rem; font-weight: 600; line-height: 1.3; margin: 0 0 var(--s1); }
+  .host-title { color: var(--muted); font-size: 1rem; line-height: 1.3; margin: 0; }
+
+  /* Testimonials */
+  .testimonials { text-align: left; }
+  #testimonials-h { text-align: center; }
+  .testimonial { position: relative; }
+  .testimonial p:first-child { margin-top: 0; }
+  .testimonial-author { margin-top: var(--s2); color: var(--ink); font-weight: 600; font-size: .9rem; }
+  .testimonials { margin-bottom: 0; width: min(1100px, calc(100vw - 32px)); position: relative; left: 50%; transform: translateX(-50%); }
+  .testimonial-grid { columns: 3 300px; column-gap: var(--s3); margin-top: var(--s4); }
+  .testimonial { background: var(--panel); border-radius: 20px; padding: var(--s4); font-size: 1.05rem; color: var(--ink); line-height: 1.5; break-inside: avoid; margin: 0 0 var(--s3); }
+
+  @media (max-width: 680px) {
+    .hosts-grid { grid-template-columns: 1fr; }
+    .testimonial-grid { columns: 1; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar"><img src="data:image/webp;base64,UklGRogvAABXRUJQVlA4WAoAAAAQAAAAnwAAnwAAQUxQSE0TAAAB8Mf/v2pN6f8913qti+7mLSPN0N3xljKQNihbsQm7vWErvHGk0xzpN3aOdFiARVqUwchIDQNc1zXrtV6PP/Y+M9fMnMPfETEBWnJTLqZuWuXA13/jG9+tLPDE1ZdcctReKyZ1reSkUZuySZJt/PIPfv2X/2Sq64O/uujt+62TJKnkNEqySdIGx1zwhwl6W/O2MM1b0Dv3dxe+ev0sqeQRkYqkpfb+5B3PADSvLeiPBaQ3WqseAPNu/9jWWcqWhp+ZpN3O+yOA1xYA0by6e7CA0dyrtwCIVhsw/uuPbCbJ8nCzJK351psBvAUQ4e4MnPvEY3P+M3v2nMeeYmBzbwFEq8BzP3rDKlLOw8uStNd5jwDeAFqtdJ/9yxXfOvmoV7/0f9ZcY7VVV1lltTVecOARR3/w6///lyfp1hpAtAo89OXpUs7DKSfp4GsA9wBaDYB///izr9xwWU3xMmu99PPfeTiAVhsQ7vDc1ftIlodPNumg6yA8gFYBHph5wm4rqGtWSrGcBmazYmbqLrfTOy75F0BtQHOIK7eTLA2XZNJO10FzAK/AHz+313KSlIvlpClOycwkaaUXff4OwB0Ih4kLN5dsmJi05TcmCAfCgYc+t3OSZMWSFnnKxSRpp8/8HZoH4DDv9HWV87BIpvyxZ8GBqMB1715NUrGkhU4DF6ybrEha+d03AR4QDv94k2TDwaQdfw01IBwmvr6rpJKTFjRls1JK0sBcSjHLaVA3F0mHz5wED4gKP9xUKQ+BomW/XKkBOMz+0vZSKkmDU7aSNDAppZSUNDAXS4OkVJK03bcmwIHWePIkyZa0ZNrvj+BAa8z/4tqSZQ1OVtRdauP9Xn3q/824+d577r333nvuuvfHM07/4pH7rreUJOViqU+SmbTdtydpDXD40caytESZ9IlxPCAq/Hw7qWQNTGaSNO2QU3/64Dym9MkHvve5A9aUJLPUJ2WT9rwRPCCcOUcr5SWoaO3vQwMc/nCEZEkDs0ladt+P3/Y03dZqrd4Geq21Nbr/+d5791xOkuU+KZv0yj8SDXD4cpItMaad76YGhDPvEysqZQ0sSVruJRfdD9Cqt2BKo3ltAPefuW+SzPqknLX8l5wKtMb101WWjGR65XNUoAXXbi2Z+pNJ2umsB4CoLVjE4R7AHZ/bREqWeiSTDvgT0YDKP/ZRWRKS6VRoQKV9RipJvcmk9MYbAlptLKatBsy75FBJlnqUilb+UqUClfFXyRa/bJqBB1C5dz/lrH6TVj75DqA2FuvmwLXHriBZj2TSSx6kBjTiRFlazJJ0JjUgGpetraL+nLTK+x4A92CxD2/wlxOKLPcoFa0zCwIi+LhKWqyyVvkZDrQWp0pFvcmkVz4EtbGEusOtL5FKj2TSpysNwvmoUlqMsi19MxVoxNGyrN4s7XEj1MYS3Bwu31gp9yibDp2PQzTOKJYWm2Q6n/mA8+A+KuovWuaUcVqwhLfGnOMl65HGdMTjOIRzqkpaTJLpDCrgPLiRinpz0m6/AWcIOszaVDn1qGiz+3CIykdli4npNCpQeXAjFfUWpU9MUoOhGM6Tx0u5R0UvfIgK4XxUZbEo+gI1wHloQ5l6izb7KTSGpsO3VlTpkWnDv+EQzntki0HRkdSAxgMbytRNRfv8mxoM0XD+NF2lR6b/+QsO4eP7yRaZacd5HtDiwQ1V1E1ZbwdnyFYefaVK6qhog/tp0PjPC5QXUcpr/4kGLcY3UVE3J/sw0Ri6Dm+VpY6KNppHA+eWZSwtmqLvUiEax6qom5P9Px4M4dY4RSl1VHT4ZA2onKmySIreTYWo7TUq6uZkVzOf4RyNi5VTR2M6gfmAc7BsEZj2ntcCKqdrTN2U7Goqwzoq30opdVJJZ+IQ8cQmylOW87L30cC5Mo2lTsr5O8xniFe+aSVJUsr6ORWcX+Wcpsp0Hg4tHl0zZUlKJV/FfIZ65UKVjnJed3Y0qHxQNkVZO4YH4e0QmbpFH2I+Q77yVpWOTAe3GkSb2DrlKUl5qd/hUPmiTF3T8dQYdtE4WtZR0ak4ODfKpsR0Cg6Nm2XqmnanBUO/xZPTlTupLHMHDZzXyqYgp+kTLQh/dovUkzXt4WiMQOf2kpMkmbZqHrSYvU5OC2eaiUPloyqSlGypn+KMROebso5MX8TBOU+2UKbdvQWt3b2ipU7Rx6mMSOetsk6ypX8fTrTnNkt5YbLdQQPnMBVJytp+3GNUhM/bUlmSTC/FofIN2UKYjsTBub6YJCVb+g4aI9O5ZcySJJl+ghNtYnrOC5btdpzwuqVyx/RpnBFaeaesk9NWz7Wg8jXZApkOxcH5kookWdphvscoaW3OtJQlyfQ1nGjP7ZpsAVIe+w1OxJzVUu7RLJyR6nxfPTlt/mwLnJuVF8DSPjSofFFFkkwHhTNinb1lkmQ6Dyfi2U2VF0Azw4mY2DplSSmv8Hfa6LnJcienjZ+NoHKabEDWmk9E4HxVJklFJ+OM3MbrZJJkOhun8fAKSn1FJ+JEsH3qpLTCw9FGUNy7dOrbqwU0XiHrS2N30HBuGcuSZDoJZwQ3DpJJUk7X43j8QrnHtA8NnONVOmnszhhJHtcqd4qOxQnGN1DuZM2MSuPPY0mSio4NZyS3eJFMUtJacwicd6UiKWn1/xJUvqjSyXkWI8r5ibIkmc7FcX6hLMl0MA2i7SKTlLVVjRhNwXMbKffs2IKIiZ1lUtGZUWncnZUkmc6gMqKdz6pISkq306icoiKlpe+l4XxaRVJKy/yVNqoad48lSSo6g4rzC2VlbTGfiPBdZJJML6ExsiN2U5ZkeiWN4PE1lIveQqXx9zGlnrOpo6vyORVJScvPJmgcpmK6CMe5SiYpafmHaaOrcU9RkpT1YxznbFla9i80nPeoSMraLYLRHTGxubKkojf3XJuyNnOCNn8nZUlFH6WOMJwTVSSZdp0fBP9dTXo1TvDo8kpSSnYbPsoqV8kkJS3/CI1gH+k0HOfnZpKS1p1LjLLGQ8spSbL8YyrOG6Xv9XxSHdNBNEZ6+M4ySUWfxqmcr5X/RsN5hYqkok9TR5vzThVJpkNpONeWteYSwTMbKUmydDk+2ioXDvjfGgQPL3uIN4LZK3WS0l9oo63xWylJSSvPIWDeNm/BcWZlk5S17n+JUffIyn2rdYKjLqfhfEcd054EIz7YQybJ7Ac4jVf+BKfyAZWeo/BR19i3T5f3fOY6GpXX9RTNoI66ysdVJBW9lYpzpQOVNw74yvOBGQOOwTv0vGHAjOcDpw14Xc8lQDA5XVlS1o/xUefMlEky7TXZaNzZM75uJ0n30EZd456kJCWtPpcA75mYNuDO5wP3Dljn6U43mFhvwN3PJ9aeOxXpnucTaz31fOW+5z33Dpq7QNMG3P184J4B6z69QOv26b7nA/eqb40Fmty8o6Qb8FHnXCaTlLX7/CD4G4DzOhVJRTOoo65ymoqkojfgOJdPApU3DPjK84EZA46j4vzgFziV1w048/nAJwe8teeyH+E4F8gkmY4OH3WN/WWSTJdSaXz4EhrOTwbsTRt1wZ59+Xs4jSPeguP8LHeyNniSGG2NR1ZSkpJWfogG7SVH1EYwe0UlKSk/QBt1d6e+Ff9LBP9ec62niGDeC3ty/jk+2iozZZKydpwMGn9bbuW/0HBeJZNUdAp11H1SRVLRq3Gc72d9B8c5TUWS6WDaaIvYW9ZzOpXKxdIXqVR+mExS1gvnEqMsmLOykiRLP6PSeIt0FE7wz2WVJJl+io8y56fJJCWtOocI6i7SVvMjiMntlSUVfYw6yiofV5Fk2i8awexVlJb+Mw3nBBVJpt0jRlnM315ZUtHxOM5PUjZ9E6dytUxS0nL300ZX48FllCTlfB1O5eMqRa8Pp/HIakqSTOdSR5dzvkxS0oqP0mjtpbKszZ2gsb+s58Boo6txYI/pMBrBf9dQTmm5e2lUvqQiKaVl76eNqsYDy6ckqegMKs6NOUtFX6HSuG9MSZJpBnVUVc6USUpKd9NwPqsimXYngmD3ZJKytvYYVeHbKksq6SAaEZPby6Skle6nUTlNRZKyXRc+mpxflyxJpktxnGuUJcn0ZSrB7NWVJBUdw4hqHCyTlLTmXALnXal0snacCHDerSJJeeyX4aPI+VXOkmR6P07wzDTljrJ+Fk6LW8ZSp+gNjKTGwbJOKnfieFylrN6S3oxDsFMySSmt+q9oo8f5dcqSZOlgGjhHqfQlrf44jcpMdVR0Mj56GgfLenQllYjZqyn1yXQuTsTkNtkkpbz8XbRR4/GrlCUppy0nIqj8n4oG5jR9PILKt9WR6WB85PAyWcf0TZyI8c1SHqSsWTjRntgyZ0nJ9Ft8tDjXpSxJlrb1FlQukWkBTfu3Bs6VMkmytMdTHqMk/OlNBuhKHNrElikviLJuwMEndleWpKIPU0dJ5d0ySSo6PBwqV8i0ELs+2wLnt9k6qSz3+2ijw7lWpq7l23Bovl1aCJm+jYNzhIokZe2Ox6iI9vQmKXdMr8LBuVSmhUlbjbfAuWs5S5Jk+gh1VDjvkElSzis+Eo1ok1ulvDAynYeDc6qsI9MP8dFQmamiruk0HJyLZVronDaZ14Jwny7rpLzMPfgocO5b1lLHtE/zoLUnVs954WR6Hw6N3y9vSZKytnmmteHX2rPbKUtSsmXupIFzvExTmHK5DgfndJWOit6Mx7AL520ydYvOxsH5sUxTmrXlcy2I2g6VdVR0AnXIRePdKuqaDseDaL7NVKnowzi0mDMt5U4q+g7zh9t8TlRRN6dpj7QGlc+qaIpTttto4NycSpKkVJb6DnWYTXKuxtRNWTfh4PxxLKepUtY2z3pA5TSNdZSSXc384eVcvXRJPWPpQhzC6y4yTb3pbVQI92NUOsqpfAcfUtE4syipW3QCFXCOlmlRFn0Nh2jtKJWOchr7Dt6GUXNOVErqFh1Ta4BzvooWacor3oFDi2c2UukoJZ0APnwc3qmxpG7RbkSA86diadHItN0zBDT++kJZR8n0jnn4sKn855Uq6i3a4P5o0Hh2o5S1qE0vm/CAxt/Xl3Wkoh3vxGOYhPOHrVTUa9rgfhpEmzxUpkVfdCI1wPnrNFmPTMv9mGjDw+Hry6iot2iDB3CIGofJtDgWnUIFnL9uqNIjk31wkhrDIZyn3iFl9RZt+HcqUPmCihZP06nUAOfBzTXWo5S01+/Ah4HDT7eQJfUW7fkgFaicpaLFNBWdSQWcp46SpY5S0QqfeApvS5o35p4gmXqT6bhGAypny9LiolSWu5wKNOIk5dyRsjR9FtS2JHmDn26pnNWbs74Q0YD5nC1LWnxT0udxIIJzJOtRKtKRfwJvS4o3uOlgqai/SBfTAqJytixpcU5ZX8ADYj5XvEAldaSctMIJ90PzJcEb3HyYlLJ6k2naDdSAaJwpS1q8k+nzRADOv46QrEcyadWjbgW8LV7NgVuOlJKp36RjHqECLdrnZUmLezJ9uOJAxWesJEs9SibpsOsDWm2xeESrDfj5IVIy9SfTSueCA878w2VJS6DpoKepQAvuPFCyHilZkna48EGA6rGowivAA1/dSUqmgSYdeBfeAOfxl6toyTRt9xs8AKd9eSWl3CPJJC3/snMeAGjVW0xNtFobwMPnvnw5KZkGmrTWjMCBaNy+oYqWVNPKF4IDLbj7aMlyn5RN0nI7f+Znj9JtrdbqbaDXWlvQnTPrMzuvIMmyBmaTjvo3NMCDc5aSack16fVz8QAcfruvZLlPSmaStMoBn7rigaeZ0kf+PPOTB6wqSWZJA7NJR94ODkRl8jilrCU5mfb8NTjQnHbJTpJZ6pGUcsmStNSG++77ma/MmPmnO++6666777zzktNnnLLv3isXScolJw1MZtKOV0ALwOG3uyonLeFF6SPjeAAN/NKdJZXc101WTFNuxZIWMJuk7b/ltAaE0z47JtOSn6Xtr4caEA5+2d5ZMksDuimblVJskJVSzFLSgiYzaezwyyfBgXD46S6SaRgmU37rf8ADwoFbTpouqVgaNDgN1EInK5I2/ehdgAfg8Oi7pJI0JHPS+hdMgAeEB8yf+b9jkqxYWrCpTVaSpKWOuHICmgfgQb14LaWsIWrStt+s4AG0Cvz59ANXk6RkxVKampSsWJak1V994Z8Bb0A4xGU7SabhmkzacWaFGkB4ALO/c/JBa6k3WynF8kArpVhW7+oHnXDj40DzAKJCXLmLZElDN5u07zWT4B5Aqw3gyevPO+7la66qKV1tzYOPO2/WowCtNiDcwa/YScpZQzmbtNWpDwPVA4jqje68Oddd9La3vu1F671wvfXWW2/aei962/FvvfDax56m29wDwCsw+4ztpZw1tHOSVj/muvlAbXTDvTYGTs6fnJiYnJxgYKvuARCtAvNvff1aUs4a6rlImv6+Gxyo3oJuhNdaazAwaq3VI+iGewW49QObSypZQz9ZkrTHWX+l69VbBP0xkIHRvDrA+G1n7SMpWdJozCVLy27z9qvvG6fXe4OB4b30Ttx2xVs3kZRK1ijNJkllvSM/+r3b5jpTHHNv+/6HXj1NkpKZRm7KxdTN6+zx5jd+Z9asWU8QneCpWT+fdf7r37L3OkmSkpWsJRgAVlA4IBQcAADQXwCdASqgAKAAPj0WiUMiISEY/E5cIAPEtgBqgPD/AOoSsP1f+p/sr+avyd1T+vf2D86/2L/q/6745d6vS3l/eSfq/+z/wf5Ge/j9afdD+dv937gH6e/7r++/uv/kO4p+5HqC/mf9n/73+n91f/Tftp7jP6x/kf9n7gH89/tf/Z9oL/lewl+2/sAfzD/VerB/uP/L/t/3/+iD9r/26/5fyD/0f+3f+39xf//8gH/i9QD/t+oB6j/V3+yei7xn/KeIvjN8q+yv7p87frfxXfdr8P+Zn91+c/Zf8o/8P1Avyr+Z/5T+w+SXsg9s/2/+79QX1u+jf63+9fuv57n+f6HfZv2Av5R/RP9b+Z3xl/kPB9+6/6n2AP5L/VP+J/dv8h/0P878lX+3/rPy09pv0r/3v9D/l/2L+wf+S/0r/Y/3b/I/+z/O//////e/6+v29/+vuYfq/9+i2Q7g/MSDnr/WEas9JK/9OpapNYjwHhL+q/mgVucp0fsks/egKcItgXSFTvV31P7mqeF+/HUivelAnqAznj6OZfPa8gX/m5VEkk1toYG0srYbIZS33+4ifjqIAzT3hP4S2FMnrrVvWessFAoJ8nNlET8DXBJEO2vrlFia6UcQMn0SJ+B/SN9RwJxCImeGKtDQ3wSLagRXDJd8uqbWTdX3W0oedKoXxut2CNzTvkN+a5HZ8vcUmqLH1AnvJ9OQ/9eM8AJjdWQ++Dd705LlFZLSMrN4NwZV5rB38Bk7ic8XovLplcWRR24LTPbIwf0i+W05MJG40UGDCym7Zo7jgPMBZITrWw+cS/PUiJLvIVCs+128prMqt/D61H53n+HR5C6kKa21fdTdx6j5qk8fgiT/CMvogBlATbylpA1tVXwvU1YfefS5e4FmpvXv+i8N1S+nmL3/f/vzTGYs8ajPqRccmAf/0TVy1Y89JZ3b9IlQtXdn81R1J4pSIEzDr4/jGC+sDPGAE40aqmF/LCQO6uD6ye14aIVhlrPjwgLsSmDh1lGoLxDw1Yc43SL5xWmZ5+aAAP7+7q7vwEkgGHwhyB2K+AdTLpAEMvRCFGp9sij1PVCp5Yh2yQO4dj6E0O5hlO4MNGHdkOMJs3Cl2XLGVsWaQwLmHXNmh4mO7R1bDZtuC5ttPaDZJ+fcPf1nqFG+yNLdYX5C4mR2DTGmUw/tuCXvLxNuuL9AeiznRR4FjV3p2N5Nvob9lTW8zz7C5KiSbaz5Lbdn+68/kY7zcvGCVN1Lg0I/hCBMh9yVuhsHgxqJGNvq7wAdGOm1gA+cwwJcdxVKt8lpXYDuNvkAe85T60TEfDO3d+Goa3E0xQ5JeQx4M9zNW65MbIhTvRmzxob3jTomYamRKhQDYXH+RwFMzXXJlNKmmF2DWVzdBilmtcoj7fHudZV6/aWFwgndijH88Fbc5S/jJD5ZUlRACKeHefDnW6xv1Z3+FunKQSxNIb5p84bKQCFEqFhQ5ljSoIBrXOi3X/Nlm9CDaQaYceBNo1Y9spbF361HGdgsulTOVa8iK6jmr4E/Bdl8filQLULdKA0GcVKkfM+ngdDIPaQ5GUV6A5N6MMAn6tKP6IAq0bWp1j14+g78Tfw8bzyyiepm0N2zun36xTQ0FKWPV7+FWyhFR4eLx7TADXOm/08G6CVCMc76YGoOqzQ09XCZODMZdKXB6lONECQ9FvqxIyGhL8f4x2gMUVol439Tc7bWFeQ1r8RivisaEkJ6YV/aeLaBdQqbUchGVsgmnlNjpAtQspsNlmOpEzMCxoH19XgqN8pC8FJyYZseLNBRk8wRNs3vLZcCV5RgOJGQTOMSzfJv0K5T+HgUscnNWOWx9m/iNViIMImS4KZtCgXuEMxd874myeCA+ZrkIQ19cH6DvPLPWwbuO8OvJt4BEfpgeNXJTL5rxXbgVZkOz07rP/jMUPHW6B8YeAN/Q/B0MXFal+lrLFnuPuqQVOtVW6SpGJnKNdeW9NCZvqnYKcFKwvCRwvmPpuswti+sj7P6NYKU5x3EC7hQZqHG7Smqh8QTd3A6MwGUtgitNgsp2rWMYQlxDCgHSkaMgwaJfg0wyHhZl6DnHgGCNBqHrxC9Ri5LsJFNAymvnWqTtoWQlftJqf8+mNJfSc9F6TWfZd4cOkNiOmEZA/4xLK5IFeAFKqP4cKitIJzMU2oJ5D7W1iE8aNMGyAtsLtMOS4nOtSjFteZx7XAhntB1NGGvdqFYP1VJtwAAAUtNOYLdWFgAiKdlUohsjLih/PsUnz8YMrj+NYLViZ3hEGBe5QDjQBIHPf1CnhpVpamzSc+9XfkLp/r9rf0lp/OvmN6mVgp2eO/IJYs4rm07L36w3gRoDmZw2yss1b5czIAdZJAzE5jQPcDACw7Lq6gHEPZomHwB1CB0Goo7efJ3NNRdpwDYN8eFLLX3mR7g13dgUbNu5YL809L6+obq2G1Sfx5gXRozkYM1kfLipN6rjb6uwXN/J1RYS0g9K2Juz3lQnjd+77DiQA3zFjbsDfzVxlwR/Da9BohQZ7NqCr6OjnGJvW1jCs2dpoGuu/v0KX39g9BbsyLSd0WasEb+7xrO+pL5yz0pY6H7Ej38evOzm8c/yF/4Ycm5ADgv/tVkMaCQ/EHwT9LpJWJA/T197eTJ9ayCDkJMK2e6YkUvjRwx5UgJ23hbyx8UHusfYV/85bnhANlJt7pZkD9gg8Izy8U/0KYdkiBSnXLW8CVDXx3HI3gv7CFyd8ywd8A3Y5qsGZtto04AgHi8E3yIH4JVouYaWFo/7l6q9DoMI/eJnhQKgsppq6xRq90Sypys9skvjoVXk0/DSOrvFa7JppkimuiSgfCp/BaCHGvge6TAYWV3fSuS2LmM6xKLyvIN5ugLJsPZgAABgJCdrdZf7Xp799NzWxHfS8s5CzpXhEL6kyXbvieR18B1q2pixoOr2GDcku62QsLCmJUAHYbSh26iE9p9ZdcIsIcVbkeaSG/igtMqZYiH8L+Rank9W26DbHaPYhSMIzEPQo9p+/wycRUDm7A/4wtyp6wYNN28n0yX/GrCG/BZIBRCooXu847hZ+1j9hQt/xRBEha7Kv2hU28oAfMPI8fBcw+QnKRhZMUZgis/eRSRFeU4L0hCzw3aPzye6ZJHhc+QSXD3zzrgs8sC0J9ZBt1Vq5Jq9Oyq3pQydJreBpjHM8OXJztQxLgNUzVm5pN3Df6xF7NMyYkN2Rpzlgons44tZQjhWKx+zafsXg/HMs5vNNf2CL+Bnhfve92mhphe98zqSSpy6gZN0yigDzeqkW4Ucf//1ADWvwRvZIlEVEe5ldrD5wPfvwRx8F2cQOnSOyc+jHgENik3adWKyj6tUM0VwaF+0RttZpmhCPwZvIWl5J7PDKrb8Lz+07uQVGLqLJQ2IVj8/KpHtr+B1uKbHWkiklz91UW5FJypPCwDqjDxlrcNG3HsVcGluAeu7eTBuP6d7tXmMZ5rHAJgSB0+jFH49TmFLK4yaOBOxH1BodAmIcgN0yKb1i99/8rVHtY7XfX0YEewNPzPc0aNJ0T+OyzBvt9wn7hrCtnI374u9SkJIxZ5Pn2+7wwwoRL7b/8Rxjk0fdYUbiSN/8B6pqiVRi00WnPrJNU+qzmLE9fLQtL9UpOeI/cq6Gc4UddAxeYdv1eNx6P4k/u2nYpiCDc9vnXelMg6U1zVMAh52hXF4uwp57te7CLqpZti4BObtxr2X/MRVIk8Yp+DqSWcHb/5dgNzoNfEfsj3193MhNHMMFNSI7G9+MhbFcVsum5JBzNswM3Pna4Mt7zYMwK9QNaWI0Swkgzv844Xv3VtQ25CInnZlPrV8kUc1aDYA4XeieWtvQfNxRuWruc3ysUxGL9c1zVZwdcK2qmKM9Ot5gsRBM3zQj0nLOA7meczmYkqvRG5AuHngDC3nNyXtTgXtPpf9WwORfzEpGXQRC01uMlWVXHgC2w//xSjeQ0FZQ/pJ8E0nTL/PLUdvuGu97QwlaDGnIT/0IH/d/PbEbc896CAzfDeqtP09NyU5gB5+mbD0Z8xOaEwkZpwMrzGccwgEJFNaJn21WsCoGFM2SkSIM/YAvkp6+aTpFMoElijjUFZ0ohdmsRrRbbfkXcF1eBeOqlM3byJKMZija8nJ7J/xZ1dOpL796yKbOSxf5c2tCqb5TbUzw83/4rIgidiSn4nf2V4WAphkUxdOwGyE+JFz0jjF+hSiPJhJ5pIkrKscAfzKqW6hPVf9PEhHImihT+65E53dwZ/Hegu0ohXfHU11HQiWnkPug+dCm328Lsqlo7bMFULDshgZ7t/AMdiDZvJZkyLAOa8mYR0yooUDNKwOLki0vZJe8uxpwxFKGx9TFLLM2EqOOj3BcB1bV3n3vFTyWHcCs/FMsadEr1+OQ+R0XzmYeVzdoaICnd6aPp2CJl8046jZpWTlH9DpSjbLfFNvkizu27yyx9eK9dN3iMFs4fBbCvU00Q8+ovbzMxAmWt0PTvmRhj4eK7c2RFlXUPWX6ZHdfUGS4QBA3VLhc0ySnYW13+3rEGw7V1+5+tZnbJZsHK4aE4i5jh9ceNvGmVMrq2IRsYKNSrazJykCDlO+bwaZaInBmVRgBgMXyAMdTNVdHrOeswARZ9EsYf8qn9g247AQVfDWSMUy5VNBlvaw3WFLaBJb4A8GWW0UJ+xICEukBHDyRTIP9ML7d3am1WS+ySX5rxkGJZVC70i7dVpo5ydDq9JTT2z2GLQwAw8rXGkZ1SRp85yO4kJDzn4uOfI7le1jzeiC0Cpa5bmAu8hrbegcczQuIv+4QwxGMjpLMV+qOIeBdbN3GHPczb+SQIDqiUI6+XTbBd9lNpbkGm5WlRwqImlROIwCvr0ZSxTnx76qduMtGjd9wJgcuhy2dKK/csLvPEycnhVrfsKoE8NUovqRE2904o07gOMHsHKALqBB9e4RC663lfReW7k9+cYow3lRvUYmSqKBsdnSeBoAJmqAsf8Bv/9HTGHuZjHDOvSQq/u4knqc9zhebvGq16njNGwJ7TySeD4kGLqDYQcKxfOTddHBDh4S3G/wT5KFPUZSCXnTGaOXaGVaP519sZzHwYbS8Pi6yphIwFGOTptVWdgpEVUHBcs4LWlVYRq60RDrprM0pf8QneZgjhbnORk1theu5UflTjvC222IXfrIlu5kDcq2AXeEc2WdXx0Z5avEJzwYizX4ValKMazvqeVP2xSv/dL2nbEU4jKON3AEZwZO8291UrwgPhIvf7KTGw9AaDa4zDcqSHZr9i0bTevKQk5WD6CKGs0216vqTMfxI6dZhZ9RFawYAcmEPV27Ag9fVUheSwLww2awE5jPVMcPOziqhoHIhqgn4DBz9/A6NnnnpzGWhB2xNfQHQexK8A6c9GHbY5AKbX/GKykkJF3zgI0UUcly7DvNkXE+qUD6xivenXI+idZfjT0/aeGJ1oyvn5s5LkeaeVqeMoLh6X135BGpYzFbZLTr8lmiLQ3n1V+Z7vZciLOzfNpYlhs4seBR95TbWKyFxV1MHcCJaIsNA5lyfh/0iVKObYUhpsOtTNmu6IFBSYN4Sf7CdX89jv8UKUvtzeijIyzDhJwwi+vgceXMWgQvc1wF0yC9F7P7GfOPpO/6h24ygjdHjerhMH4meiMQS1SmX4tDPARDYll6rJ8YZ8i2LdtC70m6Rm2ECo/vZNpMdrYmKKSZqRbJGmi1NlDBz1oqKKHZf2kzDI1JsfeZxNaTeZDTmPX/TMKsAua3ZZlc/K0DrIdKcWRBddSBjyoJ30iPG3dm0evI+Zd72DX+ng/UGqLGusJ1qgonNPPEVttneTPZ4u3LdRoEwszTLWmxeUDqo9aPbI+SpiNBBFZhnOZWbcIpRq+5EW/irbm0D9SAyXRDrbbAptKHnEzfoU+tjIo5K7ZCnwGxpIXfMqlCoM5814Vqgn2iRI24RmQ4VTBVfEhH9x7jK0ew+pGKlvsPuKezzuGlX4cyRAdIRzd5YkmGEhbAauE8HsG3m7W3zC/6DG69h7rDJ9b641o8Gb68bjwzLRt/YLF9BsMA/YXB/4u+6AdFAZ+eTLG3PH2j4OjLPPg2pwd/H/msh/6btgPbFoUc9QtaCMfQnKt5O1IdQLVSumSc4D781kWfZ4dAyKu2beO8gC+tj43fjHYyAA7uL+sfksfX3oHiXdTKMkxhIR3cfuv+3EyrXRXoiozMEu/g0IqYiTa05VFc3AsUvi7Wyy0Lt5xVPpBRte9MhHsYavcq/njDhjdsxAW8PH7LSzm5vRRjYlGXDmTk4T45BEl6hEPf5qM4DCNShJCSHFP49woqbvBaidtSvlDRNlGGcYqgW8BI7Sjs4u8IHlBibPS52or59c/xYpQGyOpTxniv6eSo6w93zpPv9heXpNhm2cXn64bTF7G0miAc4eHmxDutfEK8x/hZZxpn59oROTqhgT78t2i9uYPwD9Ps+isT9yNB7VEMVVF72OWPQ+9KjeSk9eCnkU6E9kmG3FdNTsjrfesaJa3H8LMzxsAsLrvfApTHm8HFWJSJ6x81TXhZTR0yKYXqPI/r/xYysaidlrBxC0KgUamBcfr4e452m996jbFtXsyUWhFtl5f/2PqFrn/aPDO5oFK7SpSNWJLgyqpo3MelLCCRhdpk/qTrlnu0L05i+7+thhkhVkN+3G4tKsv+rSnFOgNqVLeyAn49q4jNeQQYkUeAARFZNyUMDWqlY5wYSlQr5B9qmtsZ7trJudyXsS8u/d+YnjKyymEOkbaNfklHfXzTpK9buAfJHQVruIvrt48nW6Xj9P85R9gw/BTr0a7Pz2SMQZIYlcnKOJxEmcYENEw5x0+QC9vcb17+cd7sjkv/X/CsLb2+P8A58l53O///Ww60+K0G1PBhw3MBSdm9Qepu1KZbPL0rnkrPq/EPILcLm33XuXo5x0rTn8bUE5hjzqtqNdQG/50Fh7zqNMeFaIxhVdebvV5P2ArsXiMC/Q7skQW1fqcHzG+Vn1mG2Y4oF60H/ggCLLn0Wej1jsb8fODU5aILH3l9zH6yiEHEclXUVkCoVNp/+xFza0MREx2q6iXmEXkM3X6rG6OtQg6kxJ8DK/U6YLrGRDe4e1ki+Nx4gCahMRIn/myT7BZNEniubIrDj70/Cp/mJ2EctQKILAKxGTePcHpN+yjKeDh73obTokTtKg3S2cRNKQlSLFx4lwDIXsn73B4afihA3gGKNj5KFtZjQVaXPcMjrBamepVdG5rNM+Lfv+CkokFdzVNXGu54Q76gEVMCCaUuZGWd7n+IBZFYa3jPJoY1oJHkdryxODwMV0aHGZIuJKeUgr+ztyywJdeM8gvsUjI/L69eF9/1S9qXPAd4/3SuxHdvYwQ/OhEKmctK1B6BKbQCRImNE2tM0mpZXNQTYsNYz5s4/c4Pv2IBkMzbocbH+GPLoCXcshby1/M0WT4iPLZQkYYUSqu0JEbZfpXOxmYNJDIOzJkAwKrrgZHDL8YcUXXyZ6EFbSRm8hBFnvbB9NAHNRCb6ZFr4f/40JR26nELiQFVICUfwjadt2GCjiVlIPImpTlGCuXikjHoVs5SLJTmtBAOPjOa9LC46O4T6ALnts8zjwbabTVM9GDFI2gm1HCWooOYGfgXG6gbwRRK+7IebhVL+o+nJGIig6aofLIXGbpPmJ9AXfLmpe3HCfiTKXC5lmEAz8w7xWvt/Tidwg/fhOluqv5DIoYxxXFoFfXAtyRDxk1sLZ/ca5YWsYFu3wt74T/3hod/qKbk3qbUgoNdoJHIRRtNCw+J38fvkCLrJkp6zZ4vqU6A+6dM3PibDFnITS/j/swu1eCUQKc+LoKumsnHew+YKbIAgquNxIFcWGiWv3mKHriLIkIjHCOhAy1msZAaZeIuLp9O1bSOPgGT7TmpVI5/SPkhhd8zuuptlaVr4UGsBIFK/ge1CDn00dmi2cLFZe6gQK55/6RHIED7QRgaPHrGjorm/OKp+U5vETgXRP/7EWwOwez0d823cqyvUIgBLIYVWWYytOHsR0AKLbo7MUL5aasNQwvhcUDIUo2w6DgD/CuC/eavlY+rHtwvSpYT/hmJ/ltLRJvHG5KzR8PfyGC7bZSnU0h6v5c/Pennxet1qyckDtMHQnfaeQ1NUT2NIFh+E0+rRE6RwyoCoogE8Q+ugg2khpzskjrtnUGV/+vKkDeyfyVLoWuHZZo9nPiyEEAQsGyzlDbVUIhHnM/CRV3hTbtYRdocJF6dTJh52gKfgw1C1ZFlfzHcACAP+pwvVUc+dctR7MCoYBdVSvLdDTeVy7l2cINQ3jgYlJ2rmD4MNInl1SMJjyPjtO+dSNlN1kMtQI7XoJpCLnFj7vCR3hqqILK2ypXi4tUnBgpuJcJeXiLOF702GvEkOaN4mRJjnx3YfzJX6kf5DkjQPEGBOkAE4XErMQQJt/K5chmZuFt/k5xzgKqeayc05b49btAX+Iad7JwOE9oHNUWzPdwIosT42DKDaYQ6ivmRe9S/cE+IesqKhttfoFoPCfOi+FSeK2PLdMceO5OQ2EWXWl1xeqonUFJSbDOBpURRk3vNSXuIicXPfSoXFnRMC5kr2IxlL58wiX32OBTdrGV0ESHojp43yreD7jQ42kqLP0qXm5ndD6ebYyUHpT0SuX1PhYXaO7TYVyJCsgEyenipMnIHW7T5oMJ42NsbAEKGfAk8rkqHf32Axw8tu+0IsHEvOtbUrImnoVpSNMtxiLBGGEqgE3igBENRm4OMB4MGd+hukJZtyWPjZnIv0k7zaZxBvdsIOB08jmuIOaE0aYSDTUm0KvlNQG47Q/PMBWFFdfkGdpat42KzAgklE7XG9yRLXXHFzFYh5IFW9CY0gT9yMWwacYwkqHbf6Ko5fHYr86DysNm1LETMVtR2qpmNLO12Y1ZYZDS0bFHi5twCJRsQEdeXfndX0XPnauIBK2yeudfgjDQoeRIWSkg4pKjPCkYAY+491zjA2SgP4yKefzncsVFZik8rqyzcl0yTIic84IJYWChG5Z2qwMmdlYOGJBiUI50AjhlQPKbwBTWumgjVKDDWTZ1pQW1U+PGJb0mbJbX8WYFFx/LplZEhtzVHExZvIKWoZFSF1M/0YJswp3fqEY/ZH9b4rIYRYDmaqc6H0Q8oV29//3xv4Pyz8dyLx4HNZNEJrEzorrWbiuAjkb0rfal2h0bfqSWna+ypqI58NR42/Ws6F0q4jlr0+ijEUWNNQz7mZvWTMYpXHY9fefJCuab/4856SVDdo4KGAZ+yTg2vrAELM13+b8D/IU4jaOF5BEadzLi9wlYX+kso0gdgu6ciZ/MTWehDfUbApX2/icHWc60llgcmEsn/Lww6fZ1lLk2oOCaWCDQyKwspmgaQH2JJSDodyWl7eiToUIiI3hAIMT8MIP2J6JGPSR6ksRvulJVeu+jhp028GEVAHCEU/bLFtHowm/7JJUoIRqDdCCZTB2TsdqgWy1kniCs8xrQbeQhhaZ+/TomGMAYgSOC8Lg98WbXhN5DrmLVACWi8Ejn52Gnn4S/BsoZofp2uFeWasIIpPhw2M7seOh8bQtDZLudr0p8vOywji1rD+trZYLRNPuiISuevPYHio76cCEgWRAKrKaBb2EEzBngAAA=" alt="Stāsta spēks"></header>
+<main>
+
+  <section class="hero">
+    <p class="eyebrow">Online kurss ierakstu veidā</p>
+    <h1><span class="claude">Claude</span> satura veidošanai</h1>
+    <p class="sub">Dizaina sistēma, saturs un analītika</p>
+    <div class="lede lines narrow">
+      <p>Praktiskais Claude kurss 7 posmos.</p>
+      <p>1 nedēļas laikā apgūsi nepieciešamo satura veidošanai ar Claude.</p>
+      <p>Bez liekas teorijas, tikai kā sasniegt mērķi.</p>
+    </div>
+    <div class="cta-row">
+      <a class="btn primary payBtn" target="_blank" rel="noopener">Sāc online kursu!</a>
+      <a class="more" href="#posmi">Uzzini vairāk ›</a>
+    </div>
+
+    <div class="stats" aria-label="Kurss īsumā">
+      <div class="stat"><b>7</b><span>posmi</span></div>
+      <div class="stat"><b>~20<small>min</small></b><span>viens video</span></div>
+      <div class="stat"><b>~30<small>min</small></b><span>laiks viena uzdevuma praksei</span></div>
+      <div class="stat wide"><b>14 dienas</b><span>pieeja, iespējams neliels pagarinājums</span></div>
+    </div>
+    <p class="body-lg" style="margin-top: var(--s4)">Katram rezultātam video ieraksts soli pa solim.</p>
+  </section>
+
+  <section class="narrow" aria-labelledby="forwho-h">
+    <h2 id="forwho-h">Kam tas paredzēts.</h2>
+    <div class="body-lg lines">
+      <p>Visiem, kas vēlas apgūt satura veidošanas pamatus ar Claude AI.</p>
+      <p><strong>Ja šos uzdevumus jau dari ikdienā, tas ietaupīs stundas katru nedēļu.</strong></p>
+      <p>Īpaši noderēs mārketinga vadītājiem, satura veidotājiem, sava biznesa īpašniekiem un e-komercijas ekspertiem.</p>
+    </div>
+  </section>
+
+  <section id="posmi" aria-labelledby="phases-h">
+    <div class="narrow phases-intro">
+      <h2 id="phases-h">7 prasmes. Tavai satura sistēmai.</h2>
+      <div class="body-lg lines">
+        <p class="highlight">Vispirms parādīts rezultāts, tad – kā to izdarīt.</p>
+        <p><strong>~20 min</strong> pamācību video + <strong>~30 min</strong> praksei. Trenējies un pielāgo sistēmu savām vajadzībām.</p>
+      </div>
+    </div>
+    <ol class="phases">
+      <li><span class="n">01</span><span><mark>Claude pamati</mark> un darba uzsākšana</span></li>
+      <li><span class="n">02</span><span>Claude <mark>Projects un Skills</mark> izveide</span></li>
+      <li><span class="n">03</span><span><mark>Zīmola dizaina sistēma</mark>: vienotas krāsas, fonti un komunikācijas stils</span></li>
+      <li><span class="n">04</span><span><mark>IG karuseļi</mark>, bloga raksti, LinkedIn posti un infografikas</span></li>
+      <li><span class="n">05</span><span><mark>Meta reklāmu konkurentu analīze</mark> un satura plāns</span></li>
+      <li><span class="n">06</span><span><mark>Mājaslapas un konkurentu analīze</mark> ar Claude paplašinājumu</span></li>
+      <li><span class="n">07</span><span><mark>Instagram video montāža</mark> ar Claude Code</span></li>
+    </ol>
+    <p class="body-lg" style="max-width: 680px; margin: var(--s4) auto 0;">Katrai dienai viena tēma, lai nebūtu informācijas pārbagātība un varētu fokusēties un izdarīt nepieciešamo savas dizaina sistēmas uzbūvēšanai.</p>
+  </section>
+
+  <section class="tight" aria-labelledby="hosts-h">
+    <div class="hosts narrow">
+      <h2 id="hosts-h">Kursu vada</h2>
+      <div class="hosts-grid">
+        <div class="host">
+          <div class="host-photo"><img src="img/host-agnese.jpg" alt="Mētra Strode" style="object-position: 50% 0%; transform-origin: 55% 0%; transform: scale(1.4)"></div>
+          <p class="host-name">Mētra Strode</p>
+          <p class="host-title">E-komercija un reklāma</p>
+        </div>
+        <div class="host">
+          <div class="host-photo"><img src="img/host-motra.jpg" alt="Agnese Repule" style="object-position: 50% 24%; transform-origin: 68% 27%; transform: scale(2.2)"></div>
+          <p class="host-name">Agnese Repule</p>
+          <p class="host-title">AI SEO, GEO mentore</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight" aria-labelledby="testimonials-h">
+    <div class="testimonials">
+      <h2 id="testimonials-h">Ko saka kursa beidzēji</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial"><p>„Visvairāk noderēja dizaina sistēma. Es pat iedomāties nevarēju, ka Claude man var aizvietot Canva. Agrāk stundām ilgi bīdīju elementus šurpu turpu, bet tagad prezentācijas un vizuāļi sociālajiem tīkliem top minūšu laikā.“</p><p class="testimonial-author"><strong>Zane Karele</strong>, karjeras konsultante</p></div>
+        <div class="testimonial"><p>„Visu, ko uzzināju, šobrīd izmantoju ikdienā, un tas reāli atvieglo darbu. Man pat Claude tagad vairākas reizes ir teicis, ka limits ir iztērēts. 😀 Ļoti patika, ka viss ir īsi, konkrēti un pa tēmu.“</p><p class="testimonial-author"><strong>Gunta</strong>, satura radītāja zīmoliem</p></div>
+        <div class="testimonial"><p>„Visa uzstādīšana, un kā parādījāt daudz fīču un integrāciju, kas atvieglo darbu. Man šis bija kā ievads Claude izmantošanai ikdienā mārketinga vajadzībām. Līdz šim aktīvi lietoju ChatGPT, bet izskatās, ka Claude izmantošu daudz vairāk turpmāk. Paldies par ieskatu Claude dotajām iespējām, noteikti izmantošu to savā ikdienā un meklēšu vēl citus risinājumus savām vajadzībām, piemēram, Google Ads analīzē.“</p><p class="testimonial-author"><strong>Līva Andžāne</strong>, individuals.lv</p></div>
+        <div class="testimonial"><p>„Vairāk parasti mācījos no video materiāliem un man ļoti ieteiktu šos kursus, kā izskatās un kur to var izmantot. Tāpēc par to liels paldies, ka parādījāt un ievadījāt pasaulē, kas man vēl bija pilnīgs noslēpums. Tiešām priecājos par katru uzdevumu, paskaidrojumu un ieskatu jebkurām.“</p><p class="testimonial-author"><strong>Alise</strong>, intercars.eu</p></div>
+        <div class="testimonial"><p>„Noteikti ieteiktu šo darbnīcu draugiem un kolēģiem. Man bija noderīgas vairākas lietas, gan Claude paplašinājumi, gan kopumā workflow un iespējas, kuras var izmantot AI rīkā.“</p><p class="testimonial-author"><strong>Santa</strong></p></div>
+        <div class="testimonial"><p>„Ļoti ērti piekļūt, atzīmēt un saprast, kas jādara, kas nākamais un kas vēl sekos. Par to arī paldies! Esmu tiešām priecīga!“</p><p class="testimonial-author"><strong>Viktorija V</strong></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight" aria-labelledby="join-h">
+    <div class="join">
+      <h2 id="join-h">Rezervē savu vietu <span class="badge">Nenokavē!</span></h2>
+      <a class="btn primary payBtn" target="_blank" rel="noopener">Sāc online kursu!</a>
+      <p class="note">* 3., 6. un 7. posmam nepieciešams maksas Claude plāns, piemēram, Pro.</p>
+    </div>
+
+    <div class="share">
+      <h2 id="share-h">Uzaicini draugu 👯</h2>
+      <div class="lines">
+        <p>Kopā ir vieglāk (un daudz jautrāk).</p>
+        <p>Nosūti draugam šo saiti.</p>
+      </div>
+      <div class="copyrow">
+        <input id="shareLink" type="text" readonly value="" aria-label="Kursa lapas saite">
+        <button class="btn copy" id="copyBtn" type="button">🔗 Kopēt saiti</button>
+      </div>
+      <p class="copied" id="copied" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="faq" aria-labelledby="faq-h">
+    <h2 id="faq-h">Jautājumi.</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Cik maksā kurss?</summary>
+        <p>Kursa cenu redzēsi maksājuma lapā, nospiežot „Sāc online kursu!”.</p>
+        <p>Lai izietu visus posmus, vajadzīgs arī Claude Pro plāns (€18 mēnesī).</p>
+      </details>
+      <details>
+        <summary>Vai var izmantot bezmaksas Claude?</summary>
+        <p>Daļēji. Pamati, projekti un satura veidošana darbojas arī bezmaksas plānā, tikai ar mazākiem lietošanas limitiem, tāpēc reizēm būs jāpagaida un jāturpina vēlāk.</p>
+        <p>Zīmola dizaina sistēmas saglabāšanai (3. posms), Claude paplašinājumam (6. posms) un Claude Code (7. posms) vajadzīgs maksas plāns.</p>
+      </details>
+      <details>
+        <summary>Esmu Claude lietojis tikai dažas reizes. Vai tas der?</summary>
+        <p>Jā. Pirmais posms ir par pamatiem un darba uzsākšanu, un katrā video viss ir parādīts uz ekrāna soli pa solim.</p>
+        <p>Tā ir arī prasme, kas atmaksājas. Claude strauji kļūst par galveno AI rīku mārketinga datiem: 2026. gada <a href="https://windsor.ai/claude-vs-chatgpt-marketing-data-study/" target="_blank" rel="noopener">Windsor.ai pētījumā</a> par 35 000+ mārketinga komandām to komandu, kas datus analizē ar Claude, bija aptuveni 7 reizes vairāk nekā to, kas izmanto OpenAI rīkus, un Claude veica ap 81% no visiem AI datu vaicājumiem viņu platformā.</p>
+      </details>
+      <details>
+        <summary>Cik ilgs ir kurss un cik laika vajag?</summary>
+        <p>Kurss ir sadalīts 7 posmos. Katrā ir viens video ap 10 minūtēm un vēl 30–40 minūtes, lai izpildītu uzdevumu un pielāgotu to sev.</p>
+        <p>Vari iet pa vienam posmam dienā vai pabeigt visu vienā dienā.</p>
+      </details>
+      <details>
+        <summary>Kāds ir formāts?</summary>
+        <p>Ierakstīti video. Katrs parāda iespēju un gatavu rezultātu, un tad soli pa solim – kā līdz tam nonākt.</p>
+        <p>Jautājumus vari sūtīt uz <a href="mailto:stastaspeks@gmail.com">stastaspeks@gmail.com</a>.</p>
+      </details>
+      <details>
+        <summary>Vai būs tiešraides?</summary>
+        <p>Nē, viss ir ierakstīts, tāpēc vari skatīties, kad tev ērti. Nav fiksēta grafika.</p>
+        <p>Iesakām vienu posmu dienā. Tā nav spiediena apgūt visu uzreiz, un tu vienmērīgi virzies uz priekšu.</p>
+      </details>
+    </div>
+  </section>
+
+  <section aria-labelledby="gift-h">
+    <div class="gift">
+      <h2 id="gift-h">🎁 Bonuss: <span>20% komisija</span></h2>
+      <div class="lines narrow">
+        <p><strong>Meklējam zīmola vēstnešus!</strong></p>
+        <p>Ja kurss noderētu tavai auditorijai, raksti uz <a href="mailto:stastaspeks@gmail.com?subject=V%C4%93stnesis">stastaspeks@gmail.com</a> ar tematu „Vēstnesis”.</p>
+        <p>Piešķirsim tev īpašu saiti un kodu.</p>
+        <p>Daloties ar tiem, saņemsi 20% no katra, ko piesaistīsi.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>Uz tikšanos kursā 😊</footer>
+
+<script>
+  const PAYMENT_URL = "https://buy.stripe.com/6oUfZh8Pm3VzbN78Hbes001?prefilled_promo_code=CLAUDE30";
+  const PAGE_URL = "https://claude.ai/artifact/Q8ZbEEeL54Nw6WnbQ19gUp";
+
+  document.querySelectorAll(".payBtn").forEach(a => { a.href = PAYMENT_URL; });
+
+  const shareInput = document.getElementById("shareLink");
+  const copiedMsg = document.getElementById("copied");
+  shareInput.value = PAGE_URL;
+  shareInput.addEventListener("focus", () => shareInput.select());
+  document.getElementById("copyBtn").addEventListener("click", async () => {
+    let ok = false;
+    try { await navigator.clipboard.writeText(shareInput.value); ok = true; } catch (e) {}
+    if (!ok) {
+      shareInput.focus(); shareInput.select();
+      try { ok = document.execCommand("copy"); } catch (e) {}
+    }
+    copiedMsg.textContent = ok ? "Nokopēts! Tagad ielīmē to draugam 🎉" : "Saite iezīmēta. Nospied Ctrl+C (vai ⌘C), lai kopētu.";
+    if (ok) {
+      const b = document.getElementById("copyBtn");
+      b.textContent = "✓ Nokopēts!"; b.classList.add("done");
+      setTimeout(() => { b.textContent = "🔗 Kopēt saiti"; b.classList.remove("done"); }, 2200);
+    }
+  });
+</script>
+</body>
+</html>
