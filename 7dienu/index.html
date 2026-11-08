@@ -75,6 +75,10 @@
   }
   .btn.primary { background: var(--claude); color: #FFFFFF; box-shadow: 0 8px 24px -10px rgba(193,95,60,.7); }
   .btn.primary:hover { filter: brightness(1.08); }
+  .price { display: flex; align-items: baseline; justify-content: center; gap: .6rem; margin: 0 0 var(--s3); }
+  .price s { color: var(--muted); font-size: 1.25rem; font-weight: 600; }
+  .price strong { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.03em; color: var(--claude); line-height: 1; }
+  .price-hero { margin: var(--s4) 0 0; }
   .more { color: var(--link); text-decoration: none; font-size: 1.05rem; font-weight: 600; }
   .more:hover { text-decoration: underline; }
   .btn:focus-visible, .more:focus-visible { outline: 3px solid var(--link); outline-offset: 3px; }
@@ -209,6 +213,7 @@
       <a class="btn primary payBtn" target="_blank" rel="noopener">Sāc online kursu!</a>
       <a class="more" href="#posmi">Uzzini vairāk ›</a>
     </div>
+    <p class="price price-hero"><s>89 €</s><strong>59 €</strong></p>
 
     <div class="stats" aria-label="Kurss īsumā">
       <div class="stat"><b>7</b><span>posmi</span></div>
@@ -283,6 +288,7 @@
   <section class="tight" aria-labelledby="join-h">
     <div class="join">
       <h2 id="join-h">Rezervē savu vietu <span class="badge">Nenokavē!</span></h2>
+      <p class="price"><s>89 €</s><strong>59 €</strong></p>
       <a class="btn primary payBtn" target="_blank" rel="noopener">Sāc online kursu!</a>
       <p class="note">* 3., 6. un 7. posmam nepieciešams maksas Claude plāns, piemēram, Pro.</p>
     </div>
@@ -306,7 +312,7 @@
     <div class="faq-list">
       <details>
         <summary>Cik maksā kurss?</summary>
-        <p>Kursa cenu redzēsi maksājuma lapā, nospiežot „Sāc online kursu!”.</p>
+        <p>Kurss maksā 59 € (sākotnējā cena 89 €). Maksājuma lapā redzēsi to pašu cenu.</p>
         <p>Lai izietu visus posmus, vajadzīgs arī Claude Pro plāns (€18 mēnesī).</p>
       </details>
       <details>
