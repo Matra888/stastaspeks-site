@@ -93,6 +93,8 @@
   .split { display: flex; justify-content: center; gap: .75rem; margin-top: .9rem; }
   .unit { display: flex; flex-direction: column; align-items: center; gap: .45rem; }
   .unit > div { display: flex; gap: 4px; }
+  .unit.live .flap { color: #FF5CA8; }
+  .unit.live small { color: #D61F69; font-weight: 700; }
   .unit small { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
   .flap { position: relative; display: inline-block; min-width: 1.1em; padding: .32em .22em; margin: 0 2px; background: linear-gradient(#262A31 49%, #0F1115 49%, #0F1115 51%, #1D1D1F 51%); color: #FFFFFF; border-radius: 7px; font: 800 1.9rem/1 "Inter Tight", system-ui, sans-serif; font-variant-numeric: tabular-nums; text-align: center; box-shadow: 0 6px 14px -6px rgba(0,0,0,.6); }
   @media (max-width: 480px) { .flap { font-size: 1.45rem; min-width: .95em; } .split { gap: .45rem; } }
@@ -402,8 +404,8 @@
         [Math.floor(s % 3600 / 60), "min"],
         [s % 60, "sek"]
       ];
-      box.querySelector("[data-split]").innerHTML = units.map(([v, label]) =>
-        `<div class="unit"><div>${pad(v).split("").map(c => `<span class="flap">${c}</span>`).join("")}</div><small>${label}</small></div>`
+      box.querySelector("[data-split]").innerHTML = units.map(([v, label], i) =>
+        `<div class="unit${i === 3 ? " live" : ""}"><div>${pad(v).split("").map(c => `<span class="flap">${c}</span>`).join("")}</div><small>${label}</small></div>`
       ).join("");
     });
   }
