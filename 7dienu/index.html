@@ -87,6 +87,10 @@
   .price strong { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: #1E9E5A; }
   .price::after { content: "-34%"; background: #D61F69; color: #FFFFFF; font-weight: 800; font-size: .9rem; border-radius: 999px; padding: .35rem .7rem; }
   .price-hero { margin: var(--s4) auto 0; }
+  .deadline { text-align: center; margin: 0 auto var(--s3); }
+  .deadline[hidden] { display: none; }
+  .deadline p { margin: 0; color: var(--muted); font-size: .95rem; }
+  .deadline .cd { margin-top: .3rem; font-size: 1.3rem; font-weight: 800; color: #D61F69; font-variant-numeric: tabular-nums; }
   .more { color: var(--link); text-decoration: none; font-size: 1.05rem; font-weight: 600; }
   .more:hover { text-decoration: underline; }
   .btn:focus-visible, .more:focus-visible { outline: 3px solid var(--link); outline-offset: 3px; }
@@ -222,6 +226,10 @@
       <a class="more" href="#posmi">Uzzini vairāk ›</a>
     </div>
     <p class="price price-hero"><s>89 €</s><strong>59 €</strong></p>
+    <div class="deadline" data-deadline>
+      <p>Īpašā cena beidzas ceturtdien, 12. novembrī plkst. 23.59</p>
+      <p class="cd"><span data-d>0</span> d · <span data-h>00</span> h · <span data-m>00</span> min · <span data-s>00</span> s</p>
+    </div>
 
     <div class="stats" aria-label="Kurss īsumā">
       <div class="stat"><b>7</b><span>posmi</span></div>
@@ -297,6 +305,10 @@
     <div class="join">
       <h2 id="join-h">Rezervē savu vietu <span class="badge">Nenokavē!</span></h2>
       <p class="price"><s>89 €</s><strong>59 €</strong></p>
+      <div class="deadline" data-deadline>
+        <p>Īpašā cena beidzas ceturtdien, 12. novembrī plkst. 23.59</p>
+        <p class="cd"><span data-d>0</span> d · <span data-h>00</span> h · <span data-m>00</span> min · <span data-s>00</span> s</p>
+      </div>
       <a class="btn primary payBtn" target="_blank" rel="noopener">Sāc online kursu!</a>
       <p class="note">* 3., 6. un 7. posmam nepieciešams maksas Claude plāns, piemēram, Pro.</p>
     </div>
@@ -370,6 +382,23 @@
     history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
   }
+
+  // Real deadline: Thursday 12 Nov 2026, 23:59 Riga time (UTC+2)
+  const DEADLINE = Date.UTC(2026, 10, 12, 21, 59, 0);
+  function tickDeadline() {
+    const left = DEADLINE - Date.now();
+    const pad = n => String(n).padStart(2, "0");
+    document.querySelectorAll("[data-deadline]").forEach(box => {
+      if (left <= 0) { box.hidden = true; return; }
+      const s = Math.floor(left / 1000);
+      box.querySelector("[data-d]").textContent = Math.floor(s / 86400);
+      box.querySelector("[data-h]").textContent = pad(Math.floor(s % 86400 / 3600));
+      box.querySelector("[data-m]").textContent = pad(Math.floor(s % 3600 / 60));
+      box.querySelector("[data-s]").textContent = pad(s % 60);
+    });
+  }
+  tickDeadline();
+  setInterval(tickDeadline, 1000);
 
   const PAYMENT_URL = "https://buy.stripe.com/6oUfZh8Pm3VzbN78Hbes001?prefilled_promo_code=CLAUDE30";
   const PAGE_URL = "https://claude.ai/artifact/Q8ZbEEeL54Nw6WnbQ19gUp";
