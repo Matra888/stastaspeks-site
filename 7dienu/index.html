@@ -87,10 +87,16 @@
   .price strong { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: #1E9E5A; }
   .price::after { content: "-34%"; background: #D61F69; color: #FFFFFF; font-weight: 800; font-size: .9rem; border-radius: 999px; padding: .35rem .7rem; }
   .price-hero { margin: var(--s4) auto 0; }
-  .deadline { text-align: center; margin: 0 auto var(--s3); }
+  .deadline { text-align: center; margin: var(--s4) auto; }
   .deadline[hidden] { display: none; }
   .deadline p { margin: 0; color: var(--muted); font-size: .95rem; }
-  .deadline .cd { margin-top: .3rem; font-size: 1.3rem; font-weight: 800; color: #D61F69; font-variant-numeric: tabular-nums; }
+  .split { display: flex; justify-content: center; gap: .75rem; margin-top: .9rem; }
+  .unit { display: flex; flex-direction: column; align-items: center; gap: .45rem; }
+  .unit > div { display: flex; gap: 4px; }
+  .unit small { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+  .flap { position: relative; display: inline-block; min-width: 1.1em; padding: .32em .22em; margin: 0 2px; background: linear-gradient(#2B2F36 50%, #1D1D1F 50%); color: #FFFFFF; border-radius: 7px; font: 800 1.9rem/1 "Inter Tight", system-ui, sans-serif; font-variant-numeric: tabular-nums; text-align: center; box-shadow: 0 6px 14px -6px rgba(0,0,0,.6); }
+  .flap::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: rgba(0,0,0,.7); }
+  @media (max-width: 480px) { .flap { font-size: 1.45rem; min-width: .95em; } .split { gap: .45rem; } }
   .more { color: var(--link); text-decoration: none; font-size: 1.05rem; font-weight: 600; }
   .more:hover { text-decoration: underline; }
   .btn:focus-visible, .more:focus-visible { outline: 3px solid var(--link); outline-offset: 3px; }
@@ -228,7 +234,7 @@
     <p class="price price-hero"><s>89 €</s><strong>59 €</strong></p>
     <div class="deadline" data-deadline>
       <p>Īpašā cena beidzas ceturtdien, 12. novembrī plkst. 23.59</p>
-      <p class="cd"><span data-d>0</span> d · <span data-h>00</span> h · <span data-m>00</span> min · <span data-s>00</span> s</p>
+      <div class="split" data-split></div>
     </div>
 
     <div class="stats" aria-label="Kurss īsumā">
@@ -307,7 +313,7 @@
       <p class="price"><s>89 €</s><strong>59 €</strong></p>
       <div class="deadline" data-deadline>
         <p>Īpašā cena beidzas ceturtdien, 12. novembrī plkst. 23.59</p>
-        <p class="cd"><span data-d>0</span> d · <span data-h>00</span> h · <span data-m>00</span> min · <span data-s>00</span> s</p>
+        <div class="split" data-split></div>
       </div>
       <a class="btn primary payBtn" target="_blank" rel="noopener">Sāc online kursu!</a>
       <p class="note">* 3., 6. un 7. posmam nepieciešams maksas Claude plāns, piemēram, Pro.</p>
@@ -391,10 +397,15 @@
     document.querySelectorAll("[data-deadline]").forEach(box => {
       if (left <= 0) { box.hidden = true; return; }
       const s = Math.floor(left / 1000);
-      box.querySelector("[data-d]").textContent = Math.floor(s / 86400);
-      box.querySelector("[data-h]").textContent = pad(Math.floor(s % 86400 / 3600));
-      box.querySelector("[data-m]").textContent = pad(Math.floor(s % 3600 / 60));
-      box.querySelector("[data-s]").textContent = pad(s % 60);
+      const units = [
+        [Math.floor(s / 86400), "dienas"],
+        [Math.floor(s % 86400 / 3600), "stundas"],
+        [Math.floor(s % 3600 / 60), "min"],
+        [s % 60, "sek"]
+      ];
+      box.querySelector("[data-split]").innerHTML = units.map(([v, label]) =>
+        `<div class="unit"><div>${pad(v).split("").map(c => `<span class="flap">${c}</span>`).join("")}</div><small>${label}</small></div>`
+      ).join("");
     });
   }
   tickDeadline();
