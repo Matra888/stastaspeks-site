@@ -105,6 +105,8 @@
   .pop-note { margin: 14px 0 0; font-size: .8rem; color: var(--muted); }
   .pop-note a { color: var(--claude); }
   .pop-ok { margin: 14px 0 0; font-weight: 700; color: #1E9E5A; }
+  .pop-err { margin: 2px 8px 0; text-align: left; font-size: .9rem; font-weight: 700; color: #D61F69; cursor: pointer; }
+  .pop-err[hidden] { display: none; }
   .pop-ok[hidden] { display: none; }
   .split { display: flex; justify-content: center; gap: .75rem; margin-top: .9rem; }
   .unit { display: flex; flex-direction: column; align-items: center; gap: .45rem; }
@@ -405,9 +407,10 @@
     <span class="pop-kicker">Bezmaksas</span>
     <h2 id="pop-h">20 Claude prompti video montāžai</h2>
     <p class="pop-sub">Pieraksties jaunumiem un saņem šo dāvanu par brīvu (parasti 29 €).</p>
-    <form id="popForm">
-      <input name="name" type="text" placeholder="Tavs vārds (nav obligāts)" autocomplete="given-name">
-      <input name="email" type="email" required placeholder="Tavs e-pasts" autocomplete="email">
+    <form id="popForm" novalidate>
+      <input name="name" type="text" placeholder="Tavs vārds (nav obligāts)" autocomplete="given-name" enterkeyhint="next">
+      <input name="email" type="email" required placeholder="Tavs e-pasts" autocomplete="email" enterkeyhint="send">
+      <p class="pop-err" id="popErr" hidden></p>
       <button type="submit">Jā, gribu!</button>
     </form>
     <p class="pop-ok" id="popOk" hidden>Paldies! Prompti ir ceļā uz tavu e-pastu.</p>
@@ -444,10 +447,43 @@
   document.getElementById("popClose").addEventListener("click", closePop);
   popup.addEventListener("click", e => { if (e.target === popup) closePop(); });
   document.addEventListener("keydown", e => { if (e.key === "Escape" && !popup.hidden) closePop(); });
+  // Common Latvian and international domains, for typo hints
+  const DOMAINS = ["gmail.com", "inbox.lv", "one.lv", "apollo.lv", "tvnet.lv", "delfi.lv", "mail.ru", "yahoo.com", "hotmail.com", "outlook.com", "icloud.com"];
+  const popErr = document.getElementById("popErr");
+  function editDistance(a, b) {
+    const d = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
+    for (let j = 0; j <= b.length; j++) d[0][j] = j;
+    for (let i = 1; i <= a.length; i++)
+      for (let j = 1; j <= b.length; j++)
+        d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    return d[a.length][b.length];
+  }
+  // Returns { msg, fix } or null when the address looks fine
+  function checkEmail(v) {
+    if (!v) return { msg: "Ieraksti savu e-pasta adresi." };
+    if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v)) return { msg: "Pārbaudi e-pastu. Trūkst @ vai domēna (piem., .com, .lv)." };
+    const at = v.indexOf("@");
+    const dom = v.slice(at + 1).toLowerCase();
+    if (DOMAINS.includes(dom)) return null;
+    const near = DOMAINS.find(d => editDistance(dom, d) <= 2);
+    if (near) return { msg: `Vai domēns ir pareizs? Domājam: ${near}. Spied, lai labotu.`, fix: v.slice(0, at + 1) + near };
+    return null;
+  }
+  function showPopErr(res) {
+    if (!res) { popErr.hidden = true; popErr.textContent = ""; return; }
+    popErr.textContent = res.msg;
+    popErr.hidden = false;
+    popErr.onclick = res.fix ? () => { popForm.email.value = res.fix; showPopErr(checkEmail(res.fix)); popForm.email.focus(); } : null;
+  }
+  popForm.email.addEventListener("input", () => { if (!popErr.hidden) showPopErr(checkEmail(popForm.email.value.trim())); });
+  popForm.name.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); popForm.email.focus(); } });
   popForm.addEventListener("submit", async e => {
     e.preventDefault();
+    const email = popForm.email.value.trim();
+    const res = checkEmail(email);
+    if (res) { showPopErr(res); popForm.email.focus(); return; }
     const data = new URLSearchParams();
-    data.append(GF_EMAIL, popForm.email.value.trim());
+    data.append(GF_EMAIL, email);
     data.append(GF_NAME, popForm.name.value.trim());
     if (GF_ACTION) {
       try { await fetch(GF_ACTION, { method: "POST", mode: "no-cors", body: data }); } catch (err) {}
