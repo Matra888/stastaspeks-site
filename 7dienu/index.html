@@ -90,6 +90,21 @@
   .deadline { text-align: center; margin: var(--s4) auto; }
   .deadline[hidden] { display: none; }
   .deadline p { margin: 0; color: var(--muted); font-size: .95rem; }
+  .popup { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(18,22,51,.55); }
+  .popup[hidden] { display: none; }
+  .pop-card { position: relative; width: 100%; max-width: 420px; background: #FFFFFF; color: var(--ink); border-radius: 24px; padding: 32px 28px 24px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); text-align: center; }
+  .pop-close { position: absolute; top: 10px; right: 12px; width: 36px; height: 36px; border: 0; border-radius: 50%; background: #F5F5F7; color: var(--ink); font-size: 1.4rem; line-height: 1; cursor: pointer; }
+  .pop-kicker { display: inline-block; margin: 0 0 12px; padding: 4px 12px; border-radius: 999px; background: #1E9E5A; color: #FFFFFF; font-size: .8rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+  .pop-card h2 { margin: 0 0 8px; font-size: 1.7rem; line-height: 1.15; letter-spacing: -0.02em; color: var(--claude); }
+  .pop-sub { margin: 0 0 20px; color: var(--muted); font-size: .98rem; }
+  .pop-card form { display: grid; gap: 10px; }
+  .pop-card input { width: 100%; padding: 14px 18px; border: 2px solid #E5E5EA; border-radius: 999px; font: inherit; font-size: 1rem; color: var(--ink); background: #FFFFFF; }
+  .pop-card input:focus-visible { outline: 3px solid var(--claude); outline-offset: 2px; }
+  .pop-card button[type="submit"] { width: 100%; border: 0; padding: 15px; border-radius: 999px; background: var(--claude); color: #FFFFFF; font: inherit; font-size: 1.05rem; font-weight: 700; cursor: pointer; box-shadow: 0 12px 24px -14px rgba(193,95,60,.9); }
+  .pop-note { margin: 14px 0 0; font-size: .8rem; color: var(--muted); }
+  .pop-note a { color: var(--claude); }
+  .pop-ok { margin: 14px 0 0; font-weight: 700; color: #1E9E5A; }
+  .pop-ok[hidden] { display: none; }
   .split { display: flex; justify-content: center; gap: .75rem; margin-top: .9rem; }
   .unit { display: flex; flex-direction: column; align-items: center; gap: .45rem; }
   .unit > div { display: flex; gap: 4px; }
@@ -383,12 +398,66 @@
 </main>
 <footer>Uz tikšanos kursā 😊 · seko <a href="https://instagram.com/stasta_speks" target="_blank" rel="noopener">@stasta_speks</a> · <a href="https://stastaspeks.netlify.app/privatums/">Privātuma politika</a></footer>
 
+<div class="popup" id="popup" hidden>
+  <div class="pop-card" role="dialog" aria-modal="true" aria-labelledby="pop-h">
+    <button class="pop-close" type="button" id="popClose" aria-label="Aizvērt">×</button>
+    <span class="pop-kicker">Bezmaksas</span>
+    <h2 id="pop-h">20 Claude prompti video montāžai</h2>
+    <p class="pop-sub">Pieraksties jaunumiem un saņem šo dāvanu par brīvu (parasti 29 €).</p>
+    <form id="popForm">
+      <input name="name" type="text" placeholder="Tavs vārds (nav obligāts)" autocomplete="given-name">
+      <input name="email" type="email" required placeholder="Tavs e-pasts" autocomplete="email">
+      <button type="submit">Jā, gribu!</button>
+    </form>
+    <p class="pop-ok" id="popOk" hidden>Paldies! Prompti ir ceļā uz tavu e-pastu.</p>
+    <p class="pop-note">Ierakstoties, piekrīti <a href="/privatums/">privātuma politikai</a>.</p>
+  </div>
+</div>
+
 <script>
   // Open at the top unless the address has a section link (#...)
   if (!location.hash) {
     history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
   }
+
+  // Email popup. Fill in the Google Form values once the form exists.
+  const GF_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSeL7o2rg_OITrCronZfmFPJ7KPbyqlCHiuQvb9Z4HJRpGHJlA/formResponse";
+  const GF_EMAIL = "entry.500142275";
+  const GF_NAME = "entry.181305831";
+  const POP_DELAY = 20000;
+  const POP_DAYS = 7;
+  const POP_KEY = "popSeen";
+  const popup = document.getElementById("popup");
+  const popForm = document.getElementById("popForm");
+  const popOk = document.getElementById("popOk");
+  function shouldShowPop() {
+    try {
+      const t = localStorage.getItem(POP_KEY);
+      return !t || Date.now() - Number(t) > POP_DAYS * 864e5;
+    } catch (e) { return true; }
+  }
+  function markPopSeen() { try { localStorage.setItem(POP_KEY, String(Date.now())); } catch (e) {} }
+  function openPop() { popup.hidden = false; document.body.style.overflow = "hidden"; popForm.email.focus(); }
+  function closePop() { popup.hidden = true; document.body.style.overflow = ""; markPopSeen(); }
+  document.getElementById("popClose").addEventListener("click", closePop);
+  popup.addEventListener("click", e => { if (e.target === popup) closePop(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !popup.hidden) closePop(); });
+  popForm.addEventListener("submit", async e => {
+    e.preventDefault();
+    const data = new URLSearchParams();
+    data.append(GF_EMAIL, popForm.email.value.trim());
+    data.append(GF_NAME, popForm.name.value.trim());
+    if (GF_ACTION) {
+      try { await fetch(GF_ACTION, { method: "POST", mode: "no-cors", body: data }); } catch (err) {}
+    }
+    popForm.hidden = true;
+    popOk.hidden = false;
+    markPopSeen();
+    setTimeout(closePop, 3000);
+  });
+  if (location.search.includes("preview")) openPop();
+  else if (shouldShowPop()) setTimeout(openPop, POP_DELAY);
 
   // Real deadline: Thursday 12 Nov 2026, 23:59 Riga time (UTC+2)
   const DEADLINE = Date.UTC(2026, 10, 12, 21, 59, 0);
