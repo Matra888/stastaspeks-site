@@ -138,6 +138,11 @@
   .price-row .now { font-family: "Inter Tight", system-ui, sans-serif; font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; color: var(--wa); line-height: 1; }
   .price-row s { color: var(--muted); font-weight: 600; font-size: 1.05rem; text-decoration-color: var(--pop); text-decoration-thickness: 2px; }
   .price-row .off { background: var(--wa); color: #FFFFFF; font-weight: 800; font-size: .85rem; border-radius: 999px; padding: .3rem .65rem; }
+  .actions .btn.buy { position: relative; background: linear-gradient(180deg, #4D6BFF 0%, #2440E6 100%); color: #FFFFFF; border: 0; font-size: 1.2rem; font-weight: 800; letter-spacing: -0.01em; box-shadow: 0 7px 0 #142A9E, 0 18px 28px -10px rgba(36, 64, 230, .7), inset 0 1px 0 rgba(255,255,255,.35); transition: transform .12s ease, box-shadow .12s ease; }
+  .actions .btn.buy:hover { transform: translateY(-2px); box-shadow: 0 9px 0 #142A9E, 0 22px 30px -10px rgba(36, 64, 230, .75), inset 0 1px 0 rgba(255,255,255,.35); }
+  .actions .btn.buy:active { transform: translateY(5px); box-shadow: 0 2px 0 #142A9E, 0 6px 12px -6px rgba(36, 64, 230, .6), inset 0 1px 0 rgba(255,255,255,.35); }
+  .actions .btn.buy:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+  @media (prefers-reduced-motion: reduce) { .actions .btn.buy, .actions .btn.buy:hover, .actions .btn.buy:active { transition: none; transform: none; } }
   .actions .btn { flex: 1 1 210px; display: flex; align-items: center; justify-content: center; min-height: 3.5rem; padding: .6rem 1.25rem; font-size: 1.1rem; line-height: 1.2; box-shadow: 0 6px 18px rgba(18, 22, 51, .12); }
   .btn { display: inline-block; text-decoration: none; font: inherit; font-weight: 600; font-size: 1.05rem; padding: .9rem 1.4rem; border-radius: 999px; border: 2px solid transparent; cursor: pointer; text-align: center; }
   .btn.primary { background: var(--accent); color: var(--accent-ink); }
@@ -249,7 +254,7 @@
     <h2 id="join-h">Save your spot <span class="badge">Closing soon</span></h2>
     <div class="price-row"><span class="now">39 €</span><s>89 €</s><span class="off">−56%</span></div>
     <div class="actions">
-      <a class="btn primary" id="formBtn" target="_blank" rel="noopener">Sign up</a>
+      <a class="btn primary buy" id="formBtn" target="_blank" rel="noopener">Buy now · 39 €</a>
       <a class="btn wa" id="waBtn" target="_blank" rel="noopener">Join the WhatsApp learning community</a>
     </div>
     <p class="join-note">WhatsApp is optional. All tasks are sent to your email.</p>
@@ -300,7 +305,7 @@
 
 <script>
   // Paste the real links here
-  const FORM_URL = "https://forms.gle/TxW4D3gT2KP7HELd7";
+  const FORM_URL = "https://buy.stripe.com/fZu14nd5Cdw98AV3mRes006";
   const WHATSAPP_URL = "https://chat.whatsapp.com/CxlTuUm6WCQ6ZPOVtBMsni";
   // Live learner count from a published Google Sheet (CSV).
   const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1IIWltYZCraWqf1yI8irX5-kncwCoOnps3TCQtEKum9I/gviz/tq?tqx=out:csv";
