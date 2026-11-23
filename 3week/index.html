@@ -134,10 +134,10 @@
   .badge::before { content: ""; width: .5em; height: .5em; border-radius: 50%; background: #FFFFFF; animation: pulse 1.6s ease-in-out infinite; }
   @keyframes pulse { 50% { opacity: .3; } }
   .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
-  .price-row { display: inline-flex; align-items: center; flex-wrap: wrap; gap: .4rem .7rem; background: var(--card); border: 2px solid var(--line); border-radius: 999px; padding: .45rem 1.1rem .45rem .9rem; margin: 0 0 1.25rem; }
-  .price-row .now { font-family: "Inter Tight", system-ui, sans-serif; font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); line-height: 1; }
+  .price-row { display: inline-flex; align-items: center; flex-wrap: wrap; gap: .4rem .7rem; background: var(--card); border: 2px solid var(--wa); border-radius: 999px; padding: .45rem 1.1rem .45rem .9rem; margin: 0 0 1.25rem; }
+  .price-row .now { font-family: "Inter Tight", system-ui, sans-serif; font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; color: var(--wa); line-height: 1; }
   .price-row s { color: var(--muted); font-weight: 600; font-size: 1.05rem; text-decoration-color: var(--pop); text-decoration-thickness: 2px; }
-  .price-row .off { background: var(--pop); color: #FFFFFF; font-weight: 800; font-size: .85rem; border-radius: 999px; padding: .3rem .65rem; }
+  .price-row .off { background: var(--wa); color: #FFFFFF; font-weight: 800; font-size: .85rem; border-radius: 999px; padding: .3rem .65rem; }
   .actions .btn { flex: 1 1 210px; display: flex; align-items: center; justify-content: center; min-height: 3.5rem; padding: .6rem 1.25rem; font-size: 1.1rem; line-height: 1.2; box-shadow: 0 6px 18px rgba(18, 22, 51, .12); }
   .btn { display: inline-block; text-decoration: none; font: inherit; font-weight: 600; font-size: 1.05rem; padding: .9rem 1.4rem; border-radius: 999px; border: 2px solid transparent; cursor: pointer; text-align: center; }
   .btn.primary { background: var(--accent); color: var(--accent-ink); }
@@ -147,7 +147,8 @@
   .join .note { margin: 2rem 0 0; padding-top: 1.25rem; border-top: 1px solid var(--line); font-size: .92rem; color: var(--muted); }
   .join .note a { color: var(--accent); font-weight: 600; text-underline-offset: .2em; }
 
-  .join-note { margin: 1rem 0 0; font-size: .95rem; color: var(--ink); }
+  .join .join-note { margin: 1.75rem 0 0; }
+  .join-note { margin: 1.5rem 0 0; font-size: .95rem; color: var(--ink); }
   /* Share */
   .share { background: var(--tick); color: #1A1410; border-radius: 26px; padding: clamp(1.5rem, 5vw, 2.25rem); }
   .share h2 { color: #1A1410; font-size: clamp(1.6rem, 5.5vw, 2.2rem); }
