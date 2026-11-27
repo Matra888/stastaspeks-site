@@ -1,0 +1,33 @@
+{
+  "name": "claude-visual",
+  "format": "ig_carousel",
+  "slides": [
+    {
+      "type": "cover",
+      "photo": "assets/p2.jpg",
+      "headline": [
+        "Maksāju Claude",
+        "18 € mēnesī."
+      ],
+      "sub": "Lētāk nekā satura veidotājam"
+    },
+    {
+      "type": "features",
+      "bg": "paper",
+      "headline": "Claude var strādāt tavā vietā",
+      "headlineSize": 96,
+      "sub": "Un tas viss tavā zīmola stilā",
+      "items": [
+        "IG posti un karuseļi",
+        "LinkedIn posti",
+        "Automatizēti bloga raksti"
+      ],
+      "footer": "Cik vērtīgi tev šis būtu?"
+    },
+    {
+      "type": "question",
+      "bg": "paper",
+      "headline": "Kurš ceļš ir tavs?"
+    }
+  ]
+}

@@ -39,6 +39,11 @@ box-shadow:inset -28px -36px 70px rgba(0,0,0,.32),inset 26px 26px 50px rgba(255,
 .q .qrow{display:flex;align-items:center;gap:20px}
 .q .qlogo{height:64px;max-width:150px;object-fit:contain;background:#fff;border-radius:12px;padding:8px}
 .emoji{font-family:'Noto Color Emoji',sans-serif;font-size:150px;line-height:1;margin-bottom:24px}
+.feat{margin-top:44px;display:flex;flex-direction:column;gap:22px}
+.card{display:flex;align-items:center;gap:30px;background:#fff;border-radius:28px;padding:30px 36px;box-shadow:0 10px 30px rgba(29,29,31,0.08)}
+.chk{flex:0 0 auto;width:68px;height:68px;border-radius:50%;background:${C.accent};color:#fff;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:700}
+.card .lbl{font-size:42px;font-weight:600;line-height:1.2;color:${C.ink}}
+.qpill{display:inline-block;white-space:nowrap;background:${C.accent};color:#fff;font-weight:700;font-size:92px;line-height:1.1;letter-spacing:-1px;padding:34px 52px;border-radius:40px}
 .bg-ink{background:${C.ink}} .bg-paper{background:${C.paper};color:${C.ink}} .bg-accent{background:${C.accent};color:${C.accent_ink}}
 .bg-paper .eyebrow{color:${C.accent}} .bg-paper .footer{color:${C.accent}} .bg-paper .list li:before{background:${C.accent}}
 .bg-accent .eyebrow{color:${C.accent_ink}} .bg-accent .footer{color:${C.accent_ink}} .bg-accent .list li:before{background:${C.accent_ink}}
@@ -65,6 +70,16 @@ function slide(s) {
       <div class="display">${s.headline}</div>
       <div class="quotes">${s.items.map(i => `<div class="q"><div class="qt">${i.text}</div><div class="qrow" style="margin-top:16px">${i.logo ? `<img class="qlogo" src="data:image/png;base64,${b64(i.logo)}">` : ''}<div class="qn" style="margin-top:0">${i.name}</div></div></div>`).join('')}</div>
       </div></div>`;
+  }
+  if (s.type === 'features') {
+    return `<div class="s bg-${s.bg || 'paper'}"><div class="pad">
+      <div class="display" style="font-size:${s.headlineSize || 104}px">${s.headline}</div>
+      ${s.sub ? `<div><span class="pill">${s.sub}</span></div>` : ''}
+      <div class="feat">${s.items.map(i => `<div class="card"><div class="chk">✓</div><div class="lbl">${i}</div></div>`).join('')}</div>
+      ${s.footer ? `<div class="footer">${s.footer}</div>` : ''}</div></div>`;
+  }
+  if (s.type === 'question') {
+    return `<div class="s bg-${s.bg || 'paper'}"><div class="pad"><div class="qpill">${s.headline}</div></div></div>`;
   }
   throw new Error('unknown slide type ' + s.type);
 }
