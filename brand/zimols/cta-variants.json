@@ -1,0 +1,15 @@
+{
+  "name": "cta",
+  "format": "ig_carousel",
+  "slides": [
+    { "type": "question", "bg": "paper", "plain": true, "headlineSize": 120,
+      "headline": "Kurš ceļš ir tavs?",
+      "sub": "Saglabā šo un komentē A vai B" },
+    { "type": "question", "bg": "paper", "plain": true, "headlineSize": 120,
+      "headline": "Tavs uzņēmums: A vai B?",
+      "sub": "Saglabā šo un komentē savu nozari" },
+    { "type": "question", "bg": "paper", "plain": true, "headlineSize": 120,
+      "headline": "Tu jau zini savu ceļu?",
+      "sub": "Saglabā šo un pastāsti komentāros" }
+  ]
+}
