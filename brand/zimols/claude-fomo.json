@@ -1,0 +1,10 @@
+{
+  "name": "claude-fomo",
+  "format": "ig_carousel",
+  "slides": [
+    { "type": "question", "bg": "paper", "plain": true, "headlineSize": 120,
+      "headline": "Don't miss out.",
+      "sub": "These skills will serve you every day. <span class=\"hl\">Save time. Save money.</span>",
+      "sub2": "<span style=\"color:#1D1D1F;font-weight:700\">Join the 3-week Claude online challenge</span>" }
+  ]
+}
