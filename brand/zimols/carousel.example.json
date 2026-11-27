@@ -15,14 +15,15 @@
       "type": "list",
       "bg": "paper",
       "eyebrow": "Ko tas dara",
-      "headline": "Claude strādā manā vietā",
-      "sub": "Un tas viss manā zīmola stilā",
+      "headline": "Claude var strādāt tavā vietā",
+      "sub": "Un tas viss tavā zīmola stilā",
       "items": [
         "Raksta Instagram un LinkedIn postus",
         "Veido karuseļus",
         "Raksta SEO optimizētus bloga rakstus"
       ],
-      "footer": "18 € mēnesī"
+      "footer": "18 € mēnesī",
+      "subStyle": "pill"
     },
     {
       "type": "cta",

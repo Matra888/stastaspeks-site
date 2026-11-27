@@ -18,6 +18,7 @@ html,body{margin:0;background:#000}
 .pad{position:absolute;left:110px;right:110px;bottom:190px}
 .display{font-family:${T.font.display};font-weight:700;font-size:104px;line-height:1.04;letter-spacing:-2px}
 .sub{margin-top:34px;font-size:46px;line-height:1.3;opacity:.92}
+.pill{display:inline-block;margin-top:40px;padding:18px 34px;border-radius:999px;background:${C.accent};color:${C.accent_ink};font-size:46px;font-weight:700;line-height:1.2}
 .eyebrow{font-size:30px;letter-spacing:4px;text-transform:uppercase;color:${C.accent};margin-bottom:36px;font-weight:600}
 .list{margin:48px 0 0;padding:0;list-style:none;font-size:44px;line-height:1.35}
 .list li{padding-left:56px;position:relative;margin-bottom:22px}
@@ -45,7 +46,7 @@ function slide(s) {
     return `<div class="s bg-${s.bg || 'paper'}"><div class="pad">
       ${s.eyebrow ? `<div class="eyebrow">${s.eyebrow}</div>` : ''}
       <div class="display">${s.headline}</div>
-      ${s.sub ? `<div class="sub">${s.sub}</div>` : ''}
+      ${s.sub ? (s.subStyle === 'pill' ? `<div><span class="pill">${s.sub}</span></div>` : `<div class="sub">${s.sub}</div>`) : ''}
       <ul class="list">${s.items.map(i => `<li>${i}</li>`).join('')}</ul>
       ${s.footer ? `<div class="footer">${s.footer}</div>` : ''}</div></div>`;
   }
