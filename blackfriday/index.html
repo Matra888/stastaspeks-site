@@ -479,7 +479,7 @@
   const GF_NAME = "";
   const POP_DELAY = 8000;
   const POP_DAYS = 7;
-  const POP_KEY = "bfPopSeen";
+  const POP_KEY = "bfPopSeen2";
   const popup = document.getElementById("popup");
   const popForm = document.getElementById("popForm");
   const popOk = document.getElementById("popOk");
@@ -541,7 +541,7 @@
     markPopSeen();
     setTimeout(() => { window.location.href = "/blackfriday/welcome/"; }, 1200);
   });
-  if (shouldShowPop()) setTimeout(openPop, 15000);
+  if (shouldShowPop()) setTimeout(openPop, 8000);
 
   // Black Friday deadline: today 27 Nov 2026, 23:59 Riga time (UTC+2)
   const DEADLINE = Date.UTC(2026, 10, 27, 21, 59, 0);
