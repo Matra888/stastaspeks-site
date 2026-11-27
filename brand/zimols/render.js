@@ -102,7 +102,7 @@ function slide(s) {
   const page = await browser.newPage({ viewport: { width: F.w, height: F.h }, deviceScaleFactor: 1 });
   for (let i = 0; i < content.slides.length; i++) {
     const sl = content.slides[i];
-    const css = buildCss(sl.accent || C.accent, sl.accentInk || C.accent_ink);
+    const css = buildCss(sl.accent || C.accent, sl.accentInk || C.accent_ink) + (content.format === 'linkedin' ? '.pad{top:110px!important;bottom:auto!important}' : '');
     const html = `<!doctype html><html><head><meta charset="utf-8"><style>${css}</style></head><body>${slide(sl)}</body></html>`;
     await page.setContent(html, { waitUntil: 'load' });
     await page.evaluate(() => document.fonts.ready);
