@@ -1,0 +1,21 @@
+{
+  "name": "fast-yellow",
+  "format": "ig_carousel",
+  "slides": [
+    {
+      "type": "features",
+      "bg": "paper",
+      "headline": "Dažas nozares pērk uzreiz",
+      "headlineSize": 96,
+      "sub": "Konversija pēc nozares",
+      "accent": "#F5B800",
+      "accentInk": "#1D1D1F",
+      "items": [
+        "Pārtika un dzērieni: 3,8–6,2 %",
+        "Hobiji un amatniecība: 3,8–5,8 %",
+        "Veselība un skaistums: 2,6–5,0 %",
+        "Mājdzīvnieki: 2,5–4,0 %+"
+      ]
+    }
+  ]
+}
