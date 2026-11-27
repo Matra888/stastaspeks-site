@@ -540,7 +540,7 @@
     popForm.hidden = true;
     popOk.hidden = false;
     markPopSeen();
-    setTimeout(closePop, 3000);
+    setTimeout(() => { window.location.href = "/blackfriday/welcome/"; }, 1200);
   });
   if (shouldShowPop()) setTimeout(openPop, 15000);
 
