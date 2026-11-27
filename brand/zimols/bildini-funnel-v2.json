@@ -1,0 +1,25 @@
+{
+  "name": "bildini-funnel-v2",
+  "format": "ig_carousel",
+  "slides": [
+    { "type": "cover", "photo": "assets/p3.jpg", "emoji": "💍",
+      "headline": ["Bildini klientu", "jau pirmajā dienā"],
+      "sub": "Ne visi klienti vēlas iet cauri sarežģītiem marketinga tuneļiem" },
+    { "type": "list", "bg": "paper", "headline": "Dažas nozares pērk uzreiz", "headlineSize": 84,
+      "sub": "Konversija pēc nozares",
+      "items": [
+        "Pārtika un dzērieni: 3,8–6,2 %",
+        "Hobiji un amatniecība: 3,8–5,8 %",
+        "Veselība un skaistums: 2,6–5,0 %",
+        "Mājdzīvnieki: 2,5–4,0 %+"
+      ] },
+    { "type": "list", "bg": "paper", "headline": "Divi bizness, divi ceļi", "headlineSize": 84,
+      "sub": "Piemēri, kā to lietot",
+      "items": [
+        "A: pārtikas zīmols. Reklāma, pirkums uzreiz",
+        "B: konsultants. Saturs, uzticība, tad pārdošana"
+      ] },
+    { "type": "cta", "bg": "paper", "headline": "Kurš ceļš ir tavs?", "headlineSize": 104,
+      "sub": "Komentē A vai B" }
+  ]
+}
