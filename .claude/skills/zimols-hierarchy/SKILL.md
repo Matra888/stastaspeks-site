@@ -29,6 +29,14 @@ Rule: if a fourth text size appears, remove one level.
 - `list`: same as features without cards. Use for plain data.
 - `question`: one large question, optional subline, optional highlight, last slide only.
 
+## Language
+- LinkedIn: always English, unless the user says otherwise.
+- Instagram: Latvian.
+
+## Headroom (photo covers)
+- Keep the face clear of text. Either text sits at the bottom below the chin, or the photo is shifted down so the headline sits in the free space above the head (LinkedIn cover: `photoShift` + `textTop`).
+- Never place a subline over the eyes or forehead.
+
 ## Safe zones
 - 110 px from left and right, 190 px from bottom on IG (1080x1350).
 - Keep 100 px margins on LinkedIn (1200x1200).

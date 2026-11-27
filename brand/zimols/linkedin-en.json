@@ -1,0 +1,56 @@
+{
+  "name": "linkedin-en",
+  "format": "linkedin",
+  "slides": [
+    {
+      "type": "cover",
+      "photo": "assets/p3.jpg",
+      "emoji": "💍",
+      "photoShift": 470,
+      "textTop": true,
+      "headline": [
+        "Propose to your clients",
+        "on day one"
+      ],
+      "sub": "Not every client wants to go through complicated marketing funnels",
+      "headlineSize": 84
+    },
+    {
+      "type": "features",
+      "bg": "paper",
+      "headline": "Some industries buy right away",
+      "headlineSize": 84,
+      "sub": "Conversion rate by industry",
+      "items": [
+        "Food & beverage: 3.8–6.2%",
+        "Hobbies & crafts: 3.8–5.8%",
+        "Health & beauty: 2.6–5.0%",
+        "Pet care: 2.5–4.0%+"
+      ]
+    },
+    {
+      "type": "features",
+      "bg": "paper",
+      "headline": "Others need more time to buy",
+      "headlineSize": 84,
+      "sub": "Conversion rate by industry",
+      "accent": "#F5B800",
+      "accentInk": "#1D1D1F",
+      "items": [
+        "Luxury jewelry: 0.8–1.5%",
+        "Home & furniture: 0.8–1.8%",
+        "Electronics: 1.5–2.5%",
+        "Apparel: 1.1–2.0%"
+      ]
+    },
+    {
+      "type": "question",
+      "bg": "paper",
+      "plain": true,
+      "headlineSize": 96,
+      "headline": "What about your industry?",
+      "sub": "Do you get a <span class=\"hl\">\"yes\" right away</span>, or do you have to work for it longer?",
+      "sub2": "<span style=\"color:#1D1D1F;font-weight:700\"><svg width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"#6E6E73\" stroke=\"#6E6E73\" stroke-width=\"2\" stroke-linejoin=\"round\" style=\"vertical-align:-5px\"><path d=\"M6 3h12v18l-6-4-6 4z\"/></svg> Save and comment below</span>"
+    }
+  ]
+}

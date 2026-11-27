@@ -54,8 +54,13 @@ box-shadow:inset -28px -36px 70px rgba(0,0,0,.32),inset 26px 26px 50px rgba(255,
 function slide(s) {
   if (s.type === 'cover') {
     const img = `data:image/jpeg;base64,${b64(s.photo)}`;
-    return `<div class="s bg-ink"><img class="photo" src="${img}"><div class="shade"></div>
-      <div class="pad">${s.emoji ? `<div class="emoji">${s.emoji}</div>` : ''}<div class="display">${s.headline.join('<br>')}</div>${s.sub ? `<div class="sub">${s.sub}</div>` : ''}</div></div>`;
+    const sh = s.photoShift || 0;
+    const fade = s.textTop ? ';-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 30%);mask-image:linear-gradient(to bottom,transparent 0%,#000 30%)' : '';
+    const imgStyle = sh ? ` style="top:${sh}px;height:${F.h - sh}px${fade}"` : '';
+    const top = s.textTop ? `<div class="shade" style="background:linear-gradient(to bottom,rgba(29,29,31,.95) 0%,rgba(29,29,31,0) 45%)"></div>` : '<div class="shade"></div>';
+    const padStyle = s.textTop ? ' style="top:100px;bottom:auto"' : '';
+    return `<div class="s bg-ink"><img class="photo"${imgStyle} src="${img}">${top}
+      <div class="pad"${padStyle}>${s.emoji ? `<div class="emoji">${s.emoji}</div>` : ''}<div class="display" style="font-size:${s.headlineSize || 104}px">${s.headline.join('<br>')}</div>${s.sub ? `<div class="sub">${s.sub}</div>` : ''}</div></div>`;
   }
   if (s.type === 'list') {
     return `<div class="s bg-${s.bg || 'paper'}"><div class="pad">
