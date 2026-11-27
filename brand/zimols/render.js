@@ -25,7 +25,12 @@ html,body{margin:0;background:#000}
 .footer{margin-top:56px;font-family:${T.font.display};font-size:52px;font-weight:700;color:${C.accent}}
 .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 15%}
 .shade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 42%,rgba(29,29,31,.82) 78%,rgba(29,29,31,.92) 100%)}
-.badge{position:absolute;left:110px;top:150px;width:500px;height:500px;border-radius:50%;background:${C.accent};color:${C.accent_ink};display:flex;align-items:center;justify-content:center;text-align:center;padding:56px;box-sizing:border-box;font-family:${T.font.display};font-weight:700;font-size:58px;line-height:1.1;letter-spacing:-1px}
+.badge{position:absolute;left:50%;top:170px;transform:translateX(-50%);width:520px;height:520px;border-radius:50%;
+background:radial-gradient(circle at 32% 26%,#5ad996 0%,#1fa862 38%,${C.accent} 62%,#0a4a27 100%);
+color:${C.accent_ink};display:flex;align-items:center;justify-content:center;text-align:center;padding:70px;box-sizing:border-box;
+font-family:${T.font.display};font-weight:700;font-size:60px;line-height:1.08;letter-spacing:-1px;
+text-shadow:0 3px 10px rgba(0,0,0,.28);
+box-shadow:inset -28px -36px 70px rgba(0,0,0,.32),inset 26px 26px 50px rgba(255,255,255,.28),0 50px 90px rgba(18,140,74,.38),0 14px 30px rgba(0,0,0,.18)}
 .bg-ink{background:${C.ink}} .bg-paper{background:${C.paper};color:${C.ink}} .bg-accent{background:${C.accent};color:${C.accent_ink}}
 .bg-paper .eyebrow{color:${C.accent}} .bg-paper .footer{color:${C.accent}} .bg-paper .list li:before{background:${C.accent}}
 .bg-accent .eyebrow{color:${C.accent_ink}} .bg-accent .footer{color:${C.accent_ink}} .bg-accent .list li:before{background:${C.accent_ink}}
