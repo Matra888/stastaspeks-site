@@ -1,0 +1,65 @@
+// Usage: node render.js content.json outDir
+// content.json: { "format": "ig_carousel"|"linkedin"|"blog_hero", "slides": [ ... ] }
+// slide types:
+//  { "type":"cover", "photo":"assets/p2.jpg", "headline":["line1","line2"], "sub":"..." }
+//  { "type":"list",  "bg":"ink"|"paper"|"accent", "eyebrow":"...", "headline":"...", "items":["..."], "footer":"..." }
+//  { "type":"cta",   "bg":"accent", "headline":"...", "sub":"..." }
+const { chromium } = require('playwright');
+const fs = require('fs'), path = require('path');
+const T = JSON.parse(fs.readFileSync(path.join(__dirname, 'tokens.json'), 'utf8'));
+const [, , contentPath, outDir] = process.argv;
+const content = JSON.parse(fs.readFileSync(contentPath, 'utf8'));
+const F = T.formats[content.format || 'ig_carousel'];
+const C = T.color;
+const b64 = p => fs.readFileSync(path.resolve(path.dirname(contentPath), p)).toString('base64');
+const css = `
+html,body{margin:0;background:#000}
+.s{position:relative;width:${F.w}px;height:${F.h}px;overflow:hidden;font-family:${T.font.body};color:${C.paper}}
+.pad{position:absolute;left:110px;right:110px;bottom:190px}
+.display{font-family:${T.font.display};font-weight:700;font-size:104px;line-height:1.04;letter-spacing:-2px}
+.sub{margin-top:34px;font-size:46px;line-height:1.3;opacity:.92}
+.eyebrow{font-size:30px;letter-spacing:4px;text-transform:uppercase;color:${C.accent};margin-bottom:36px;font-weight:600}
+.list{margin:48px 0 0;padding:0;list-style:none;font-size:44px;line-height:1.35}
+.list li{padding-left:56px;position:relative;margin-bottom:22px}
+.list li:before{content:"";position:absolute;left:0;top:22px;width:24px;height:24px;background:${C.accent}}
+.footer{margin-top:56px;font-family:${T.font.display};font-size:52px;font-weight:700;color:${C.accent}}
+.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 15%}
+.shade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 42%,rgba(29,29,31,.82) 78%,rgba(29,29,31,.92) 100%)}
+.badge{position:absolute;left:110px;top:150px;width:500px;height:500px;border-radius:50%;background:${C.accent};color:${C.accent_ink};display:flex;align-items:center;justify-content:center;text-align:center;padding:56px;box-sizing:border-box;font-family:${T.font.display};font-weight:700;font-size:58px;line-height:1.1;letter-spacing:-1px}
+.bg-ink{background:${C.ink}} .bg-paper{background:${C.paper};color:${C.ink}} .bg-accent{background:${C.accent};color:${C.accent_ink}}
+.bg-paper .eyebrow{color:${C.accent}} .bg-paper .footer{color:${C.accent}} .bg-paper .list li:before{background:${C.accent}}
+.bg-accent .eyebrow{color:${C.accent_ink}} .bg-accent .footer{color:${C.accent_ink}} .bg-accent .list li:before{background:${C.accent_ink}}
+`;
+function slide(s) {
+  if (s.type === 'cover') {
+    const img = `data:image/jpeg;base64,${b64(s.photo)}`;
+    return `<div class="s bg-ink"><img class="photo" src="${img}"><div class="shade"></div>
+      <div class="pad"><div class="display">${s.headline.join('<br>')}</div>${s.sub ? `<div class="sub">${s.sub}</div>` : ''}</div></div>`;
+  }
+  if (s.type === 'list') {
+    return `<div class="s bg-${s.bg || 'paper'}"><div class="pad">
+      ${s.eyebrow ? `<div class="eyebrow">${s.eyebrow}</div>` : ''}
+      <div class="display">${s.headline}</div>
+      ${s.sub ? `<div class="sub">${s.sub}</div>` : ''}
+      <ul class="list">${s.items.map(i => `<li>${i}</li>`).join('')}</ul>
+      ${s.footer ? `<div class="footer">${s.footer}</div>` : ''}</div></div>`;
+  }
+  if (s.type === 'cta') {
+    return `<div class="s bg-${s.bg || 'accent'}">${s.badge ? `<div class="badge">${s.badge}</div>` : ''}<div class="pad"><div class="display">${s.headline}</div>${s.sub ? `<div class="sub">${s.sub}</div>` : ''}</div></div>`;
+  }
+  throw new Error('unknown slide type ' + s.type);
+}
+(async () => {
+  fs.mkdirSync(outDir, { recursive: true });
+  const browser = await chromium.launch({ args: ['--no-sandbox'] });
+  const page = await browser.newPage({ viewport: { width: F.w, height: F.h }, deviceScaleFactor: 1 });
+  for (let i = 0; i < content.slides.length; i++) {
+    const html = `<!doctype html><html><head><meta charset="utf-8"><style>${css}</style></head><body>${slide(content.slides[i])}</body></html>`;
+    await page.setContent(html, { waitUntil: 'load' });
+    await page.evaluate(() => document.fonts.ready);
+    const out = path.join(outDir, `${content.name || 'post'}_${String(i + 1).padStart(2, '0')}.png`);
+    await page.screenshot({ path: out });
+    console.log(out);
+  }
+  await browser.close();
+})().catch(e => { console.error(e); process.exit(1); });

@@ -1,0 +1,35 @@
+{
+  "name": "maksaju-claude",
+  "format": "ig_carousel",
+  "slides": [
+    {
+      "type": "cover",
+      "photo": "assets/p2.jpg",
+      "headline": [
+        "Maksāju Claude",
+        "18 € mēnesī."
+      ],
+      "sub": "Lētāk nekā satura veidotājam"
+    },
+    {
+      "type": "list",
+      "bg": "paper",
+      "eyebrow": "Ko tas dara",
+      "headline": "Claude strādā manā vietā",
+      "sub": "Un tas viss manā zīmola stilā",
+      "items": [
+        "Raksta Instagram un LinkedIn postus",
+        "Veido karuseļus",
+        "Raksta SEO optimizētus bloga rakstus"
+      ],
+      "footer": "18 € mēnesī"
+    },
+    {
+      "type": "cta",
+      "bg": "paper",
+      "headline": "Pievienojies arī tu",
+      "sub": "prasmīgajiem satura veidotājiem, kuri māk lietot MI",
+      "badge": "7 dienu Claude izaicinājums"
+    }
+  ]
+}
