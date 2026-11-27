@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Special price: 3-Week Claude Challenge | Stāsta spēks</title>
+<meta name="description" content="3-Week Claude Challenge with 8 social media skills and 20 video editing prompts, at a special price.">
+<link rel="canonical" href="https://stastaspeks.com/special/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="3-Week Claude Challenge for Content & Marketing | Stāsta spēks">
+<meta property="og:description" content="8 hands-on Claude tasks for content and marketing. Three weeks, join any time, learn by building real projects.">
+<meta property="og:url" content="https://stastaspeks.com/special/">
+<meta property="og:site_name" content="Stāsta spēks">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter+Tight:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Layout: one centered column, a hero, a 7-step path, idea cards, then join and FAQ. */
+  :root {
+    --bg: #F3F5FF;
+    --ink: #121633;
+    --muted: #2E3556;
+    --accent: #2440E6;
+    --accent-ink: #FFFFFF;
+    --soft: #DCE3FF;
+    --card: #FFFFFF;
+    --line: #C3CCF5;
+    --tick: #D97757;
+    --tick-ink: #FFFFFF;
+    --claude: #C15F3C;
+    --wa: #128C4A;
+    --pop: #D61F69;
+    color-scheme: light;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E1130; --ink: #EEF1FF; --muted: #D9DEF7; --accent: #7D90FF;
+      --accent-ink: #0E1130; --soft: #1C2152; --card: #161B43; --line: #2D3470;
+      --tick: #E58A68; --tick-ink: #0E1130; --claude: #E58A68; --wa: #3FCB7E; --pop: #FF6FA8;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E1130; --ink: #EEF1FF; --muted: #D9DEF7; --accent: #7D90FF;
+    --accent-ink: #0E1130; --soft: #1C2152; --card: #161B43; --line: #2D3470;
+    --tick: #E58A68; --tick-ink: #0E1130; --claude: #E58A68; --wa: #3FCB7E; --pop: #FF6FA8;
+    color-scheme: dark;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  h1, h2, h3, .num { font-family: "Inter Tight", "Helvetica Neue", Arial, system-ui, sans-serif; }
+  h1, h2, h3 { text-wrap: balance; }
+  main { max-width: 760px; margin: 0 auto; padding-block: clamp(2rem, 6vw, 4rem) 3rem; }
+  section { margin: 0 0 3rem; }
+  h2 { font-size: clamp(1.5rem, 4.5vw, 1.9rem); line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 .5rem; font-weight: 700; }
+  .kicker { font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--claude); margin: 0 0 .6rem; }
+
+  .logo { width: 88px; height: 88px; display: block; margin: 0 0 1.25rem; }
+  .tag-pill { display: inline-block; background: var(--soft); color: var(--ink); padding: .45rem 1rem; border-radius: 999px; font-size: .85rem; letter-spacing: .06em; margin: 0 0 1.1rem; }
+  /* Hero */
+  .hero h1 {
+    font-size: clamp(2.3rem, 8vw, 4rem); line-height: 1; font-weight: 800;
+    letter-spacing: -0.035em; margin: 0 0 1rem;
+  }
+  .hero h1 .claude { color: var(--claude); }
+  .hero h1 .sub { display: block; color: var(--ink); font-size: clamp(1.3rem, 4.6vw, 2rem); font-weight: 700; letter-spacing: -0.02em; margin-top: .5rem; }
+  .lede { font-size: 1.15rem; color: var(--muted); margin: 0 0 1.5rem; max-width: 52ch; }
+  .lede strong { color: var(--ink); font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1.75rem; padding: 0; list-style: none; }
+  .chips li { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: .35rem .85rem; font-size: .95rem; font-weight: 600; }
+  .hero .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+  .social { display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center; gap: .6rem .9rem; margin: 0 0 .5rem; }
+  .social[hidden] { display: none; }
+  .faces { display: flex; flex-wrap: wrap; }
+  .face { display: flex; align-items: center; justify-content: center; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 3px solid var(--bg); margin-left: -.6rem; overflow: hidden; flex: none; }
+  .face svg { width: 100%; height: 100%; display: block; }
+  .faces .face:first-child { margin-left: 0; }
+  .faces .face:nth-child(1) { background: #2440E6; }
+  .faces .face:nth-child(2) { background: #D97757; }
+  .faces .face:nth-child(3) { background: #128C4A; }
+  .faces .face:nth-child(4) { background: #7D5BD6; }
+  .faces .face:nth-child(5) { background: #D61F69; }
+  .social-count { margin: 0; font-size: 1rem; font-weight: 600; white-space: nowrap; }
+  @media (max-width: 480px) { .face { width: 2.2rem; height: 2.2rem; margin-left: -.5rem; } .social-count { font-size: .92rem; } }
+  .social-count a { color: var(--accent); text-underline-offset: .2em; }
+
+  .h2-small { font-size: .6em; font-weight: 600; color: var(--muted); letter-spacing: 0; }
+  /* Path: the 7 tasks as a connected route */
+  .path { list-style: none; margin: 0; padding: 0; position: relative; display: grid; gap: .9rem; }
+  .path::before { content: ""; position: absolute; left: 1.05rem; top: 1.2rem; bottom: 1.2rem; width: 3px; background: var(--line); border-radius: 2px; }
+  .path li { position: relative; display: grid; grid-template-columns: 2.1rem minmax(0, 1fr); gap: .9rem; align-items: start; }
+  .dot { width: 2.1rem; height: 2.1rem; border-radius: 50%; background: var(--tick); color: var(--tick-ink); font-weight: 800; display: flex; align-items: center; justify-content: center; font-family: "Inter Tight", system-ui, sans-serif; position: relative; z-index: 1; }
+  .path .step { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: .9rem 1.1rem; min-width: 0; }
+  .path .step h3 { margin: 0 0 .15rem; font-size: 1.12rem; letter-spacing: -0.01em; }
+  .path .step p { margin: 0; color: var(--muted); font-size: .98rem; }
+  .path .meta { font-size: .8rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); margin: 0 0 .25rem; }
+  .week-label { font-size: .85rem; font-weight: 700; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; margin: 2.5rem 0 1.1rem; }
+  .week-label:first-child { margin-top: 0; }
+  .week-label + .week-label { display: none; }
+
+  /* Ideas */
+  .ideas { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .9rem; margin: 0; padding: 0; list-style: none; }
+  .ideas li { background: var(--soft); border-radius: 18px; padding: 1.1rem 1.2rem; min-width: 0; }
+  .ideas b { display: block; font-size: 1.05rem; margin: 0 0 .3rem; }
+  .ideas span { color: var(--muted); font-size: .97rem; }
+
+  /* Gift */
+  .gift { background: var(--soft); border-radius: 24px; padding: clamp(1.5rem, 5vw, 2.25rem); }
+  .gift .bonus-note { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; background: var(--card); color: var(--wa); padding: .35rem .8rem; border-radius: 999px; margin: 0 0 1rem; }
+  .gift h2 { font-size: 1rem; letter-spacing: .02em; color: var(--muted); margin: 0 0 .6rem; }
+  .gift h2 { margin: 0 0 .4rem; }
+  .gift h2 span { color: var(--claude); }
+  .gift p { margin: 0; color: var(--muted); max-width: 55ch; }
+  .gift .bonus-line { color: var(--ink); font-family: "Inter Tight", system-ui, sans-serif; font-size: clamp(1.45rem, 5vw, 2rem); font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; max-width: none; margin: 0 0 1.25rem; }
+  .gift .bonus-line mark { font-size: inherit; padding: 0 .2em; }
+  .gift .bonus-tags { display: flex; flex-wrap: wrap; gap: .6rem; margin: 0 0 1.25rem; }
+  .gift .bonus-tags span { font-weight: 800; font-size: .95rem; padding: .55rem 1rem; border-radius: 10px; color: #FFFFFF; }
+  .gift .bonus-tags .t1 { background: #2440E6; }
+  .gift .bonus-tags .t2 { background: #D97757; }
+  .gift .bonus-tags .t3 { background: #128C4A; }
+  .gift .bonus-foot { color: var(--ink); font-size: 1.05rem; max-width: none; }
+
+  /* Join */
+  .join { background: var(--soft); border-radius: 22px; padding: clamp(1.5rem, 5vw, 2.25rem); }
+  .join h2 { margin: 0 0 1.75rem; }
+  .join p { margin: 0 0 1.5rem; color: var(--muted); max-width: 55ch; }
+  .badge { font-size: .85rem; font-weight: 600; background: var(--pop); color: #FFFFFF; padding: .3em .8em; border-radius: 999px; display: inline-flex; align-items: center; gap: .45em; vertical-align: middle; margin-left: .4rem; }
+  .badge::before { content: ""; width: .5em; height: .5em; border-radius: 50%; background: #FFFFFF; animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: .3; } }
+  .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+  .price-row { display: inline-flex; align-items: center; flex-wrap: wrap; gap: .4rem .7rem; background: var(--card); border: 2px solid var(--wa); border-radius: 999px; padding: .45rem 1.1rem .45rem .9rem; margin: 0 0 1.25rem; }
+  .price-row .now { font-family: "Inter Tight", system-ui, sans-serif; font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; color: var(--wa); line-height: 1; }
+  .price-row s { color: var(--muted); font-weight: 600; font-size: 1.05rem; text-decoration-color: var(--pop); text-decoration-thickness: 2px; }
+  .price-row .off { background: var(--wa); color: #FFFFFF; font-weight: 800; font-size: .85rem; border-radius: 999px; padding: .3rem .65rem; }
+  .actions .btn.buy { position: relative; background: linear-gradient(180deg, #4D6BFF 0%, #2440E6 100%); color: #FFFFFF; border: 0; font-size: 1.2rem; font-weight: 800; letter-spacing: -0.01em; box-shadow: 0 7px 0 #142A9E, 0 18px 28px -10px rgba(36, 64, 230, .7), inset 0 1px 0 rgba(255,255,255,.35); transition: transform .12s ease, box-shadow .12s ease; }
+  .actions .btn.buy:hover { transform: translateY(-2px); box-shadow: 0 9px 0 #142A9E, 0 22px 30px -10px rgba(36, 64, 230, .75), inset 0 1px 0 rgba(255,255,255,.35); }
+  .actions .btn.buy:active { transform: translateY(5px); box-shadow: 0 2px 0 #142A9E, 0 6px 12px -6px rgba(36, 64, 230, .6), inset 0 1px 0 rgba(255,255,255,.35); }
+  .actions .btn.buy:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+  @media (prefers-reduced-motion: reduce) { .actions .btn.buy, .actions .btn.buy:hover, .actions .btn.buy:active { transition: none; transform: none; } }
+  .actions .btn { flex: 1 1 210px; display: flex; align-items: center; justify-content: center; min-height: 3.5rem; padding: .6rem 1.25rem; font-size: 1.1rem; line-height: 1.2; box-shadow: 0 6px 18px rgba(18, 22, 51, .12); }
+  .btn { display: inline-block; text-decoration: none; font: inherit; font-weight: 600; font-size: 1.05rem; padding: .9rem 1.4rem; border-radius: 999px; border: 2px solid transparent; cursor: pointer; text-align: center; }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); }
+  .btn.wa { background: var(--wa); color: #FFFFFF; border-color: var(--wa); }
+  .btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .btn[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+  .join .note { margin: 2rem 0 0; padding-top: 1.25rem; border-top: 1px solid var(--line); font-size: .92rem; color: var(--muted); }
+  .join .note a { color: var(--accent); font-weight: 600; text-underline-offset: .2em; }
+
+  .join .join-note { margin: 1.75rem 0 0; }
+  .join-note { margin: 1.5rem 0 0; font-size: .95rem; color: var(--ink); }
+  /* Share */
+  .share { background: var(--tick); color: #1A1410; border-radius: 26px; padding: clamp(1.5rem, 5vw, 2.25rem); }
+  .share h2 { color: #1A1410; font-size: clamp(1.6rem, 5.5vw, 2.2rem); }
+  .share p { margin: 0 0 1.25rem; font-size: 1.05rem; max-width: 40ch; }
+  .copyrow { display: flex; gap: .6rem; flex-wrap: wrap; }
+  .copyrow input { flex: 1 1 240px; min-width: 0; font: inherit; font-size: .95rem; color: #1A1410; background: #FFFFFF; border: 2px solid transparent; border-radius: 999px; padding: .8rem 1.1rem; }
+  .copyrow input:focus-visible { outline: 3px solid #1A1410; outline-offset: 2px; }
+  .share .btn.copy { background: #1A1410; color: #FFFFFF; }
+  .share .btn.copy.done { background: #FFFFFF; color: #1A1410; }
+  .share .btn.wa-fill { background: #128C4A; color: #FFFFFF; }
+  .share .copied { color: #1A1410; font-weight: 600; min-height: 1.4em; margin: .8rem 0 0; }
+  .btn.copy, .btn.wa-fill { transition: transform .15s ease; }
+  .btn.copy:hover, .btn.wa-fill:hover { transform: translateY(-2px); }
+
+  /* FAQ */
+  .faq h2 { margin-bottom: 1rem; }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq details:first-of-type { border-top: 1px solid var(--line); }
+  .faq summary { cursor: pointer; list-style: none; padding: 1rem 2.2rem 1rem 0; position: relative; font-weight: 600; font-size: 1.05rem; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; position: absolute; right: .2rem; top: 50%; transform: translateY(-50%); font-size: 1.5rem; font-weight: 400; color: var(--claude); transition: transform .2s ease; }
+  .faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+  .faq summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+  .faq details p { margin: 0 0 1.1rem; color: var(--muted); max-width: 62ch; }
+  .faq details p a { color: var(--accent); font-weight: 600; }
+
+  a { color: var(--accent); }
+  mark { background: var(--claude); color: #FFFFFF; padding: 0 .3em; border-radius: 5px; font-weight: inherit; }
+  footer { text-align: center; color: var(--muted); font-size: 1rem; padding: 0 0 2rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .badge::before { animation: none; }
+    .btn.copy, .btn.wa-fill, .faq summary::after { transition: none; }
+    .btn.copy:hover, .btn.wa-fill:hover { transform: none; }
+  }
+
+  .bf-hero { text-align: center; }
+  .bf-hero h1 { margin: 0 0 .6rem; }
+  .bf-kicker { display: inline-block; background: var(--pop); color: #FFFFFF; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; font-size: .85rem; padding: .45rem 1rem; border-radius: 999px; margin: 0 0 1rem; }
+  .bf-price { display: inline-flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: .4rem .8rem; background: var(--card); border: 3px solid var(--wa); border-radius: 999px; padding: .55rem 1.2rem .55rem 1rem; margin: 1rem auto 0; }
+  .bf-price .now { font-family: "Inter Tight", system-ui, sans-serif; font-size: 2.6rem; font-weight: 800; letter-spacing: -0.03em; color: var(--wa); line-height: 1; }
+  .bf-price s { color: var(--muted); font-weight: 700; font-size: 1.15rem; text-decoration-color: var(--pop); text-decoration-thickness: 2px; }
+  .bf-price .off { background: var(--wa); color: #FFFFFF; font-weight: 800; border-radius: 999px; padding: .35rem .75rem; font-size: .95rem; }
+  .bf-note { margin: .6rem 0 0; color: var(--muted); font-size: .95rem; }
+  .bundle { background: var(--card); border: 2px solid var(--line); border-radius: 24px; padding: clamp(1.25rem, 4vw, 1.75rem); }
+  .bundle h2 { margin-bottom: .9rem; }
+  .bundle ul { list-style: none; margin: 0; padding: 0; }
+  .bundle li { display: flex; gap: .8rem; align-items: flex-start; padding: .8rem 0; border-top: 1px solid var(--line); font-size: 1.05rem; }
+  .bundle li:first-child { border-top: 0; padding-top: 0; }
+  .bundle li .tick { flex: none; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--wa); color: #FFFFFF; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: .9rem; }
+  .bundle li small { display: block; color: var(--muted); font-size: .92rem; }
+  .bundle .was { margin-left: auto; color: var(--muted); font-weight: 600; white-space: nowrap; text-decoration: line-through; }
+  .bundle .total { margin: .9rem 0 0; padding-top: 1rem; border-top: 2px solid var(--ink); display: flex; justify-content: space-between; align-items: baseline; font-weight: 800; font-size: 1.1rem; }
+  .bundle .total b { font-family: "Inter Tight", system-ui, sans-serif; font-size: 1.5rem; color: var(--wa); }
+  .deadline { text-align: center; margin: 1.5rem auto 0; }
+  .deadline p { margin: 0; color: var(--muted); font-size: .95rem; font-weight: 600; }
+  .split { display: flex; justify-content: center; gap: .75rem; margin-top: .9rem; }
+  .unit { display: flex; flex-direction: column; align-items: center; gap: .45rem; }
+  .unit > div { display: flex; gap: 4px; }
+  .unit small { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+  .flap { position: relative; display: inline-block; min-width: 1.1em; padding: .32em .22em; margin: 0 2px; background: linear-gradient(#262A31 49%, #0F1115 49%, #0F1115 51%, #1D1D1F 51%); color: #FFFFFF; border-radius: 7px; font: 800 1.9rem/1 "Inter Tight", system-ui, sans-serif; font-variant-numeric: tabular-nums; text-align: center; box-shadow: 0 6px 14px -6px rgba(0,0,0,.6); }
+  .unit.live .flap { color: #FF5CA8; }
+  .unit.live small { color: #D61F69; font-weight: 700; }
+  .deadline[hidden] { display: none; }
+  @media (max-width: 480px) { .flap { font-size: 1.45rem; min-width: .95em; } .split { gap: .45rem; } }
+  .faq-list details { border-bottom: 1px solid var(--line); }
+  .bundle .free { margin-left: auto; background: var(--pop); color: #FFFFFF; font-weight: 800; font-size: .85rem; border-radius: 999px; padding: .3rem .7rem; white-space: nowrap; }
+  .popup { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(18,22,51,.55); }
+  .popup[hidden] { display: none; }
+  .pop-card { position: relative; width: 100%; max-width: 420px; background: #FFFFFF; color: #1D1D1F; border-radius: 24px; padding: 32px 28px 24px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); text-align: center; }
+  .pop-close { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: #1D1D1F; color: #FFFFFF; font-size: 1.8rem; font-weight: 700; line-height: 1; cursor: pointer; box-shadow: 0 6px 14px -6px rgba(0,0,0,.5); }
+  .pop-close:hover, .pop-close:focus-visible { background: #C15F3C; }
+  .pop-kicker { display: inline-block; margin: 0 0 12px; padding: 4px 12px; border-radius: 999px; background: #1E9E5A; color: #FFFFFF; font-size: .8rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+  .pop-card h2 { margin: 0 0 8px; font-size: 1.7rem; line-height: 1.15; letter-spacing: -0.02em; color: var(--claude); }
+  .pop-sub { margin: 0 0 20px; color: #6E6E73; font-size: .98rem; }
+  .pop-card form { display: grid; gap: 10px; }
+  .pop-card input { width: 100%; padding: 14px 18px; border: 2px solid #D1D1D6; border-radius: 999px; font: inherit; font-size: 1rem; color: #1D1D1F; background: #FFFFFF; -webkit-text-fill-color: #1D1D1F; }
+  .pop-card input::placeholder { color: #8E8E93; opacity: 1; -webkit-text-fill-color: #8E8E93; }
+  .pop-card input:focus-visible { outline: 3px solid var(--claude); outline-offset: 2px; }
+  .pop-card button[type="submit"] { width: 100%; border: 0; padding: 15px; border-radius: 999px; background: var(--claude); color: #FFFFFF; font: inherit; font-size: 1.05rem; font-weight: 700; cursor: pointer; box-shadow: 0 12px 24px -14px rgba(193,95,60,.9); }
+  .pop-note { margin: 14px 0 0; font-size: .8rem; color: var(--muted); }
+  .pop-note a { color: var(--claude); }
+  .pop-ok { margin: 14px 0 0; font-weight: 700; color: #1E9E5A; }
+  .pop-err { margin: 2px 8px 0; text-align: left; font-size: .9rem; font-weight: 700; color: #D61F69; cursor: pointer; }
+  .pop-err[hidden] { display: none; }
+  .pop-ok[hidden] { display: none; }
+  .pop-err { margin: 2px 8px 0; text-align: left; font-size: .9rem; font-weight: 700; color: #D61F69; cursor: pointer; }
+  .pop-err[hidden] { display: none; }
+
+  /* Black Friday hero spacing */
+  .bf-hero { text-align: center; padding-top: 8px; }
+  .bf-hero .logo { display: block; margin: 0 auto 28px; }
+  .bf-hero .bf-kicker { display: inline-block; margin: 0 0 22px; }
+  .bf-hero h1 { margin: 0 0 28px; }
+  .bf-hero .bf-price { margin: 0 auto; }
+  .bf-hero .deadline { margin: 28px auto 0; }
+  .bf-hero .deadline p { margin-bottom: 10px; }
+  .bf-hero .social { justify-content: center; margin: 32px auto 0; }
+  .bf-hero .bf-note { margin: 18px 0 0; }
+  .popup .pop-card { max-width: 440px; }
+  .pop-card h2 { margin-bottom: 14px; }
+  .pop-sub { margin-bottom: 26px; }
+  .pop-card input { margin-bottom: 4px; }
+  .pop-card form { gap: 14px; }
+  .pop-note { margin-top: 18px; }
+
+  section[aria-labelledby="ideas-h"] { margin: 56px 0 48px; }
+  #ideas-h { margin: 0 0 22px; }
+  .ideas { gap: 16px; }
+  .ideas li { padding: 18px 20px; }
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+<main>
+
+  <header class="hero bf-hero">
+    <img class="logo" src="logo.png" alt="Stāsta Spēks" width="88" height="88">
+    <p class="bf-kicker">Special price · always available</p>
+    <h1>3-Week <span class="claude">Claude</span> Challenge<span class="sub">Create content and marketing you're proud of</span></h1>
+    <div class="bf-price"><span class="now">35.60 €</span><s>89 €</s><span class="off">−60%</span></div>
+        <div class="social" id="social">
+      <div class="faces" id="faces" aria-hidden="true"><span class="face"><svg viewBox="0 0 40 40"><circle cx="20" cy="15" r="7" fill="#F2C9A5"/><path d="M12 13c0-5 3-8 8-8s8 3 8 8c-2-2-4-3-8-3s-6 1-8 3z" fill="#3A2A22"/><path d="M6 40c1-8 6-12 14-12s13 4 14 12z" fill="#F2C9A5"/></svg></span><span class="face"><svg viewBox="0 0 40 40"><circle cx="20" cy="15" r="7" fill="#8D5A3B"/><path d="M12 14c0-6 3-9 8-9s8 3 8 9c-1-3-3-4-8-4s-7 1-8 4z" fill="#1E1410"/><path d="M6 40c1-8 6-12 14-12s13 4 14 12z" fill="#8D5A3B"/></svg></span><span class="face"><svg viewBox="0 0 40 40"><circle cx="20" cy="15" r="7" fill="#E0B08A"/><path d="M13 12c1-5 4-7 7-7s6 2 7 7v3h-2v-3c-2-2-8-2-10 0v3h-2z" fill="#C96A3A"/><path d="M6 40c1-8 6-12 14-12s13 4 14 12z" fill="#E0B08A"/></svg></span><span class="face"><svg viewBox="0 0 40 40"><circle cx="20" cy="15" r="7" fill="#C68B63"/><path d="M12 14c0-6 4-9 8-9s8 3 8 9l-1-4c-2 2-4 3-7 3s-5-1-7-3z" fill="#2A1C15"/><path d="M6 40c1-8 6-12 14-12s13 4 14 12z" fill="#C68B63"/></svg></span><span class="face"><svg viewBox="0 0 40 40"><circle cx="20" cy="15" r="7" fill="#F5D3B5"/><path d="M12 13c0-5 3-7 8-7s8 2 8 7c-1-2-3-3-8-3s-7 1-8 3z" fill="#8A5A2B"/><path d="M6 40c1-8 6-12 14-12s13 4 14 12z" fill="#F5D3B5"/></svg></span></div>
+      <p class="social-count"><span id="count">40+</span> learners taking action</p>
+    </div>
+  </header>
+
+  <section aria-labelledby="ideas-h">
+        <h2 id="ideas-h">No more struggle, ever. Claude will do it for you.</h2>
+    <ul class="ideas">
+      <li><b>Brand design system</b><span>Save your colours, fonts and tone once. Then every carousel, post and blog draft Claude makes matches your brand. Task 2.</span></li>
+      <li><b>A marketing recipe book</b><span>Summarise your content ideas as recipes. Each idea gets ingredients (audience, channel, format) and steps to make it. Task 1.</span></li>
+      <li><b>A 5-slide IG carousel</b><span>Turn your best post into a carousel in the style of creators you admire. Task 3.</span></li>
+      <li><b>An engaging LinkedIn post with clear graphs</b><span>Turn raw numbers into a chart and a post people want to read. Task 4.</span></li>
+      <li><b>Web analytics audit</b><span>Use Claude in Chrome to find keyword gaps and rewrite weak sales copy on your site. Task 5.</span></li>
+      <li><b>A structured, well-designed blog post</b><span>Write a blog post styled so professionally it looks like it came from Health Magazine or The Wall Street Journal. Task 6.</span></li>
+      <li><b>A competitor ads analysis</b><span>Research your competitors' ads, sort them into content categories, and build a plan from the gaps. Task 7.</span></li>
+      <li><b>Easy-to-edit videos</b><span>Every video uses your brand colours, professional effects, and an internet reference that matches what you are saying. Task 8.</span></li>
+    </ul>
+  </section>
+  <section aria-labelledby="path-h">
+    <p style="color:var(--ink);font-size:1.1rem;margin:0 0 1.5rem;max-width:58ch">A new video tutorial with a dedicated task <strong>every second day</strong>, sent straight to your email. No emails on weekends. Each task ends with something you can post, ship or use the same day.</p>
+
+    <p class="week-label">Week 1 · Content system</p>
+    <ol class="path">
+      <li><span class="dot">1</span><div class="step"><p class="meta">Task 1 · Mon</p><h3>Project setup and artifacts</h3><p>Build your interactive recipe book from online sources, and see how it helps your marketing.</p></div></li>
+      <li><span class="dot">2</span><div class="step"><p class="meta">Task 2 · Wed</p><h3>Your Claude design system</h3><p>Build a reusable brand look: colours, fonts and tone that Claude applies every time.</p></div></li>
+      <li><span class="dot">3</span><div class="step"><p class="meta">Task 3 · Fri</p><h3>Instagram carousels</h3><p>Turn one idea into a swipeable carousel in your brand style.</p></div></li>
+    </ol>
+
+    <p class="week-label">Week 2 · Data &amp; research</p>
+    <ol class="path" start="4">
+      <li><span class="dot">4</span><div class="step"><p class="meta">Task 4 · Mon</p><h3>Data visualisation for LinkedIn and presentations</h3><p>Tell a visual story from large datasets or your video content.</p></div></li>
+      <li><span class="dot">5</span><div class="step"><p class="meta">Task 5 · Wed</p><h3>Website content audit</h3><p>Use Claude in Chrome to find keyword gaps and rewrite weak sales copy on your site.</p></div></li>
+      <li><span class="dot">6</span><div class="step"><p class="meta">Task 6 · Fri</p><h3>Stylish blog posts</h3><p>Write a post styled so professionally it looks like it came from Health Magazine or The Wall Street Journal.</p></div></li>
+    </ol>
+
+    <p class="week-label">Week 3 · Advanced content</p>
+    <ol class="path" start="7">
+      <li><span class="dot">7</span><div class="step"><p class="meta">Task 7 · Mon</p><h3>Content plan from competitor ads</h3><p>Research competitor ads, sort them into content categories, and build a plan from the gaps.</p></div></li>
+      <li><span class="dot">8</span><div class="step"><p class="meta">Task 8 · Fri</p><h3>🎁 Make your videos easy to edit</h3><p>Every video uses your brand colours, professional effects, and an internet reference that matches what you are talking about.</p></div></li>
+      <li><span class="dot">🎓</span><div class="step"><p class="meta">Final Friday</p><h3>Graduation Friday</h3><p>Community activities in the WhatsApp chat: answer questions, give feedback, and get advice on what to learn next.</p></div></li>
+    </ol>
+  </section>
+
+  <section class="gift" aria-labelledby="gift-h">
+    <p class="bonus-note">Sent before Task 8</p>
+    <h2 id="gift-h">🎁 FREE bonus: <span>PDF guide</span></h2>
+    <p class="bonus-line"><mark>20 trending video effects</mark> for Claude video edits.</p>
+  </section>
+
+
+  <section class="join" id="join" aria-labelledby="join-h">
+    <h2 id="join-h">Save your spot <span class="badge">Closing soon</span></h2>
+    <section class="bundle" aria-labelledby="bundle-h">
+      <h2 id="bundle-h">What you get</h2>
+      <ul>
+        <li><span class="tick">✓</span><div>3-Week Claude Challenge<small>8 hands-on tasks, from content to data and blog posts.</small></div><span class="was">89 €</span></li>
+        <li><span class="tick">✓</span><div>8 Claude skills for social media<small>Ready-to-use skills for posts, carousels and captions.</small></div><span class="was">29 €</span></li>
+        <li><span class="tick">✓</span><div>20 video editing prompts<small>For Claude and ChatGPT.</small></div><span class="free">FREE bonus</span></li>
+      </ul>
+      <p class="total"><span>Your price today</span><b>35.60 €</b></p>
+    </section>
+    <div class="actions">
+      <a class="btn primary buy" id="buyBtn" target="_blank" rel="noopener">Get everything · 35.60 €</a>
+      <a class="btn wa" id="waBtn" target="_blank" rel="noopener">Join the WhatsApp learning community</a>
+    </div>
+    <p class="join-note">WhatsApp is optional. All tasks are sent to your email.</p>
+  </section>
+
+  <section class="share" aria-labelledby="share-h">
+    <h2 id="share-h">Bring a friend 👯</h2>
+    <p>Challenges are easier with a buddy. Send them the link.</p>
+    <div class="copyrow">
+      <input id="shareLink" type="text" readonly value="https://stastaspeks.com/3week/" aria-label="Challenge page link">
+      <button class="btn copy" id="copyBtn" type="button">🔗 Copy link</button>
+      <a class="btn wa-fill" id="waShare" target="_blank" rel="noopener">Send on WhatsApp</a>
+    </div>
+    <p class="copied" id="copied" aria-live="polite"></p>
+  </section>
+
+  <section class="faq" aria-labelledby="faq-h">
+    <h2 id="faq-h">Questions</h2>
+    <details>
+      <summary>How much does it cost?</summary>
+      <p>Price and payment details are shared when you sign up. We recommend Claude Pro (€18/month). Ask for a 7-day Pro trial code at <a href="mailto:stastaspeks@gmail.com?subject=7-day%20Claude%20Pro%20trial%20code">stastaspeks@gmail.com</a>.</p>
+    </details>
+    <details>
+      <summary>Can I do it on the basic plan?</summary>
+      <p>Mostly. Most tasks work on the basic plan, which includes projects and artifacts, but usage limits are lower, so you may need to pause. Saving your design system (Task 2) and the video edits bonus need a paid plan.</p>
+    </details>
+    <details>
+      <summary>I've only used Claude a few times. Is that okay?</summary>
+      <p>Yes. Task 1 covers the basics, and every video shows the result first, then each step on screen.</p>
+      <p>It's also a skill worth having. In a 2026 <a href="https://windsor.ai/claude-vs-chatgpt-marketing-data-study/" target="_blank" rel="noopener">Windsor.ai study</a> of 35,000+ marketing teams, teams analysing data with Claude outnumbered those using OpenAI tools about 7 to 1.</p>
+    </details>
+    <details>
+      <summary>How much time do I need?</summary>
+      <p>Eight tasks plus a bonus, delivered Monday, Wednesday and Friday over three weeks. Plan about 30 minutes per task, including a video of 10 minutes or less. That's under two hours a week.</p>
+    </details>
+    <details>
+      <summary>What's the format?</summary>
+      <p>Short recorded videos you can watch whenever suits you. Questions and sharing happen in the WhatsApp group.</p>
+    </details>
+    <details>
+      <summary>Are there live sessions?</summary>
+      <p>No. Everything is recorded, and there's no fixed schedule. A lesson every second day keeps the pace steady without pressure to cram.</p>
+    </details>
+  </section>
+
+</main>
+<div class="popup" id="popup" hidden>
+  <div class="pop-card" role="dialog" aria-modal="true" aria-labelledby="pop-h">
+    <button class="pop-close" type="button" id="popClose" aria-label="Close">×</button>
+    <span class="pop-kicker">Free</span>
+    <h2 id="pop-h">Where should we send you this video challenge?</h2>
+    <p class="pop-sub">Leave your email.</p>
+    <form id="popForm" novalidate>
+      <input name="email" type="email" required placeholder="Your email" autocomplete="email" enterkeyhint="send">
+      <p class="pop-err" id="popErr" hidden></p>
+      <button type="submit">Send it to me</button>
+    </form>
+    <p class="pop-ok" id="popOk" hidden>Done! Check your inbox.</p>
+    <p class="pop-note">By signing up you agree to our <a href="/privatums/">privacy policy</a>.</p>
+  </div>
+</div>
+<footer>Started in Latvia by @stasta_speks.<br>2 regular learner communities: LV and ENG. Join us!</footer>
+
+<script>
+  const BUY_URL = "https://buy.stripe.com/8x2eVdc1y9fT4kFaPjes008";
+  document.getElementById("buyBtn").href = BUY_URL;
+  </script>
+</body>
+</html>
