@@ -524,7 +524,6 @@
     popErr.onclick = res.fix ? () => { popForm.email.value = res.fix; showPopErr(checkEmail(res.fix)); popForm.email.focus(); } : null;
   }
   popForm.email.addEventListener("input", () => { if (!popErr.hidden) showPopErr(checkEmail(popForm.email.value.trim())); });
-  popForm.name.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); popForm.email.focus(); } });
   popForm.addEventListener("submit", async e => {
     e.preventDefault();
     const email = popForm.email.value.trim();
@@ -532,7 +531,6 @@
     if (res) { showPopErr(res); popForm.email.focus(); return; }
     const data = new URLSearchParams();
     data.append(GF_EMAIL, email);
-    if (GF_NAME) data.append(GF_NAME, popForm.name.value.trim());
     if (GF_ACTION) {
       try { await fetch(GF_ACTION, { method: "POST", mode: "no-cors", body: data }); } catch (err) {}
     }
