@@ -5,22 +5,13 @@
     {
       "type": "cover",
       "photo": "assets/p5.jpg",
-      "emoji": "💍",
-      "photoBox": {
-        "left": 420,
-        "width": 800,
-        "height": 1240,
-        "top": -40
-      },
-      "textTop": true,
+      "centerBottom": true,
+      "headlineSize": 76,
       "headline": [
-        "Propose to",
-        "your clients",
+        "Propose to your clients",
         "on day one"
       ],
-      "headlineSize": 66,
-      "sub": "Not every client wants to go through complicated marketing funnels",
-      "coverBg": "linear-gradient(160deg,#5a6166 0%,#3a4045 100%)"
+      "sub": "Not every client wants to go through complicated marketing funnels"
     },
     {
       "type": "features",
