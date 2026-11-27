@@ -41,8 +41,8 @@
       "bg": "paper",
       "headline": "Kurš ceļš ir tavs?",
       "sub": "Komentē A vai B",
-      "plain": true,
-      "headlineSize": 120
+      "top": "Saglabā šo un apskati, cik % no reklāmas auditorijas tev izdodas pārliecināt izdarīt izvēli uzreiz!",
+      "topSize": 76
     }
   ]
 }

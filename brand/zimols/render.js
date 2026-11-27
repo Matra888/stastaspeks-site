@@ -79,8 +79,9 @@ function slide(s) {
       ${s.footer ? `<div class="footer">${s.footer}</div>` : ''}</div></div>`;
   }
   if (s.type === 'question') {
+    const top = s.top ? `<div class="display" style="font-size:${s.topSize || 76}px;margin-bottom:44px">${s.top}</div>` : '';
     const head = s.plain ? `<div class="display" style="font-size:${s.headlineSize || 120}px">${s.headline}</div>` : `<div class="qpill">${s.headline}</div>`;
-    return `<div class="s bg-${s.bg || 'paper'}"><div class="pad">${head}${s.sub ? `<div class="sub" style="margin-top:40px">${s.sub}</div>` : ''}</div></div>`;
+    return `<div class="s bg-${s.bg || 'paper'}"><div class="pad">${top}${head}${s.sub ? `<div class="sub" style="margin-top:40px">${s.sub}</div>` : ''}</div></div>`;
   }
   throw new Error('unknown slide type ' + s.type);
 }
