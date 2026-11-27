@@ -32,6 +32,10 @@ color:${C.accent_ink};display:flex;align-items:center;justify-content:center;tex
 font-family:${T.font.display};font-weight:700;font-size:60px;line-height:1.08;letter-spacing:-1px;
 text-shadow:0 3px 10px rgba(0,0,0,.28);
 box-shadow:inset -28px -36px 70px rgba(0,0,0,.32),inset 26px 26px 50px rgba(255,255,255,.28),0 50px 90px rgba(18,140,74,.38),0 14px 30px rgba(0,0,0,.18)}
+.quotes{margin-top:56px}
+.q{margin-bottom:46px}
+.q .qt{font-size:40px;line-height:1.35;font-weight:400}
+.q .qn{margin-top:16px;font-size:28px;font-weight:700;color:${C.accent}}
 .bg-ink{background:${C.ink}} .bg-paper{background:${C.paper};color:${C.ink}} .bg-accent{background:${C.accent};color:${C.accent_ink}}
 .bg-paper .eyebrow{color:${C.accent}} .bg-paper .footer{color:${C.accent}} .bg-paper .list li:before{background:${C.accent}}
 .bg-accent .eyebrow{color:${C.accent_ink}} .bg-accent .footer{color:${C.accent_ink}} .bg-accent .list li:before{background:${C.accent_ink}}
@@ -52,6 +56,12 @@ function slide(s) {
   }
   if (s.type === 'cta') {
     return `<div class="s bg-${s.bg || 'accent'}">${s.badge ? `<div class="badge">${s.badge}</div>` : ''}<div class="pad"><div class="display">${s.headline}</div>${s.sub ? `<div class="sub">${s.sub}</div>` : ''}</div></div>`;
+  }
+  if (s.type === 'quotes') {
+    return `<div class="s bg-${s.bg || 'paper'}"><div class="pad">
+      <div class="display">${s.headline}</div>
+      <div class="quotes">${s.items.map(i => `<div class="q"><div class="qt">${i.text}</div><div class="qn">${i.name}</div></div>`).join('')}</div>
+      </div></div>`;
   }
   throw new Error('unknown slide type ' + s.type);
 }

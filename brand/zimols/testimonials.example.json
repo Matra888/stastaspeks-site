@@ -1,0 +1,25 @@
+{
+  "name": "ko-saka-citi",
+  "format": "ig_carousel",
+  "slides": [
+    {
+      "type": "quotes",
+      "bg": "paper",
+      "headline": "Ko saka citi",
+      "items": [
+        {
+          "text": "„Tiešām priecājos par katru uzdevumu, paskaidrojumu un ieskatu jebkurām.“",
+          "name": "Alise, intercars.eu"
+        },
+        {
+          "text": "„Noteikti izmantošu to savā ikdienā un meklēšu vēl citus risinājumus savām vajadzībām.“",
+          "name": "Līva Andžāne, individuals.lv"
+        },
+        {
+          "text": "„Man tas atvēra jaunu pasauli, ļoti patika ka viss bija tieši ar konkrētiem piemēriem nevis teoriju.“",
+          "name": "Maija Rieksta-Riekstiņa, Vegan Fox vadītāja"
+        }
+      ]
+    }
+  ]
+}
