@@ -10,7 +10,7 @@ const html = `<!doctype html><html><body style="margin:0;background:#000">
 const DUR=30,W=1080,H=1350,INK='#1D1D1F',PAPER='#F5F5F7',ORANGE='#D97757',GREEN='#128C4A',MUTED='#6E6E73',LINE='#D2D2D7';
 const cv=document.getElementById('c'), ctx=cv.getContext('2d');
 const F='"Liberation Sans", Arial, sans-serif';
-const DAYS=['Artifacts','Dizaina sistēma','Instagram karuseļi','LinkedIn posti','SEO bloga raksti','Web lapas audits','Video montāža'];
+const DAYS=['Artifacts','Dizaina sistēma','Instagram karuseļi','LinkedIn posti','Automatizēti bloga raksti','Web lapas audits','Video montāža'];
 const T0=0.3, STEP=1.0, POP=0.4, FILL=0.45;
 const X0=110, X6=970, LY=840;
 const xk=i=>X0+(i+1)*(X6-X0)/7;
