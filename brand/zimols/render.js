@@ -38,6 +38,7 @@ box-shadow:inset -28px -36px 70px rgba(0,0,0,.32),inset 26px 26px 50px rgba(255,
 .q .qn{margin-top:16px;font-size:28px;font-weight:700;color:${C.accent}}
 .q .qrow{display:flex;align-items:center;gap:20px}
 .q .qlogo{height:64px;max-width:150px;object-fit:contain;background:#fff;border-radius:12px;padding:8px}
+.emoji{font-family:'Noto Color Emoji',sans-serif;font-size:150px;line-height:1;margin-bottom:24px}
 .bg-ink{background:${C.ink}} .bg-paper{background:${C.paper};color:${C.ink}} .bg-accent{background:${C.accent};color:${C.accent_ink}}
 .bg-paper .eyebrow{color:${C.accent}} .bg-paper .footer{color:${C.accent}} .bg-paper .list li:before{background:${C.accent}}
 .bg-accent .eyebrow{color:${C.accent_ink}} .bg-accent .footer{color:${C.accent_ink}} .bg-accent .list li:before{background:${C.accent_ink}}
@@ -46,7 +47,7 @@ function slide(s) {
   if (s.type === 'cover') {
     const img = `data:image/jpeg;base64,${b64(s.photo)}`;
     return `<div class="s bg-ink"><img class="photo" src="${img}"><div class="shade"></div>
-      <div class="pad"><div class="display">${s.headline.join('<br>')}</div>${s.sub ? `<div class="sub">${s.sub}</div>` : ''}</div></div>`;
+      <div class="pad">${s.emoji ? `<div class="emoji">${s.emoji}</div>` : ''}<div class="display">${s.headline.join('<br>')}</div>${s.sub ? `<div class="sub">${s.sub}</div>` : ''}</div></div>`;
   }
   if (s.type === 'list') {
     return `<div class="s bg-${s.bg || 'paper'}"><div class="pad">

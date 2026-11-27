@@ -2,7 +2,23 @@
   "name": "bildini",
   "format": "ig_carousel",
   "slides": [
-    { "type": "cover", "photo": "assets/p2.jpg", "headline": ["Bildini JAU", "pirmajā dienā"], "sub": "Claude un tu, ideāls pāris" },
-    { "type": "cover", "photo": "assets/p3.jpg", "headline": ["Bildini JAU", "pirmajā dienā"], "sub": "Claude un tu, ideāls pāris" }
+    {
+      "type": "cover",
+      "photo": "assets/p2.jpg",
+      "headline": [
+        "Bildini JAU",
+        "pirmajā dienā"
+      ],
+      "emoji": "💍"
+    },
+    {
+      "type": "cover",
+      "photo": "assets/p3.jpg",
+      "headline": [
+        "Bildini JAU",
+        "pirmajā dienā"
+      ],
+      "emoji": "💍"
+    }
   ]
 }
