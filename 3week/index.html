@@ -196,6 +196,27 @@
     .btn.copy, .btn.wa-fill, .faq summary::after { transition: none; }
     .btn.copy:hover, .btn.wa-fill:hover { transform: none; }
   }
+  .popup { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(18,22,51,.55); }
+  .popup[hidden] { display: none; }
+  .pop-card { position: relative; width: 100%; max-width: 420px; background: #FFFFFF; color: #1D1D1F; border-radius: 24px; padding: 32px 28px 24px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); text-align: center; }
+  .pop-close { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: #1D1D1F; color: #FFFFFF; font-size: 1.8rem; font-weight: 700; line-height: 1; cursor: pointer; box-shadow: 0 6px 14px -6px rgba(0,0,0,.5); }
+  .pop-close:hover, .pop-close:focus-visible { background: #C15F3C; }
+  .pop-kicker { display: inline-block; margin: 0 0 12px; padding: 4px 12px; border-radius: 999px; background: #1E9E5A; color: #FFFFFF; font-size: .8rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+  .pop-card h2 { margin: 0 0 8px; font-size: 1.7rem; line-height: 1.15; letter-spacing: -0.02em; color: var(--claude); }
+  .pop-sub { margin: 0 0 20px; color: #6E6E73; font-size: .98rem; }
+  .pop-card form { display: grid; gap: 10px; }
+  .pop-card input { width: 100%; padding: 14px 18px; border: 2px solid #D1D1D6; border-radius: 999px; font: inherit; font-size: 1rem; color: #1D1D1F; background: #FFFFFF; -webkit-text-fill-color: #1D1D1F; }
+  .pop-card input::placeholder { color: #8E8E93; opacity: 1; -webkit-text-fill-color: #8E8E93; }
+  .pop-card input:focus-visible { outline: 3px solid var(--claude); outline-offset: 2px; }
+  .pop-card button[type="submit"] { width: 100%; border: 0; padding: 15px; border-radius: 999px; background: var(--claude); color: #FFFFFF; font: inherit; font-size: 1.05rem; font-weight: 700; cursor: pointer; box-shadow: 0 12px 24px -14px rgba(193,95,60,.9); }
+  .pop-note { margin: 14px 0 0; font-size: .8rem; color: var(--muted); }
+  .pop-note a { color: var(--claude); }
+  .pop-ok { margin: 14px 0 0; font-weight: 700; color: #1E9E5A; }
+  .pop-err { margin: 2px 8px 0; text-align: left; font-size: .9rem; font-weight: 700; color: #D61F69; cursor: pointer; }
+  .pop-err[hidden] { display: none; }
+  .pop-ok[hidden] { display: none; }
+  .pop-err { margin: 2px 8px 0; text-align: left; font-size: .9rem; font-weight: 700; color: #D61F69; cursor: pointer; }
+  .pop-err[hidden] { display: none; }
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -311,6 +332,21 @@
   </section>
 
 </main>
+<div class="popup" id="popup" hidden>
+  <div class="pop-card" role="dialog" aria-modal="true" aria-labelledby="pop-h">
+    <button class="pop-close" type="button" id="popClose" aria-label="Close">×</button>
+    <span class="pop-kicker">Next step</span>
+    <h2 id="pop-h">Where should we send your challenge access?</h2>
+    <p class="pop-sub">Leave your email and we will send the videos and your access details right after payment.</p>
+    <form id="popForm" novalidate>
+      <input name="email" type="email" required placeholder="Your email" autocomplete="email" enterkeyhint="send">
+      <p class="pop-err" id="popErr" hidden></p>
+      <button type="submit">Continue</button>
+    </form>
+    <p class="pop-ok" id="popOk" hidden>Thank you. Taking you to your offer…</p>
+    <p class="pop-note">By signing up you agree to our <a href="/privatums/">privacy policy</a>.</p>
+  </div>
+</div>
 <footer>Started in Latvia by @stasta_speks.<br>2 regular learner communities: LV and ENG. Join us!</footer>
 
 <script>
@@ -391,6 +427,75 @@
   }
   loadCount();
   setInterval(loadCount, 30000);
+
+  // Email popup. Fill in the Google Form values once the form exists.
+  const GF_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSdkZ-7V34Ijhy2qV7FMQz-zpRBmG52xG193dieoyngBfns-YQ/formResponse";
+  const GF_EMAIL = "entry.636745448";
+  const GF_NAME = "";
+  const POP_DELAY = 8000;
+  const POP_DAYS = 7;
+  const POP_KEY = "enPopSeen";
+  const popup = document.getElementById("popup");
+  const popForm = document.getElementById("popForm");
+  const popOk = document.getElementById("popOk");
+  function shouldShowPop() {
+    try {
+      const t = localStorage.getItem(POP_KEY);
+      return !t || Date.now() - Number(t) > POP_DAYS * 864e5;
+    } catch (e) { return true; }
+  }
+  function markPopSeen() { try { localStorage.setItem(POP_KEY, String(Date.now())); } catch (e) {} }
+  function openPop() { popup.hidden = false; document.body.style.overflow = "hidden"; popForm.email.focus(); }
+  function closePop() { popup.hidden = true; document.body.style.overflow = ""; markPopSeen(); }
+  document.getElementById("popClose").addEventListener("click", closePop);
+  popup.addEventListener("click", e => { if (e.target === popup) closePop(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !popup.hidden) closePop(); });
+  // Common Latvian and international domains, for typo hints
+  const DOMAINS = ["gmail.com", "inbox.lv", "one.lv", "apollo.lv", "tvnet.lv", "delfi.lv", "mail.ru", "yahoo.com", "hotmail.com", "outlook.com", "icloud.com"];
+  const popErr = document.getElementById("popErr");
+  function editDistance(a, b) {
+    const d = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
+    for (let j = 0; j <= b.length; j++) d[0][j] = j;
+    for (let i = 1; i <= a.length; i++)
+      for (let j = 1; j <= b.length; j++)
+        d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    return d[a.length][b.length];
+  }
+  // Returns { msg, fix } or null when the address looks fine
+  function checkEmail(v) {
+    if (!v) return { msg: "Please enter your email." };
+    if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v)) return { msg: "Check your email. Missing @ or domain." };
+    const at = v.indexOf("@");
+    const dom = v.slice(at + 1).toLowerCase();
+    if (DOMAINS.includes(dom)) return null;
+    const near = DOMAINS.find(d => editDistance(dom, d) <= 2);
+    if (near) return { msg: `Did you mean ${near}? Tap to fix.`, fix: v.slice(0, at + 1) + near };
+    return null;
+  }
+  function showPopErr(res) {
+    if (!res) { popErr.hidden = true; popErr.textContent = ""; return; }
+    popErr.textContent = res.msg;
+    popErr.hidden = false;
+    popErr.onclick = res.fix ? () => { popForm.email.value = res.fix; showPopErr(checkEmail(res.fix)); popForm.email.focus(); } : null;
+  }
+  popForm.email.addEventListener("input", () => { if (!popErr.hidden) showPopErr(checkEmail(popForm.email.value.trim())); });
+  popForm.addEventListener("submit", async e => {
+    e.preventDefault();
+    const email = popForm.email.value.trim();
+    const res = checkEmail(email);
+    if (res) { showPopErr(res); popForm.email.focus(); return; }
+    const data = new URLSearchParams();
+    data.append(GF_EMAIL, email);
+    if (GF_ACTION) {
+      try { await fetch(GF_ACTION, { method: "POST", mode: "no-cors", body: data }); } catch (err) {}
+    }
+    popForm.hidden = true;
+    popOk.hidden = false;
+    markPopSeen();
+    setTimeout(() => { window.location.href = "/special/"; }, 1200);
+  });
+  if (shouldShowPop()) setTimeout(openPop, 8000);
+
 </script>
 </body>
 </html>
