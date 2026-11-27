@@ -106,7 +106,7 @@ function draw(sec){
   ctx.textAlign='left'; ctx.textBaseline='alphabetic';
   ctx.fillStyle=INK; ctx.font='bold 92px '+F; ctx.fillText('Learn content and',110,985); ctx.fillText('marketing systems',110,1075);
   ctx.fillStyle='rgba(29,29,31,0.88)'; ctx.font='42px '+F;
-  ctx.fillText('Save this and comment below',110,1160);
+  ctx.fillText('Join skilled content creators',110,1160); ctx.fillText('who know how to use Claude',110,1216);
 }
 window.render=(t)=>{ draw(t*DUR); return cv.toDataURL('image/jpeg',0.92); };
 window.ready=document.fonts.ready;
