@@ -36,6 +36,8 @@ box-shadow:inset -28px -36px 70px rgba(0,0,0,.32),inset 26px 26px 50px rgba(255,
 .q{margin-bottom:46px}
 .q .qt{font-size:40px;line-height:1.35;font-weight:400}
 .q .qn{margin-top:16px;font-size:28px;font-weight:700;color:${C.accent}}
+.q .qrow{display:flex;align-items:center;gap:20px}
+.q .qlogo{height:64px;max-width:150px;object-fit:contain;background:#fff;border-radius:12px;padding:8px}
 .bg-ink{background:${C.ink}} .bg-paper{background:${C.paper};color:${C.ink}} .bg-accent{background:${C.accent};color:${C.accent_ink}}
 .bg-paper .eyebrow{color:${C.accent}} .bg-paper .footer{color:${C.accent}} .bg-paper .list li:before{background:${C.accent}}
 .bg-accent .eyebrow{color:${C.accent_ink}} .bg-accent .footer{color:${C.accent_ink}} .bg-accent .list li:before{background:${C.accent_ink}}
@@ -60,7 +62,7 @@ function slide(s) {
   if (s.type === 'quotes') {
     return `<div class="s bg-${s.bg || 'paper'}"><div class="pad">
       <div class="display">${s.headline}</div>
-      <div class="quotes">${s.items.map(i => `<div class="q"><div class="qt">${i.text}</div><div class="qn">${i.name}</div></div>`).join('')}</div>
+      <div class="quotes">${s.items.map(i => `<div class="q"><div class="qt">${i.text}</div><div class="qrow" style="margin-top:16px">${i.logo ? `<img class="qlogo" src="data:image/png;base64,${b64(i.logo)}">` : ''}<div class="qn" style="margin-top:0">${i.name}</div></div></div>`).join('')}</div>
       </div></div>`;
   }
   throw new Error('unknown slide type ' + s.type);

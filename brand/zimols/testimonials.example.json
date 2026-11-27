@@ -8,16 +8,19 @@
       "headline": "Ko saka citi",
       "items": [
         {
-          "text": "„Tiešām priecājos par katru uzdevumu, paskaidrojumu un ieskatu jebkurām.“",
-          "name": "Alise, intercars.eu"
+          "text": "„Tiešām priecājos par katru uzdevumu, paskaidrojumu un ieskatu.“",
+          "name": "Alise, intercars.eu",
+          "logo": "assets/logos/intercars.png"
         },
         {
           "text": "„Noteikti izmantošu to savā ikdienā un meklēšu vēl citus risinājumus savām vajadzībām.“",
-          "name": "Līva Andžāne, individuals.lv"
+          "name": "Līva Andžāne, individuals.lv",
+          "logo": "assets/logos/individuals.png"
         },
         {
-          "text": "„Man tas atvēra jaunu pasauli, ļoti patika ka viss bija tieši ar konkrētiem piemēriem nevis teoriju.“",
-          "name": "Maija Rieksta-Riekstiņa, Vegan Fox vadītāja"
+          "text": "„Man tas atvēra jaunu pasauli. Ļoti patika, ka viss bija tieši ar konkrētiem piemēriem, nevis teoriju.“",
+          "name": "Maija Rieksta-Riekstiņa, Vegan Fox vadītāja",
+          "logo": "assets/logos/veganfox.png"
         }
       ]
     }
