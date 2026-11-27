@@ -1,0 +1,25 @@
+{
+  "name": "struktura",
+  "format": "ig_carousel",
+  "slides": [
+    { "type": "cover", "photo": "assets/p2.jpg",
+      "headline": ["Tavs klients pērk", "vienreiz vai atgriežas?"],
+      "sub": "Tas nosaka, kur slēpjas tava peļņa" },
+    { "type": "list", "bg": "paper",
+      "headline": "Divi rādītāji, kas to nosaka",
+      "headlineSize": 84,
+      "items": [
+        "AOV: vidējais pasūtījuma apjoms",
+        "CLTV: cik klients kopā nopērk, kamēr ir pie tevis"
+      ]
+    },
+    { "type": "cta", "bg": "paper",
+      "headline": "Ja peļņa pēc reklāmas ir pozitīva",
+      "headlineSize": 84,
+      "sub": "katrs papildu eiro var atmaksāties" },
+    { "type": "cta", "bg": "paper",
+      "headline": "Daudziem tas nestrādā, jo nav padomāts par AOV",
+      "headlineSize": 84,
+      "sub": "Kurš no šiem punktiem tev ir neskaidrs?" }
+  ]
+}

@@ -58,7 +58,7 @@ function slide(s) {
       ${s.footer ? `<div class="footer">${s.footer}</div>` : ''}</div></div>`;
   }
   if (s.type === 'cta') {
-    return `<div class="s bg-${s.bg || 'accent'}">${s.badge ? `<div class="badge">${s.badge}</div>` : ''}<div class="pad"><div class="display">${s.headline}</div>${s.sub ? `<div class="sub">${s.sub}</div>` : ''}</div></div>`;
+    return `<div class="s bg-${s.bg || 'accent'}">${s.badge ? `<div class="badge">${s.badge}</div>` : ''}<div class="pad"><div class="display" style="font-size:${s.headlineSize || 104}px">${s.headline}</div>${s.sub ? `<div class="sub">${s.sub}</div>` : ''}</div></div>`;
   }
   if (s.type === 'quotes') {
     return `<div class="s bg-${s.bg || 'paper'}"><div class="pad">
