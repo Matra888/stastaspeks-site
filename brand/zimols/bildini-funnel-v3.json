@@ -40,7 +40,9 @@
       "type": "question",
       "bg": "paper",
       "headline": "Kurš ceļš ir tavs?",
-      "sub": "Saglabā šo un apskati, cik % no reklāmas auditorijas tev izdodas pārliecināt izdarīt izvēli uzreiz!"
+      "sub": "Saglabā šo un apskati, cik % no reklāmas auditorijas tev izdodas pārliecināt izdarīt izvēli uzreiz!",
+      "plain": true,
+      "headlineSize": 120
     }
   ]
 }
