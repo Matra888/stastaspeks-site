@@ -49,7 +49,7 @@ function draw(sec){
   // static text on ball
   ctx.textAlign='center'; ctx.textBaseline='middle';
   ctx.shadowColor='rgba(0,0,0,0.35)'; ctx.shadowBlur=12; ctx.shadowOffsetY=3;
-  ctx.fillStyle=PAPER; ctx.font='bold 74px '+F; ctx.fillText('7 days',cx,cy-56);
+  ctx.fillStyle=PAPER; ctx.font='bold 74px '+F; ctx.fillText('3 weeks',cx,cy-56);
   ctx.fillStyle=ORANGE; ctx.font='bold 74px '+F; ctx.fillText('Claude',cx,cy+20);
   ctx.fillStyle=PAPER; ctx.font='40px '+F; ctx.fillText('online challenge',cx,cy+94);
   ctx.shadowColor='transparent'; ctx.shadowBlur=0; ctx.shadowOffsetY=0;
