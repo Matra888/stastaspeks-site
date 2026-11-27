@@ -307,6 +307,16 @@
   .hero h1 .claude, .hero h1 .sub .claude { color: #C15F3C !important; }
   .hero h1 .sub { color: #3A3A42 !important; }
   .hero p, .hero .tagline { color: #3A3A42 !important; }
+
+  /* All body text is plain black for readability. Buttons, badges and accent colours keep their own styles. */
+  main p, main li, main h1, main h2, main h3, main small, main s, main b, main strong,
+  main span:not(.now):not(.off):not(.free):not(.tick):not(.flap):not(.badge):not(.claude):not(.pop-kicker):not(.bf-kicker),
+  main .sub, footer, .pop-sub, .pop-note, .pop-card h2, .unit small, .lbl, .deadline p, .split small,
+  .bundle small, .bundle .was, .bundle .total span, .social-count, .social-count a {
+    color: #000 !important;
+  }
+  main p a, main li a, footer a { color: #000 !important; text-decoration: underline; }
+  .bf-price s { color: #000 !important; }
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
