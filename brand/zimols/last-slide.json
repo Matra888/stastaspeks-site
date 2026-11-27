@@ -9,7 +9,7 @@
       "headline": "Kā ir tavā nozarē?",
       "headlineSize": 120,
       "sub": "Vai izdodas saņemt <span class=\"hl\">„Jā“ uzreiz</span>, vai tomēr jāpacenšas ilgāk?",
-      "sub2": "<span style=\"color:#6E6E73\"><svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#6E6E73\" stroke-width=\"2\" stroke-linejoin=\"round\" style=\"vertical-align:-6px\"><path d=\"M6 3h12v18l-6-4-6 4z\"/></svg> Saglabā un raksti komentāros</span>"
+      "sub2": "<span style=\"color:#1D1D1F;font-weight:700\"><svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"#6E6E73\" stroke=\"#6E6E73\" stroke-width=\"2\" stroke-linejoin=\"round\" style=\"vertical-align:-6px\"><path d=\"M6 3h12v18l-6-4-6 4z\"/></svg> Saglabā un raksti komentāros</span>"
     }
   ]
 }
