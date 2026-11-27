@@ -561,7 +561,7 @@
     popForm.hidden = true;
     popOk.hidden = false;
     markPopSeen();
-    setTimeout(closePop, 3000);
+    setTimeout(() => { window.location.href = "/blackfriday-lv/welcome/"; }, 1200);
   });
   if (location.search.includes("preview")) openPop();
   else if (shouldShowPop()) setTimeout(openPop, POP_DELAY);

@@ -344,29 +344,6 @@
   tickDeadline();
   setInterval(tickDeadline, 1000);
 
-  const PAYMENT_URL = "https://buy.stripe.com/3cI7sL6He2Rv5oJg9Des007";
-  const PAGE_URL = "https://stastaspeks.com/blackfriday-lv/";
-
-  document.querySelectorAll(".payBtn").forEach(a => { a.href = PAYMENT_URL; });
-
-  const shareInput = document.getElementById("shareLink");
-  const copiedMsg = document.getElementById("copied");
-  shareInput.value = PAGE_URL;
-  shareInput.addEventListener("focus", () => shareInput.select());
-  document.getElementById("copyBtn").addEventListener("click", async () => {
-    let ok = false;
-    try { await navigator.clipboard.writeText(shareInput.value); ok = true; } catch (e) {}
-    if (!ok) {
-      shareInput.focus(); shareInput.select();
-      try { ok = document.execCommand("copy"); } catch (e) {}
-    }
-    copiedMsg.textContent = ok ? "Nokopēts! Tagad ielīmē to draugam 🎉" : "Saite iezīmēta. Nospied Ctrl+C (vai ⌘C), lai kopētu.";
-    if (ok) {
-      const b = document.getElementById("copyBtn");
-      b.textContent = "✓ Nokopēts!"; b.classList.add("done");
-      setTimeout(() => { b.textContent = "🔗 Kopēt saiti"; b.classList.remove("done"); }, 2200);
-    }
-  });
 </script>
 </body>
 </html>
