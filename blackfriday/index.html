@@ -227,6 +227,7 @@
   .deadline[hidden] { display: none; }
   @media (max-width: 480px) { .flap { font-size: 1.45rem; min-width: .95em; } .split { gap: .45rem; } }
   .faq-list details { border-bottom: 1px solid var(--line); }
+  .bundle .free { margin-left: auto; background: var(--pop); color: #FFFFFF; font-weight: 800; font-size: .85rem; border-radius: 999px; padding: .3rem .7rem; white-space: nowrap; }
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -234,8 +235,10 @@
 </head>
 <body>
 <main>
-  <header class="hero bf-hero">
-    <img class="logo" src="/logo.png" alt="Stāsta spēks" width="88" height="88" style="margin-left:auto;margin-right:auto">
+
+  <header class="hero">
+    <img class="logo" src="logo.png" alt="Stāsta Spēks" width="88" height="88">
+    <p class="kicker tag-pill">8 tasks + community</p>
     <p class="bf-kicker">Black Friday · today only</p>
     <h1>3-Week <span class="claude">Claude</span> Challenge<span class="sub">Create content and marketing you're proud of</span></h1>
     <div class="bf-price"><span class="now">35.60 €</span><s>89 €</s><span class="off">−60%</span></div>
@@ -243,40 +246,200 @@
       <p>Black Friday price ends today, 23:59 (Riga time)</p>
       <div class="split" data-split></div>
     </div>
-    <p class="bf-note">Everything below, in one purchase.</p>
+        <div class="social" id="social">
+      <div class="faces" id="faces" aria-hidden="true"><span class="face"><svg viewBox="0 0 40 40"><circle cx="20" cy="15" r="7" fill="#F2C9A5"/><path d="M12 13c0-5 3-8 8-8s8 3 8 8c-2-2-4-3-8-3s-6 1-8 3z" fill="#3A2A22"/><path d="M6 40c1-8 6-12 14-12s13 4 14 12z" fill="#F2C9A5"/></svg></span><span class="face"><svg viewBox="0 0 40 40"><circle cx="20" cy="15" r="7" fill="#8D5A3B"/><path d="M12 14c0-6 3-9 8-9s8 3 8 9c-1-3-3-4-8-4s-7 1-8 4z" fill="#1E1410"/><path d="M6 40c1-8 6-12 14-12s13 4 14 12z" fill="#8D5A3B"/></svg></span><span class="face"><svg viewBox="0 0 40 40"><circle cx="20" cy="15" r="7" fill="#E0B08A"/><path d="M13 12c1-5 4-7 7-7s6 2 7 7v3h-2v-3c-2-2-8-2-10 0v3h-2z" fill="#C96A3A"/><path d="M6 40c1-8 6-12 14-12s13 4 14 12z" fill="#E0B08A"/></svg></span><span class="face"><svg viewBox="0 0 40 40"><circle cx="20" cy="15" r="7" fill="#C68B63"/><path d="M12 14c0-6 4-9 8-9s8 3 8 9l-1-4c-2 2-4 3-7 3s-5-1-7-3z" fill="#2A1C15"/><path d="M6 40c1-8 6-12 14-12s13 4 14 12z" fill="#C68B63"/></svg></span><span class="face"><svg viewBox="0 0 40 40"><circle cx="20" cy="15" r="7" fill="#F5D3B5"/><path d="M12 13c0-5 3-7 8-7s8 2 8 7c-1-2-3-3-8-3s-7 1-8 3z" fill="#8A5A2B"/><path d="M6 40c1-8 6-12 14-12s13 4 14 12z" fill="#F5D3B5"/></svg></span></div>
+      <p class="social-count"><span id="count">40+</span> learners taking action</p>
+    </div>
   </header>
 
-  <section class="bundle" aria-labelledby="bundle-h" style="margin-top:2.5rem">
-    <h2 id="bundle-h">What you get</h2>
-    <ul>
-      <li><span class="tick">✓</span><div>3-Week Claude Challenge<small>8 hands-on tasks, from content to data and blog posts. Join any time.</small></div><span class="was">89 €</span></li>
-      <li><span class="tick">✓</span><div>8 Claude skills for social media<small>Ready-to-use skills for posts, carousels and captions.</small></div><span class="was">29 €</span></li>
-      <li><span class="tick">✓</span><div>20 video editing prompts<small>For Claude and ChatGPT. Copy, paste and edit faster.</small></div><span class="was">Bonus</span></li>
+  <section aria-labelledby="path-h">
+    <p style="color:var(--ink);font-size:1.1rem;margin:0 0 1.5rem;max-width:58ch">A new video tutorial with a dedicated task <strong>every second day</strong>, sent straight to your email. No emails on weekends. Each task ends with something you can post, ship or use the same day.</p>
+
+    <p class="week-label">Week 1 · Content system</p>
+    <ol class="path">
+      <li><span class="dot">1</span><div class="step"><p class="meta">Task 1 · Mon</p><h3>Project setup and artifacts</h3><p>Build your interactive recipe book from online sources, and see how it helps your marketing.</p></div></li>
+      <li><span class="dot">2</span><div class="step"><p class="meta">Task 2 · Wed</p><h3>Your Claude design system</h3><p>Build a reusable brand look: colours, fonts and tone that Claude applies every time.</p></div></li>
+      <li><span class="dot">3</span><div class="step"><p class="meta">Task 3 · Fri</p><h3>Instagram carousels</h3><p>Turn one idea into a swipeable carousel in your brand style.</p></div></li>
+    </ol>
+
+    <p class="week-label">Week 2 · Data &amp; research</p>
+    <ol class="path" start="4">
+      <li><span class="dot">4</span><div class="step"><p class="meta">Task 4 · Mon</p><h3>Data visualisation for LinkedIn and presentations</h3><p>Tell a visual story from large datasets or your video content.</p></div></li>
+      <li><span class="dot">5</span><div class="step"><p class="meta">Task 5 · Wed</p><h3>Website content audit</h3><p>Use Claude in Chrome to find keyword gaps and rewrite weak sales copy on your site.</p></div></li>
+      <li><span class="dot">6</span><div class="step"><p class="meta">Task 6 · Fri</p><h3>Stylish blog posts</h3><p>Write a post styled so professionally it looks like it came from Health Magazine or The Wall Street Journal.</p></div></li>
+    </ol>
+
+    <p class="week-label">Week 3 · Advanced content</p>
+    <ol class="path" start="7">
+      <li><span class="dot">7</span><div class="step"><p class="meta">Task 7 · Mon</p><h3>Content plan from competitor ads</h3><p>Research competitor ads, sort them into content categories, and build a plan from the gaps.</p></div></li>
+      <li><span class="dot">8</span><div class="step"><p class="meta">Task 8 · Fri</p><h3>🎁 Make your videos easy to edit</h3><p>Every video uses your brand colours, professional effects, and an internet reference that matches what you are talking about.</p></div></li>
+      <li><span class="dot">🎓</span><div class="step"><p class="meta">Final Friday</p><h3>Graduation Friday</h3><p>Community activities in the WhatsApp chat: answer questions, give feedback, and get advice on what to learn next.</p></div></li>
+    </ol>
+  </section>
+
+  <section class="gift" aria-labelledby="gift-h">
+    <p class="bonus-note">Sent before Task 8</p>
+    <h2 id="gift-h">🎁 FREE bonus: <span>PDF guide</span></h2>
+    <p class="bonus-line"><mark>20 trending video effects</mark> for Claude video edits.</p>
+  </section>
+
+  <section aria-labelledby="ideas-h">
+    <p class="kicker">Ideas to try</p>
+    <h2 id="ideas-h">What you could make</h2>
+    <ul class="ideas">
+      <li><b>Brand design system</b><span>Save your colours, fonts and tone once. Then every carousel, post and blog draft Claude makes matches your brand. Task 2.</span></li>
+      <li><b>A marketing recipe book</b><span>Summarise your content ideas as recipes. Each idea gets ingredients (audience, channel, format) and steps to make it. Task 1.</span></li>
+      <li><b>A 5-slide IG carousel</b><span>Turn your best post into a carousel in the style of creators you admire. Task 3.</span></li>
+      <li><b>An engaging LinkedIn post with clear graphs</b><span>Turn raw numbers into a chart and a post people want to read. Task 4.</span></li>
+      <li><b>Web analytics audit</b><span>Use Claude in Chrome to find keyword gaps and rewrite weak sales copy on your site. Task 5.</span></li>
+      <li><b>A structured, well-designed blog post</b><span>Write a blog post styled so professionally it looks like it came from Health Magazine or The Wall Street Journal. Task 6.</span></li>
+      <li><b>A competitor ads analysis</b><span>Research your competitors' ads, sort them into content categories, and build a plan from the gaps. Task 7.</span></li>
+      <li><b>Easy-to-edit videos</b><span>Every video uses your brand colours, professional effects, and an internet reference that matches what you are saying. Task 8.</span></li>
     </ul>
-    <p class="total"><span>Your price today</span><b>35.60 €</b></p>
   </section>
 
-  <p style="text-align:center;margin:2rem 0 0">
-    <a class="btn primary buy" id="buyBtn" href="#">Get everything · 35.60 €</a>
-  </p>
-  
+  <section class="join" id="join" aria-labelledby="join-h">
+    <h2 id="join-h">Save your spot <span class="badge">Closing soon</span></h2>
+    <section class="bundle" aria-labelledby="bundle-h">
+      <h2 id="bundle-h">What you get</h2>
+      <ul>
+        <li><span class="tick">✓</span><div>3-Week Claude Challenge<small>8 hands-on tasks, from content to data and blog posts.</small></div><span class="was">89 €</span></li>
+        <li><span class="tick">✓</span><div>8 Claude skills for social media<small>Ready-to-use skills for posts, carousels and captions.</small></div><span class="was">29 €</span></li>
+        <li><span class="tick">✓</span><div>20 video editing prompts<small>For Claude and ChatGPT.</small></div><span class="free">FREE bonus</span></li>
+      </ul>
+      <p class="total"><span>Your price today</span><b>35.60 €</b></p>
+    </section>
+    <div class="actions">
+      <a class="btn primary buy" id="buyBtn" target="_blank" rel="noopener">Get everything · 35.60 €</a>
+      <a class="btn wa" id="waBtn" target="_blank" rel="noopener">Join the WhatsApp learning community</a>
+    </div>
+    <p class="join-note">WhatsApp is optional. All tasks are sent to your email.</p>
+  </section>
 
-  <section class="faq" style="margin-top:3rem" aria-labelledby="faq-h">
+  <section class="share" aria-labelledby="share-h">
+    <h2 id="share-h">Bring a friend 👯</h2>
+    <p>Challenges are easier with a buddy. Send them the link.</p>
+    <div class="copyrow">
+      <input id="shareLink" type="text" readonly value="https://stastaspeks.com/3week/" aria-label="Challenge page link">
+      <button class="btn copy" id="copyBtn" type="button">🔗 Copy link</button>
+      <a class="btn wa-fill" id="waShare" target="_blank" rel="noopener">Send on WhatsApp</a>
+    </div>
+    <p class="copied" id="copied" aria-live="polite"></p>
+  </section>
+
+  <section class="faq" aria-labelledby="faq-h">
     <h2 id="faq-h">Questions</h2>
-    <details><summary>When does the price go back up?</summary><p>At midnight today (Riga time). After that the course returns to its full price of 89 €.</p></details>
-    <details><summary>Do I get the skills and prompts if I buy now?</summary><p>Yes. All three items are included in one purchase.</p></details>
-    <details><summary>Can I join later than the start?</summary><p>Yes. Join any time. Tasks are sent by email on Mondays, Wednesdays and Fridays.</p></details>
+    <details>
+      <summary>How much does it cost?</summary>
+      <p>Price and payment details are shared when you sign up. We recommend Claude Pro (€18/month). Ask for a 7-day Pro trial code at <a href="mailto:stastaspeks@gmail.com?subject=7-day%20Claude%20Pro%20trial%20code">stastaspeks@gmail.com</a>.</p>
+    </details>
+    <details>
+      <summary>Can I do it on the basic plan?</summary>
+      <p>Mostly. Most tasks work on the basic plan, which includes projects and artifacts, but usage limits are lower, so you may need to pause. Saving your design system (Task 2) and the video edits bonus need a paid plan.</p>
+    </details>
+    <details>
+      <summary>I've only used Claude a few times. Is that okay?</summary>
+      <p>Yes. Task 1 covers the basics, and every video shows the result first, then each step on screen.</p>
+      <p>It's also a skill worth having. In a 2026 <a href="https://windsor.ai/claude-vs-chatgpt-marketing-data-study/" target="_blank" rel="noopener">Windsor.ai study</a> of 35,000+ marketing teams, teams analysing data with Claude outnumbered those using OpenAI tools about 7 to 1.</p>
+    </details>
+    <details>
+      <summary>How much time do I need?</summary>
+      <p>Eight tasks plus a bonus, delivered Monday, Wednesday and Friday over three weeks. Plan about 30 minutes per task, including a video of 10 minutes or less. That's under two hours a week.</p>
+    </details>
+    <details>
+      <summary>What's the format?</summary>
+      <p>Short recorded videos you can watch whenever suits you. Questions and sharing happen in the WhatsApp group.</p>
+    </details>
+    <details>
+      <summary>Are there live sessions?</summary>
+      <p>No. Everything is recorded, and there's no fixed schedule. A lesson every second day keeps the pace steady without pressure to cram.</p>
+    </details>
   </section>
+
 </main>
-<footer>Stāsta spēks · <a href="/privatums/">Privātuma politika</a></footer>
+<footer>Started in Latvia by @stasta_speks.<br>2 regular learner communities: LV and ENG. Join us!</footer>
 
 <script>
+  // Paste the real links here
+  const BUY_URL = ""; // paste the Stripe link for 35.60 EUR here
+  const WHATSAPP_URL = "https://chat.whatsapp.com/CxlTuUm6WCQ6ZPOVtBMsni";
+  // Live learner count from a published Google Sheet (CSV).
+  const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1IIWltYZCraWqf1yI8irX5-kncwCoOnps3TCQtEKum9I/gviz/tq?tqx=out:csv";
+
+  function wire(id, url, fallback) {
+    const a = document.getElementById(id);
+    if (url) { a.href = url; } else { a.setAttribute("aria-disabled", "true"); a.textContent = fallback; }
+  }
+  wire("buyBtn", BUY_URL, "Payment link coming soon");
+  wire("waBtn", WHATSAPP_URL, "Group link coming soon");
+
+  // Share with a friend
+  const shareInput = document.getElementById("shareLink");
+  const copiedMsg = document.getElementById("copied");
+  document.getElementById("waShare").href = "https://wa.me/?text=" + encodeURIComponent("Join me in the 3-Week Claude Challenge for Content & Marketing! " + shareInput.value);
+  shareInput.addEventListener("focus", () => shareInput.select());
+  document.getElementById("copyBtn").addEventListener("click", async () => {
+    let ok = false;
+    try { await navigator.clipboard.writeText(shareInput.value); ok = true; } catch (e) {}
+    if (!ok) {
+      shareInput.focus(); shareInput.select();
+      try { ok = document.execCommand("copy"); } catch (e) {}
+    }
+    copiedMsg.textContent = ok ? "Copied! Now send it to a friend 🎉" : "Link selected. Press Ctrl+C (or ⌘C) to copy.";
+    if (ok) {
+      const b = document.getElementById("copyBtn");
+      b.textContent = "✓ Copied!"; b.classList.add("done");
+      setTimeout(() => { b.textContent = "🔗 Copy link"; b.classList.remove("done"); }, 2200);
+    }
+  });
+
+  // Parse CSV, handling quoted fields with commas and line breaks
+  function parseCSV(text) {
+    const rows = []; let row = [], field = "", q = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (q) {
+        if (c === '"') { if (text[i + 1] === '"') { field += '"'; i++; } else q = false; }
+        else field += c;
+      } else if (c === '"') q = true;
+      else if (c === ",") { row.push(field); field = ""; }
+      else if (c === "\n" || c === "\r") {
+        if (c === "\r" && text[i + 1] === "\n") i++;
+        row.push(field); rows.push(row); row = []; field = "";
+      } else field += c;
+    }
+    if (field || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+  async function loadCount() {
+    try {
+      const res = await fetch(SHEET_CSV_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error(res.status);
+      const table = parseCSV(await res.text());
+      const header = (table[0] || []).map(h => h.trim().toLowerCase());
+      const nameCol = header.findIndex(h => h.includes("name"));
+      const people = table.slice(1).filter(r => r.some(c => c.trim() !== ""));
+      const n = people.length;
+      if (n < 30) return;
+      document.getElementById("count").textContent = (Math.floor(n / 10) * 10) + "+";
+      const faces = document.getElementById("faces");
+      faces.innerHTML = "";
+      people.slice(0, 30).forEach((r, i) => {
+        const name = (nameCol >= 0 ? (r[nameCol] || "") : "").trim();
+        const f = document.createElement("span");
+        f.className = "face";
+        f.textContent = name ? name[0].toUpperCase() : "?";
+        f.style.background = `hsl(${(i * 47) % 360} 60% 55%)`;
+        faces.appendChild(f);
+      });
+      document.getElementById("social").hidden = false;
+    } catch (e) { /* strip stays hidden if the sheet can't be read */ }
+  }
+  loadCount();
+  setInterval(loadCount, 30000);
+
   // Black Friday deadline: today 27 Nov 2026, 23:59 Riga time (UTC+2)
   const DEADLINE = Date.UTC(2026, 10, 27, 21, 59, 0);
-  const BUY_URL = ""; // paste the Stripe link for 35.60 EUR here
-  if (BUY_URL) document.getElementById("buyBtn").href = BUY_URL;
-  else { const b = document.getElementById("buyBtn"); b.textContent = "Payment link coming soon"; b.setAttribute("aria-disabled", "true"); }
-
   function tickDeadline() {
     const left = DEADLINE - Date.now();
     const pad = n => String(n).padStart(2, "0");
