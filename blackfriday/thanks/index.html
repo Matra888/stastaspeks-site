@@ -258,6 +258,13 @@
   .steps li { counter-increment: st; position: relative; padding: .9rem 0 .9rem 3rem; border-top: 1px solid var(--line); font-size: 1.05rem; }
   .steps li::before { content: counter(st); position: absolute; left: 0; top: .9rem; width: 2rem; height: 2rem; border-radius: 50%; background: var(--wa); color: #FFFFFF; font-weight: 800; display: flex; align-items: center; justify-content: center; }
   .steps li:first-child { border-top: 0; }
+
+  .free-box { margin: 2rem auto 0; max-width: 520px; text-align: left; background: var(--panel, #F5F5F7); border-radius: 20px; padding: 1.25rem 1.4rem; }
+  .free-box h2 { font-size: 1.2rem; margin: 0 0 .9rem; text-align: center; }
+  .free-item { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: .8rem 0; border-top: 1px solid #E5E5EA; }
+  .free-item:first-of-type { border-top: 0; }
+  .free-item span { font-weight: 600; }
+  .free-item a { background: #C15F3C; color: #FFFFFF; text-decoration: none; font-weight: 700; padding: .6rem 1rem; border-radius: 999px; white-space: nowrap; }
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -273,6 +280,11 @@
     <li><strong>Join the community.</strong> Introduce yourself and meet the other learners.</li>
     <li><strong>Start Task 1.</strong> Tasks arrive by email on Mondays, Wednesdays and Fridays.</li>
   </ol>
+  <section class="free-box" aria-labelledby="free-h">
+    <h2 id="free-h">Your free materials</h2>
+    <div class="free-item"><span>8 Claude skills for social media</span><a href="#" id="skillsLink">Download</a></div>
+    <div class="free-item"><span>20 video editing prompts</span><a href="#" id="promptsLink">Download</a></div>
+  </section>
   <p><a class="btn wa" href="https://chat.whatsapp.com/CxlTuUm6WCQ6ZPOVtBMsni" target="_blank" rel="noopener">Join the WhatsApp community</a></p>
   <p class="bf-note" style="margin-top:2rem">Didn't get an email? Write to <a href="mailto:stastaspeks@gmail.com">stastaspeks@gmail.com</a>.</p>
 </main>
