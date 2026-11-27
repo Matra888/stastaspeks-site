@@ -4,7 +4,7 @@
   "slides": [
     { "type": "question", "bg": "paper", "plain": true, "headlineSize": 120,
       "headline": "Don't miss out.",
-      "sub": "AI literacy is #1 on LinkedIn's 2025 Skills on the Rise list. <span class=\"hl\">Save time. Save money.</span>",
+      "sub": "<span class=\"hl\">AI literacy</span> is #1 on LinkedIn's 2025 Skills on the Rise list.",
       "sub2": "<span style=\"color:#1D1D1F;font-weight:700\">Join the 3-week Claude online challenge</span>" }
   ]
 }
