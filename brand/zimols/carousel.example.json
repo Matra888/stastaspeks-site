@@ -14,13 +14,12 @@
     {
       "type": "list",
       "bg": "paper",
-      "eyebrow": "Ko tas dara",
       "headline": "Claude var strādāt tavā vietā",
       "sub": "Un tas viss tavā zīmola stilā",
       "items": [
-        "Raksta Instagram un LinkedIn postus",
-        "Veido karuseļus",
-        "Raksta SEO optimizētus bloga rakstus"
+        "IG posti un karuseļi",
+        "LinkedIn posti",
+        "SEO optimizēti bloga raksti"
       ],
       "footer": "18 € mēnesī",
       "subStyle": "pill"
