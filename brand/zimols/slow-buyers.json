@@ -2,10 +2,12 @@
   "name": "slow-buyers",
   "format": "ig_carousel",
   "slides": [
-    { "type": "features", "bg": "paper",
+    {
+      "type": "features",
+      "bg": "paper",
       "headline": "Citām vajag ilgāku laiku pirkumam",
       "headlineSize": 96,
-      "sub": "Konversija: cik % apmeklētāju nopērk",
+      "sub": "Konversija pēc nozares",
       "items": [
         "Luksusa rotaslietas: 0,8–1,5 %",
         "Mājas un mēbeles: 0,8–1,8 %",
