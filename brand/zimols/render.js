@@ -52,7 +52,7 @@ function slide(s) {
   if (s.type === 'list') {
     return `<div class="s bg-${s.bg || 'paper'}"><div class="pad">
       ${s.eyebrow ? `<div class="eyebrow">${s.eyebrow}</div>` : ''}
-      <div class="display">${s.headline}</div>
+      <div class="display" style="font-size:${s.headlineSize || 104}px">${s.headline}</div>
       ${s.sub ? (s.subStyle === 'pill' ? `<div><span class="pill">${s.sub}</span></div>` : `<div class="sub">${s.sub}</div>`) : ''}
       <ul class="list">${s.items.map(i => `<li>${i}</li>`).join('')}</ul>
       ${s.footer ? `<div class="footer">${s.footer}</div>` : ''}</div></div>`;
