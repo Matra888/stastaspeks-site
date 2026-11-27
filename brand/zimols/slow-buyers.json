@@ -13,7 +13,9 @@
         "Mājas un mēbeles: 0,8–1,8 %",
         "Elektronika: 1,5–2,5 %",
         "Apģērbs: 1,1–2,0 %"
-      ]
+      ],
+      "accent": "#F5B800",
+      "accentInk": "#1D1D1F"
     }
   ]
 }
