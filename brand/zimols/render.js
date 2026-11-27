@@ -58,9 +58,10 @@ function slide(s) {
     const fade = s.textTop ? ';-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 30%);mask-image:linear-gradient(to bottom,transparent 0%,#000 30%)' : '';
     const box = s.photoBox;
     if (s.centerBottom) {
-      return `<div class="s bg-ink"><img class="photo" style="object-position:50% 18%" src="${img}"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(29,29,31,0) 35%,rgba(29,29,31,.92) 80%,rgba(29,29,31,.97) 100%)"></div>
-      ${s.emoji ? `<div style="position:absolute;left:150px;top:130px;font-family:'Noto Color Emoji',sans-serif;font-size:130px;line-height:1">${s.emoji}</div>` : ''}
-      <div class="pad" style="left:170px!important;right:170px!important;top:auto!important;bottom:120px!important;text-align:center"><div class="display" style="font-size:${s.headlineSize || 76}px;text-align:center">${s.headline.join('<br>')}</div><div class="sub" style="margin-top:28px;font-size:40px;text-align:center">${s.sub}</div></div></div>`;
+      const L = s.leftText;
+      const emo = s.emoji ? `<div style="font-family:'Noto Color Emoji',sans-serif;font-size:${L ? 110 : 150}px;line-height:1;margin-bottom:${L ? 10 : 24}px">${s.emoji}</div>` : '';
+      return `<div class="s bg-ink"><img class="photo" style="object-position:50% ${L ? 50 : 18}%" src="${img}"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(29,29,31,0) 35%,rgba(29,29,31,.92) 80%,rgba(29,29,31,.97) 100%)"></div>
+      <div class="pad" style="left:170px!important;right:170px!important;top:auto!important;bottom:120px!important;text-align:${L ? 'left' : 'center'}">${emo}<div class="display" style="font-size:${s.headlineSize || 76}px;text-align:${L ? 'left' : 'center'}">${s.headline.join('<br>')}</div><div class="sub" style="margin-top:28px;font-size:40px;text-align:${L ? 'left' : 'center'}">${s.sub}</div></div></div>`;
     }
     const imgStyle = box ? ` style="left:${box.left}px;top:${box.top || 0}px;width:${box.width}px;height:${box.height}px;object-fit:cover;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 30%);mask-image:linear-gradient(to right,transparent 0%,#000 30%)"` : (sh ? ` style="top:${sh}px;height:${F.h - sh}px${fade}"` : '');
     const top = (s.textTop && !s.photoBox) ? `<div class="shade" style="background:linear-gradient(to bottom,rgba(29,29,31,.95) 0%,rgba(29,29,31,0) 45%)"></div>` : '<div class="shade"></div>';

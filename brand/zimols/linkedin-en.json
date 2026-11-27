@@ -4,16 +4,16 @@
   "slides": [
     {
       "type": "cover",
-      "photo": "assets/p5.jpg",
+      "photo": "assets/p4.jpg",
       "centerBottom": true,
       "headlineSize": 76,
       "headline": [
-        "Propose to",
-        "your clients",
-        "on day one"
+        "Propose to your",
+        "clients on day one"
       ],
       "sub": "Not every client wants to go through complicated marketing funnels",
-      "emoji": "💍"
+      "emoji": "💍",
+      "leftText": true
     },
     {
       "type": "features",
