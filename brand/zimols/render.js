@@ -44,6 +44,7 @@ box-shadow:inset -28px -36px 70px rgba(0,0,0,.32),inset 26px 26px 50px rgba(255,
 .chk{flex:0 0 auto;width:68px;height:68px;border-radius:50%;background:${C.accent};color:#fff;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:700}
 .card .lbl{font-size:42px;font-weight:600;line-height:1.2;color:${C.ink}}
 .qpill{display:inline-block;white-space:nowrap;background:${C.accent};color:#fff;font-weight:700;font-size:92px;line-height:1.1;letter-spacing:-1px;padding:34px 52px;border-radius:40px}
+.hl{background:${C.accent};color:#fff;padding:0 14px;border-radius:12px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .bg-ink{background:${C.ink}} .bg-paper{background:${C.paper};color:${C.ink}} .bg-accent{background:${C.accent};color:${C.accent_ink}}
 .bg-paper .eyebrow{color:${C.accent}} .bg-paper .footer{color:${C.accent}} .bg-paper .list li:before{background:${C.accent}}
 .bg-accent .eyebrow{color:${C.accent_ink}} .bg-accent .footer{color:${C.accent_ink}} .bg-accent .list li:before{background:${C.accent_ink}}
@@ -81,7 +82,7 @@ function slide(s) {
   if (s.type === 'question') {
     const top = s.top ? `<div class="display" style="font-size:${s.topSize || 76}px;margin-bottom:44px">${s.top}</div>` : '';
     const head = s.plain ? `<div class="display" style="font-size:${s.headlineSize || 120}px">${s.headline}</div>` : `<div class="qpill">${s.headline}</div>`;
-    return `<div class="s bg-${s.bg || 'paper'}"><div class="pad">${top}${head}${s.sub ? `<div class="sub" style="margin-top:40px">${s.sub}</div>` : ''}${s.sub2 ? `<div style="margin-top:28px;font-size:34px;color:${C.muted}">${s.sub2}</div>` : ''}</div></div>`;
+    return `<div class="s bg-${s.bg || 'paper'}"><div class="pad">${top}${head}${s.sub ? `<div class="sub" style="margin-top:40px">${s.sub}</div>` : ''}${s.sub2 ? `<div style="margin-top:36px;font-size:42px;font-weight:400;color:${C.ink}">${s.sub2}</div>` : ''}</div></div>`;
   }
   throw new Error('unknown slide type ' + s.type);
 }
