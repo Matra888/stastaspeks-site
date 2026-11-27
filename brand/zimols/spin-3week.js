@@ -85,9 +85,9 @@ function draw(sec){
     ctx.restore();
   }
   ctx.textAlign='left'; ctx.textBaseline='alphabetic';
-  ctx.fillStyle=INK; ctx.font='bold 100px '+F; ctx.fillText('Join the challenge',110,1000);
+  ctx.fillStyle=INK; ctx.font='bold 92px '+F; ctx.fillText('Learn content and',110,985); ctx.fillText('marketing systems',110,1075);
   ctx.fillStyle='rgba(29,29,31,0.88)'; ctx.font='44px '+F;
-  ctx.fillText('Save this and comment below',110,1088);
+  ctx.fillText('Save this and comment below',110,1160);
 }
 window.render=(t)=>{ draw(t*DUR); return cv.toDataURL('image/jpeg',0.92); };
 window.ready=document.fonts.ready;
