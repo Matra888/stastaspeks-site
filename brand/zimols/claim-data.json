@@ -1,0 +1,15 @@
+{
+  "name": "claim-data",
+  "format": "ig_carousel",
+  "slides": [
+    { "type": "list", "bg": "paper",
+      "headline": "Ne visi klienti vēlas iet cauri sarežģītiem marketinga tuneļiem",
+      "items": [
+        "Pārtika un dzērieni: 3,8–6,2 %",
+        "Hobiji un amatniecība: 3,8–5,8 %",
+        "Veselība un skaistums: 2,6–5,0 %",
+        "Mājdzīvnieki: 2,5–4,0 %+"
+      ]
+    }
+  ]
+}
