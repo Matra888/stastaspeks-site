@@ -309,17 +309,13 @@
   .hero h1 .sub { color: #3A3A42 !important; }
   .hero p, .hero .tagline { color: #3A3A42 !important; }
 
-  /* All body text is plain black for readability. Buttons, badges and accent colours keep their own styles. */
-  main p, main li, main h1, main h2, main h3, main small, main s, main b, main strong,
-  main span:not(.now):not(.off):not(.free):not(.tick):not(.flap):not(.badge):not(.claude):not(.pop-kicker):not(.bf-kicker),
-  main .sub, footer, .pop-sub, .pop-note, .pop-card h2, .unit small, .lbl, .deadline p, .split small,
-  .bundle small, .bundle .was, .bundle .total span, .social-count, .social-count a {
-    color: #000 !important;
-  }
-  main p a, main li a, footer a { color: #000 !important; text-decoration: underline; }
-  .bf-price s { color: #000 !important; }
 
-  .hero p, .hero .tagline, .hero h1, .hero h1 .sub, .bundle, .bundle h2, .bundle li, .bundle li small, .bundle .total, .bundle .total span, .bundle .was { color: #000 !important; }
+
+  /* Dark text on white surfaces (no light grey). Buttons, badges and brand accents keep their own colours. */
+  main p, main li, main small, .lede, .deadline p, footer, .pop-sub, .pop-note, .bundle li small, .hero p, .hero .tagline, .hero .lede {
+    color: #2A2A2E !important;
+  }
+  main p a, main li a, footer a { color: #1D3FC0 !important; text-decoration: underline; }
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
