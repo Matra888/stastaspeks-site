@@ -82,7 +82,8 @@ function slide(s) {
       </div></div>`;
   }
   if (s.type === 'features') {
-    return `<div class="s bg-${s.bg || 'paper'}"><div class="pad">
+    const compactCss = s.compact ? `<style>.feat{gap:16px!important;margin-top:36px!important}.card{padding:18px 30px!important}.chk{width:56px!important;height:56px!important;font-size:30px!important}.card .lbl{font-size:36px!important}</style>` : '';
+    return `<div class="s bg-${s.bg || 'paper'}">${compactCss}<div class="pad">
       <div class="display" style="font-size:${s.headlineSize || 104}px">${s.headline}</div>
       ${s.sub ? `<div><span class="pill">${s.sub}</span></div>` : ''}
       <div class="feat">${s.items.map(i => `<div class="card"><div class="chk">✓</div><div class="lbl">${i}</div></div>`).join('')}</div>

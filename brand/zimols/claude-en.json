@@ -1,0 +1,61 @@
+{
+  "name": "claude-en",
+  "format": "ig_carousel",
+  "slides": [
+    {
+      "type": "cover",
+      "photo": "assets/p2.jpg",
+      "headline": [
+        "I pay Claude",
+        "€18 a month."
+      ],
+      "sub": "Cheaper than a content creator"
+    },
+    {
+      "type": "features",
+      "bg": "paper",
+      "headline": "Claude can work in your place",
+      "headlineSize": 88,
+      "sub": "And all of it in your brand style",
+      "items": [
+        "Instagram posts and carousels",
+        "LinkedIn posts",
+        "Automated blog posts",
+        "Competitor analysis",
+        "Video editing"
+      ],
+      "footer": "How much is this worth to you?",
+      "compact": true
+    },
+    {
+      "type": "quotes",
+      "bg": "paper",
+      "headline": "What others say",
+      "items": [
+        {
+          "text": "“It opened up a new world for me. I really liked that everything was based on concrete examples, not theory.”",
+          "name": "Maija Rieksta-Riekstiņa, Vegan Fox",
+          "logo": "assets/logos/veganfox.png"
+        },
+        {
+          "text": "“I will definitely use it every day and look for more ways to solve my tasks.”",
+          "name": "Līva Andžāne, individuals.lv",
+          "logo": "assets/logos/individuals.png"
+        },
+        {
+          "text": "“I really enjoy every task, explanation and insight.”",
+          "name": "Alise, intercars.eu",
+          "logo": "assets/logos/intercars.png"
+        }
+      ]
+    },
+    {
+      "type": "question",
+      "bg": "paper",
+      "plain": true,
+      "headlineSize": 110,
+      "headline": "3-week Claude online challenge",
+      "sub": "Save this and comment below."
+    }
+  ]
+}
