@@ -1,0 +1,19 @@
+{
+  "name": "linkedin",
+  "format": "linkedin",
+  "slides": [
+    { "type": "cover", "photo": "assets/p3.jpg", "emoji": "💍",
+      "headline": ["Bildini klientu", "jau pirmajā dienā"],
+      "sub": "Ne visi klienti vēlas iet cauri sarežģītiem marketinga tuneļiem" },
+    { "type": "features", "bg": "paper", "headline": "Dažas nozares pērk uzreiz", "headlineSize": 84,
+      "sub": "Konversija pēc nozares",
+      "items": ["Pārtika un dzērieni: 3,8–6,2 %", "Hobiji un amatniecība: 3,8–5,8 %", "Veselība un skaistums: 2,6–5,0 %", "Mājdzīvnieki: 2,5–4,0 %+"] },
+    { "type": "features", "bg": "paper", "headline": "Citām vajag ilgāku laiku pirkumam", "headlineSize": 84,
+      "sub": "Konversija pēc nozares", "accent": "#F5B800", "accentInk": "#1D1D1F",
+      "items": ["Luksusa rotaslietas: 0,8–1,5 %", "Mājas un mēbeles: 0,8–1,8 %", "Elektronika: 1,5–2,5 %", "Apģērbs: 1,1–2,0 %"] },
+    { "type": "question", "bg": "paper", "plain": true, "headlineSize": 96,
+      "headline": "Kā ir tavā nozarē?",
+      "sub": "Vai izdodas saņemt <span class=\"hl\">„Jā“ uzreiz</span>, vai tomēr jāpacenšas ilgāk?",
+      "sub2": "<span style=\"color:#1D1D1F;font-weight:700\"><svg width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"#6E6E73\" stroke=\"#6E6E73\" stroke-width=\"2\" stroke-linejoin=\"round\" style=\"vertical-align:-5px\"><path d=\"M6 3h12v18l-6-4-6 4z\"/></svg> Saglabā un raksti komentāros</span>" }
+  ]
+}
