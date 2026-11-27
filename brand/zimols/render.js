@@ -57,10 +57,11 @@ function slide(s) {
     const sh = s.photoShift || 0;
     const fade = s.textTop ? ';-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 30%);mask-image:linear-gradient(to bottom,transparent 0%,#000 30%)' : '';
     const box = s.photoBox;
-    const imgStyle = box ? ` style="left:${box.left}px;top:0px;width:${box.width}px;height:${box.height}px;object-fit:cover;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 30%);mask-image:linear-gradient(to right,transparent 0%,#000 30%)"` : (sh ? ` style="top:${sh}px;height:${F.h - sh}px${fade}"` : '');
+    const imgStyle = box ? ` style="left:${box.left}px;top:${box.top || 0}px;width:${box.width}px;height:${box.height}px;object-fit:cover;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 30%);mask-image:linear-gradient(to right,transparent 0%,#000 30%)"` : (sh ? ` style="top:${sh}px;height:${F.h - sh}px${fade}"` : '');
     const top = s.textTop ? `<div class="shade" style="background:linear-gradient(to bottom,rgba(29,29,31,.95) 0%,rgba(29,29,31,0) 45%)"></div>` : '<div class="shade"></div>';
     const padStyle = s.photoBox ? ' style="top:110px;bottom:auto;right:auto;width:360px"' : (s.textTop ? ' style="top:100px;bottom:auto"' : '');
-    return `<div class="s bg-ink"><img class="photo"${imgStyle} src="${img}">${top}
+    const cardBg = s.coverBg ? ` style="background:${s.coverBg}"` : '';
+    return `<div class="s bg-ink"${cardBg}><img class="photo"${imgStyle} src="${img}">${top}
       <div class="pad"${padStyle}>${s.emoji ? `<div class="emoji">${s.emoji}</div>` : ''}<div class="display" style="font-size:${s.headlineSize || 104}px">${s.headline.join('<br>')}</div>${s.sub ? `<div class="sub">${s.sub}</div>` : ''}</div></div>`;
   }
   if (s.type === 'list') {
