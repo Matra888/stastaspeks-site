@@ -384,7 +384,6 @@
     <h2 id="pop-h">Not ready yet? Get 20 video prompts free</h2>
     <p class="pop-sub">Enter your email and we will send the prompts for Claude and ChatGPT.</p>
     <form id="popForm" novalidate>
-      <input name="name" type="text" placeholder="Your name (optional)" autocomplete="given-name" enterkeyhint="next">
       <input name="email" type="email" required placeholder="Your email" autocomplete="email" enterkeyhint="send">
       <p class="pop-err" id="popErr" hidden></p>
       <button type="submit">Send me the prompts</button>
@@ -475,9 +474,9 @@
   setInterval(loadCount, 30000);
 
   // Email popup. Fill in the Google Form values once the form exists.
-  const GF_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSeL7o2rg_OITrCronZfmFPJ7KPbyqlCHiuQvb9Z4HJRpGHJlA/formResponse";
-  const GF_EMAIL = "entry.500142275";
-  const GF_NAME = "entry.181305831";
+  const GF_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSdkZ-7V34Ijhy2qV7FMQz-zpRBmG52xG193dieoyngBfns-YQ/formResponse";
+  const GF_EMAIL = "entry.636745448";
+  const GF_NAME = "";
   const POP_DELAY = 8000;
   const POP_DAYS = 7;
   const POP_KEY = "bfPopSeen";
@@ -533,7 +532,7 @@
     if (res) { showPopErr(res); popForm.email.focus(); return; }
     const data = new URLSearchParams();
     data.append(GF_EMAIL, email);
-    data.append(GF_NAME, popForm.name.value.trim());
+    if (GF_NAME) data.append(GF_NAME, popForm.name.value.trim());
     if (GF_ACTION) {
       try { await fetch(GF_ACTION, { method: "POST", mode: "no-cors", body: data }); } catch (err) {}
     }
