@@ -29,16 +29,6 @@
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #000000; --panel: #1C1C1E; --ink: #F5F5F7; --muted: #A1A1A6; --line: #38383A;
-      --link: #2997FF; color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #000000; --panel: #1C1C1E; --ink: #F5F5F7; --muted: #A1A1A6; --line: #38383A;
-    --link: #2997FF; color-scheme: dark;
-  }
   *, *::before, *::after { box-sizing: border-box; }
   html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -248,7 +238,7 @@
   .bundle { background: var(--card); border: 2px solid var(--line); border-radius: 24px; padding: clamp(1.25rem, 4vw, 1.75rem); }
   .bundle h2 { margin-bottom: .9rem; }
   .bundle ul { list-style: none; margin: 0; padding: 0; }
-  .bundle li { display: flex; gap: .8rem; align-items: flex-start; padding: .8rem 0; border-top: 1px solid var(--line); font-size: 1.05rem; }
+  .bundle li { text-align: left; display: flex; gap: .8rem; align-items: flex-start; padding: .8rem 0; border-top: 1px solid var(--line); font-size: 1.05rem; }
   .bundle li:first-child { border-top: 0; padding-top: 0; }
   .bundle li .tick { flex: none; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--wa); color: #FFFFFF; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: .9rem; }
   .bundle li small { display: block; color: var(--muted); font-size: .92rem; }
@@ -276,7 +266,7 @@
   .bundle { background: #FFFFFF; border: 2px solid #E5E5EA; border-radius: 24px; padding: 24px; max-width: 680px; margin-left: auto; margin-right: auto; }
   .bundle h2 { margin: 0 0 14px; }
   .bundle ul { list-style: none; margin: 0; padding: 0; }
-  .bundle li { display: flex; gap: 12px; align-items: flex-start; padding: 14px 0; border-top: 1px solid #E5E5EA; }
+  .bundle li { text-align: left; display: flex; gap: 12px; align-items: flex-start; padding: 14px 0; border-top: 1px solid #E5E5EA; }
   .bundle li:first-child { border-top: 0; padding-top: 0; }
   .bundle li small { display: block; color: #6E6E73; font-size: .92rem; }
   .bundle .tick { flex: none; width: 26px; height: 26px; border-radius: 50%; background: #128C4A; color: #FFFFFF; font-weight: 800; display: flex; align-items: center; justify-content: center; }
@@ -316,6 +306,10 @@
     color: #2A2A2E !important;
   }
   main p a, main li a, footer a { color: #1D3FC0 !important; text-decoration: underline; }
+  :root, :root[data-theme] { --bg: #FFFFFF; --panel: #F5F5F7; --ink: #1D1D1F; --muted: #2A2A2E; color-scheme: light; }
+  body { background: #FFFFFF; color: #1D1D1F; }
+  .bundle { text-align: left; }
+  .bundle li div { text-align: left; }
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
