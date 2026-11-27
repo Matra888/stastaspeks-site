@@ -249,6 +249,23 @@
   .pop-ok[hidden] { display: none; }
   .pop-err { margin: 2px 8px 0; text-align: left; font-size: .9rem; font-weight: 700; color: #D61F69; cursor: pointer; }
   .pop-err[hidden] { display: none; }
+
+  /* Black Friday hero spacing */
+  .bf-hero { text-align: center; padding-top: 8px; }
+  .bf-hero .logo { display: block; margin: 0 auto 28px; }
+  .bf-hero .bf-kicker { display: inline-block; margin: 0 0 22px; }
+  .bf-hero h1 { margin: 0 0 28px; }
+  .bf-hero .bf-price { margin: 0 auto; }
+  .bf-hero .deadline { margin: 28px auto 0; }
+  .bf-hero .deadline p { margin-bottom: 10px; }
+  .bf-hero .social { justify-content: center; margin: 32px auto 0; }
+  .bf-hero .bf-note { margin: 18px 0 0; }
+  .popup .pop-card { max-width: 440px; }
+  .pop-card h2 { margin-bottom: 14px; }
+  .pop-sub { margin-bottom: 26px; }
+  .pop-card input { margin-bottom: 4px; }
+  .pop-card form { gap: 14px; }
+  .pop-note { margin-top: 18px; }
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -257,9 +274,8 @@
 <body>
 <main>
 
-  <header class="hero">
+  <header class="hero bf-hero">
     <img class="logo" src="logo.png" alt="Stāsta Spēks" width="88" height="88">
-    <p class="kicker tag-pill">8 tasks + community</p>
     <p class="bf-kicker">Black Friday · today only</p>
     <h1>3-Week <span class="claude">Claude</span> Challenge<span class="sub">Create content and marketing you're proud of</span></h1>
     <div class="bf-price"><span class="now">35.60 €</span><s>89 €</s><span class="off">−60%</span></div>
@@ -539,7 +555,7 @@
     markPopSeen();
     setTimeout(() => { window.location.href = "/blackfriday/welcome/"; }, 1200);
   });
-  if (shouldShowPop()) setTimeout(openPop, 8000);
+  if (location.search.includes("popup") || shouldShowPop()) setTimeout(openPop, 8000);
 
   // Black Friday deadline: today 27 Nov 2026, 23:59 Riga time (UTC+2)
   const DEADLINE = Date.UTC(2026, 10, 27, 21, 59, 0);
