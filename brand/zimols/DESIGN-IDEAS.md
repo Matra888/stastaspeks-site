@@ -28,3 +28,14 @@
 ## Atvērtie jautājumi
 - Datu avots (konversijas procenti) vēl nav pārbaudīts.
 - Vai "bildini" paliek kā metafora vai tiek nomainīts.
+
+## Iemācītais (darba noteikumi)
+- LinkedIn: vienmēr angliski. Instagram: latviski, ja nav norādīts citādi.
+- Vienā caption maksimums viens emoji.
+- Caption: āķis → skaidrojums → viens praktisks padoms → jautājums → viena darbība (saglabā VAI komentē).
+- Vārdi: "Dažas nozares pērk uzreiz" / "Citām vajag ilgāku laiku pirkumam" (tikai lietotāja formulējums). "Remārketings" ar garumzīmi. "Apģērbs" bez "mediāna".
+- Drošā zona: IG 110 px sānos, 190 px apakšā. LinkedIn tekstu 250 px no malām, jo priekšskatījums apgriež sānus. Galva nedrīkst būt nogriezta.
+- LinkedIn vāks: foto pilnā augumā vai augšā izlīdzināta, teksts apakšā kreisajā pusē, 💍 virs virsraksta.
+- Videoklipi: globusa teksts "3 weeks" (nemainīt). Progresa josla ar zaļu aizpildi, 7 punkti ar nosaukumiem kā latviešu versijā. Beigās "Learn content and marketing systems" un "Join skilled content creators who know how to use Claude".
+- 7 sistēmas (secība): Artifacts, Dizaina sistēma / Design system, Instagram karuseļi / Instagram carousels, LinkedIn posti / LinkedIn posts, Automatizēti bloga raksti / Automated blog posts, Web lapas audits / Web audit, Video montāža / Video editing.
+- Datu slaidi: skaitļi tikai no lietotāja tabulas vai pārbaudītiem avotiem. Avoti jāpievieno, ja publicē.
