@@ -1,0 +1,60 @@
+{
+  "name": "bildini-funnel-v4",
+  "format": "ig_carousel",
+  "slides": [
+    {
+      "type": "cover",
+      "photo": "assets/p3.jpg",
+      "emoji": "💍",
+      "headline": [
+        "Bildini klientu",
+        "jau pirmajā dienā"
+      ],
+      "sub": "Ne visi klienti vēlas iet cauri sarežģītiem marketinga tuneļiem"
+    },
+    {
+      "type": "features",
+      "bg": "paper",
+      "headline": "Vispirms iepazīšanās",
+      "headlineSize": 96,
+      "sub": "Tā ir augšējā piltuve",
+      "items": [
+        "Saturs, kas palīdz saprast problēmu",
+        "Vērtība, uzticība un pazīšanās"
+      ],
+      "footer": "Bildinājums ir lēmums, nevis sākums"
+    },
+    {
+      "type": "features",
+      "bg": "paper",
+      "headline": "Dažas nozares pērk uzreiz",
+      "headlineSize": 96,
+      "sub": "Konversija: cik % apmeklētāju nopērk",
+      "items": [
+        "Pārtika un dzērieni: 3,8–6,2 %",
+        "Hobiji un amatniecība: 3,8–5,8 %",
+        "Veselība un skaistums: 2,6–5,0 %",
+        "Mājdzīvnieki: 2,5–4,0 %+"
+      ]
+    },
+    {
+      "type": "features",
+      "bg": "paper",
+      "headline": "Divi biznesi, divi ceļi",
+      "headlineSize": 96,
+      "sub": "Ceļš atkarīgs no nozares",
+      "items": [
+        "Pārtikas zīmols: reklāma, pirkums uzreiz",
+        "Konsultants: saturs, uzticība, tad pārdošana"
+      ]
+    },
+    {
+      "type": "question",
+      "bg": "paper",
+      "plain": true,
+      "headlineSize": 120,
+      "headline": "Kurš ceļš ir tavs?",
+      "sub": "Komentē: pārtika vai konsultācija?"
+    }
+  ]
+}
