@@ -1,0 +1,15 @@
+{
+  "name": "last",
+  "format": "ig_carousel",
+  "slides": [
+    {
+      "type": "question",
+      "bg": "paper",
+      "plain": true,
+      "headline": "Kā ir tavā nozarē?",
+      "headlineSize": 120,
+      "sub": "Vai izdodas saņemt „Jā“ uzreiz, vai tomēr jāpacenšas ilgāk?",
+      "sub2": "Saglabā un raksti komentāros"
+    }
+  ]
+}
