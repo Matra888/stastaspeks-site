@@ -1,0 +1,18 @@
+{
+  "name": "bildini-funnel",
+  "format": "ig_carousel",
+  "slides": [
+    { "type": "cover", "photo": "assets/p3.jpg", "emoji": "💍",
+      "headline": ["Bildini klientu", "jau pirmajā dienā"],
+      "sub": "Ne visi klienti vēlas iet cauri sarežģītiem marketinga tuneļiem" },
+    { "type": "cta", "bg": "paper", "headlineSize": 84,
+      "headline": "Vispirms iepazīšanās",
+      "sub": "Saturs, vērtība, uzticība. Tas ir augšējais piltuves posms" },
+    { "type": "cta", "bg": "paper", "headlineSize": 84,
+      "headline": "Kad augšējais posms ir stiprs, pārdošana notiek uzreiz",
+      "sub": "Bildinājums ir tikai lēmums, nevis sākums" },
+    { "type": "cta", "bg": "paper", "headlineSize": 84,
+      "headline": "Vai tavs bizness jau ir izgājis iepazīšanās posmu?",
+      "sub": "Komentē ar vārdu IEPAZĪŠANĀS" }
+  ]
+}
