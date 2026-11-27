@@ -1,0 +1,10 @@
+{
+  "name": "proof-ai-literacy",
+  "format": "ig_carousel",
+  "slides": [
+    { "type": "features", "bg": "paper", "headline": "AI literacy is #1 on LinkedIn's skills list", "headlineSize": 88,
+      "sub": "Skills on the Rise 2025",
+      "items": ["Ranked No. 1 of the 15 fastest-growing U.S. skills", "Appears in job descriptions 6× more often than a year ago", "Core skill for content and marketing roles"],
+      "footer": "Source: LinkedIn, Skills on the Rise 2025" }
+  ]
+}
