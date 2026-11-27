@@ -8,10 +8,12 @@
       "centerBottom": true,
       "headlineSize": 76,
       "headline": [
-        "Propose to your clients",
+        "Propose to",
+        "your clients",
         "on day one"
       ],
-      "sub": "Not every client wants to go through complicated marketing funnels"
+      "sub": "Not every client wants to go through complicated marketing funnels",
+      "emoji": "💍"
     },
     {
       "type": "features",
