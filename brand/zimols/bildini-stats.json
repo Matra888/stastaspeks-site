@@ -2,12 +2,20 @@
   "name": "bildini-stats",
   "format": "ig_carousel",
   "slides": [
-    { "type": "cover", "photo": "assets/p3.jpg",
+    {
+      "type": "cover",
+      "photo": "assets/p3.jpg",
       "emoji": "💍",
-      "headline": ["Bildini klientu", "jau pirmajā dienā"],
-      "sub": "Ne visi klienti vēlas iet cauri sarežģītiem marketinga tuneļiem" },
-    { "type": "list", "bg": "paper",
-      "headline": "Pirkums notiek uzreiz",
+      "headline": [
+        "Bildini klientu",
+        "jau pirmajā dienā"
+      ],
+      "sub": "Ne visi klienti vēlas iet cauri sarežģītiem marketinga tuneļiem"
+    },
+    {
+      "type": "list",
+      "bg": "paper",
+      "headline": "Kāda iespēja, ka pirkums notiks uzreiz?",
       "headlineSize": 84,
       "sub": "Konversija pēc nozares",
       "items": [
