@@ -283,6 +283,30 @@
   .bundle .free { margin-left: auto; background: #D61F69; color: #FFFFFF; font-weight: 800; font-size: .85rem; border-radius: 999px; padding: .3rem .7rem; white-space: nowrap; }
   .bundle .total { margin: 14px 0 0; padding-top: 14px; border-top: 2px solid #1D1D1F; display: flex; justify-content: space-between; align-items: baseline; font-weight: 800; }
   .bundle .total b { font-size: 1.5rem; color: #128C4A; }
+
+  /* Readable on light and dark phones: text inside the white cards is always dark */
+  .bundle, .bundle h2, .bundle li, .bundle .total, .bundle b { color: #1D1D1F !important; }
+  .bundle small { color: #4A4A52 !important; font-size: 1rem !important; }
+  .bundle .was { color: #5A5A62 !important; }
+  .bf-price, .bf-price .now { color: #0B6B3A !important; }
+  .bf-price s { color: #4A4A52 !important; }
+  .bundle .free { color: #FFFFFF !important; }
+  .deadline p { color: #3A3A42 !important; font-size: 1rem !important; font-weight: 600; }
+  .hero h1 .sub { color: #3A3A42 !important; }
+  .hero .tagline, .hero p { color: #3A3A42; }
+  footer { color: #4A4A52 !important; }
+  .btn.wa { color: #FFFFFF !important; }
+  .btn.primary.buy { color: #FFFFFF !important; }
+  @media (prefers-color-scheme: dark) {
+    .bundle { background: #FFFFFF; }
+  }
+
+  /* Sales pages always use a light background and dark text, also on dark phones */
+  html, body { background: #FFFFFF !important; color: #1D1D1F !important; color-scheme: light; }
+  .hero h1, .hero h1 .sub { color: #1D1D1F !important; }
+  .hero h1 .claude, .hero h1 .sub .claude { color: #C15F3C !important; }
+  .hero h1 .sub { color: #3A3A42 !important; }
+  .hero p, .hero .tagline { color: #3A3A42 !important; }
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
