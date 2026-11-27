@@ -4,7 +4,7 @@
   "slides": [
     { "type": "question", "bg": "paper", "plain": true, "headlineSize": 120,
       "headline": "Don't miss out.",
-      "sub": "Marketing teams are slowly being replaced. <span class=\"hl\">AI skills</span> are getting more in demand.",
+      "sub": "<span class=\"hl\">AI skills</span> help you get the job done faster.",
       "sub2": "<span style=\"color:#1D1D1F;font-weight:700\">Join the 3-week Claude online challenge</span>" }
   ]
 }
