@@ -8,8 +8,8 @@
       "plain": true,
       "headline": "Kā ir tavā nozarē?",
       "headlineSize": 120,
-      "sub": "Vai izdodas saņemt „Jā“ <span class=\"hl\">uzreiz</span>, vai tomēr jāpacenšas ilgāk?",
-      "sub2": "<span style=\"font-family:'Noto Color Emoji',sans-serif\">🔖</span> <b style=\"color:#1D1D1F\">Saglabā</b> un raksti komentāros"
+      "sub": "Vai izdodas saņemt <span class=\"hl\">„Jā“ uzreiz</span>, vai tomēr jāpacenšas ilgāk?",
+      "sub2": "<svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#1D1D1F\" stroke-width=\"2\" stroke-linejoin=\"round\" style=\"vertical-align:-6px\"><path d=\"M6 3h12v18l-6-4-6 4z\"/></svg> Saglabā un raksti komentāros"
     }
   ]
 }
