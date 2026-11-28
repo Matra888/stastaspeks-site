@@ -320,7 +320,7 @@
 
   <section class="hero">
     <p class="eyebrow">Online kurss ierakstu veidā</p>
-    <p class="bf-kicker">Black Friday · tikai šodien</p>
+    <p class="bf-kicker">Īpašā cena −60%</p>
     <h1><span class="claude">Claude</span> satura veidošanai</h1>
     <p class="sub">Dizaina sistēma, saturs un analītika</p>
     <div class="lede lines narrow">
@@ -335,7 +335,7 @@
 
     <div class="bf-price"><span class="now">35.60 €</span><s>89 €</s><span class="off">−60%</span></div>
     <div class="deadline" data-deadline>
-      <p>Black Friday cena beidzas šodien, plkst. 23.59 (Rīgas laiks)</p>
+      <p>Īpašā cena, ierobežotu laiku</p>
       <div class="split" data-split></div>
     </div>
     <div class="stats" aria-label="Kurss īsumā">
@@ -391,7 +391,7 @@
       <h2 id="join-h">Rezervē savu vietu <span class="badge">Nenokavē!</span></h2>
       <p class="price"><s>89 €</s><strong>35.60 €</strong></p>
       <div class="deadline" data-deadline>
-        <p>Black Friday cena beidzas šodien, plkst. 23.59 (Rīgas laiks)</p>
+        <p>Īpašā cena, ierobežotu laiku</p>
         <div class="split" data-split></div>
       </div>
       <a class="btn primary payBtn" target="_blank" rel="noopener">Sāc online kursu!</a>
@@ -593,8 +593,9 @@
   else if (shouldShowPop()) setTimeout(openPop, POP_DELAY);
 
   // Black Friday deadline: 27 Nov 2026, 23:59 Riga time (UTC+2)
-  const DEADLINE = Date.UTC(2026, 10, 27, 21, 59, 0);
+  const DEADLINE = null; // set a real end date as Date.UTC(year, month-1, day, hour, minute) to show the countdown
   function tickDeadline() {
+    if (!DEADLINE) { document.querySelectorAll("[data-deadline]").forEach(b => b.hidden = true); return; }
     const left = DEADLINE - Date.now();
     const pad = n => String(n).padStart(2, "0");
     document.querySelectorAll("[data-deadline]").forEach(box => {

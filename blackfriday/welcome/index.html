@@ -263,7 +263,7 @@
     <h1>3-Week <span class="claude">Claude</span> Challenge<span class="sub">Black Friday offer</span></h1>
     <div class="bf-price"><span class="now">35.60 €</span><s>89 €</s><span class="off">−60%</span></div>
     <div class="deadline" data-deadline>
-      <p>Black Friday price ends today, 23:59 (Riga time)</p>
+      <p>Special price, limited time</p>
       <div class="split" data-split></div>
     </div>
   </header>
@@ -289,8 +289,9 @@
 
 <script>
   // Black Friday deadline: today 27 Nov 2026, 23:59 Riga time (UTC+2)
-  const DEADLINE = Date.UTC(2026, 10, 27, 21, 59, 0);
+  const DEADLINE = null; // set a real end date as Date.UTC(year, month-1, day, hour, minute) to show the countdown
   function tickDeadline() {
+    if (!DEADLINE) { document.querySelectorAll("[data-deadline]").forEach(b => b.hidden = true); return; }
     const left = DEADLINE - Date.now();
     const pad = n => String(n).padStart(2, "0");
     document.querySelectorAll("[data-deadline]").forEach(box => {
