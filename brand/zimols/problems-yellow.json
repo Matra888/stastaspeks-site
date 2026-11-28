@@ -4,7 +4,6 @@
   "slides": [
     {
       "type": "problem",
-      "label": "Problēma 1",
       "headline": "Reklāma vizuāli nepiesaista. Nauda tiek dedzināta.",
       "sub": "Risinājums",
       "items": [
@@ -15,7 +14,6 @@
     },
     {
       "type": "problem",
-      "label": "Problēma 2",
       "headline": "Auditorija ieiet mājas lapā, bet nepērk.",
       "sub": "Risinājums",
       "items": [
@@ -27,7 +25,6 @@
     },
     {
       "type": "problem",
-      "label": "Problēma 3",
       "headline": "Remarketings nedarbojas.",
       "sub": "Risinājums",
       "items": [

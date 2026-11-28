@@ -99,7 +99,7 @@ function slide(s) {
     const ph = s.photo ? `<img src="data:image/jpeg;base64,${b64(s.photo)}" style="position:absolute;left:0;top:0;width:100%;height:470px;object-fit:cover;object-position:50% 50%">` : '';
     const top = s.photo ? 520 : 150;
     return `<div class="s" style="background:${s.bg || '#F5B800'};color:#1D1D1F">${ph}<div class="pad" style="top:${top}px;bottom:auto">
-      <div class="eyebrow" style="margin-bottom:24px;color:#1D1D1F">${s.label}</div>
+      ${s.label ? `<div class="eyebrow" style="margin-bottom:24px;color:#1D1D1F">${s.label}</div>` : ''}
       <div class="display" style="font-size:76px;line-height:1.08;height:${3*76*1.08}px;margin:0;color:#1D1D1F">${s.headline}</div>
       <div style="margin-top:34px;font-size:40px;font-weight:400;color:#1D1D1F">${s.sub}</div>
       <div class="feat" style="margin-top:30px;gap:16px">${s.items.map(i => `<div class="card" style="padding:18px 28px"><div class="chk" style="width:50px;height:50px;font-size:26px;background:#1D1D1F">✓</div><div class="lbl" style="font-size:34px">${i}</div></div>`).join('')}</div>
