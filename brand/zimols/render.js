@@ -96,8 +96,8 @@ function slide(s) {
       ${s.footer ? `<div class="footer">${s.footer}</div>` : ''}</div></div>`;
   }
   if (s.type === 'problem') {
-    const ph = s.photo ? `<img src="data:image/jpeg;base64,${b64(s.photo)}" style="position:absolute;left:0;top:0;width:100%;height:470px;object-fit:cover;object-position:50% 50%">` : '';
-    const top = s.photo ? 520 : 150;
+    const ph = s.darkBand ? `<div style="position:absolute;left:0;top:0;width:100%;height:470px;background:linear-gradient(#2a2a2e,#0b0b0c)"></div>` : s.photo ? `<img src="data:image/jpeg;base64,${b64(s.photo)}" style="position:absolute;left:0;top:0;width:100%;height:470px;object-fit:cover;object-position:50% 50%">` : '';
+    const top = (s.photo || s.darkBand) ? 520 : 150;
     return `<div class="s" style="background:${s.bg || '#F5B800'};color:#1D1D1F">${ph}<div class="pad" style="top:${top}px;bottom:auto">
       ${s.label ? `<div class="eyebrow" style="margin-bottom:24px;color:#1D1D1F">${s.label}</div>` : ''}
       <div class="display" style="font-size:76px;line-height:1.08;height:${3*76*1.08}px;margin:0;color:#1D1D1F">${s.headline}</div>

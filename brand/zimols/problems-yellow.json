@@ -9,7 +9,8 @@
       "items": [
         "Testē reklāmas vispirms kā organiskus postus",
         "Tērē naudu tikai uz tām, kas jau darbojas"
-      ]
+      ],
+      "darkBand": true
     },
     {
       "type": "problem",
@@ -18,7 +19,8 @@
       "items": [
         "Pārbaudi savu mājas lapu",
         "Vāc e-pastus atkārtotiem piedāvājumiem"
-      ]
+      ],
+      "darkBand": true
     },
     {
       "type": "problem",
@@ -27,7 +29,8 @@
       "items": [
         "Pārbaudi, vai pikselis strādā",
         "Izveido atkārtotu reklāmu ieinteresētajiem"
-      ]
+      ],
+      "darkBand": true
     }
   ]
 }
