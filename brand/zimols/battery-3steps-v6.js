@@ -15,7 +15,7 @@ const STEPS=[
  {t:'Tērē naudu uz labākajām', pct:'66%'},
  {t:'Izmanto remārketingu un e-pastus jau esošai auditorijai', pct:'100%'}
 ];
-const START=[0.4,3.0,5.6], FILL=0.5;
+const START=[1.8,4.0,6.2], FILL=0.45;
 const clamp=x=>Math.max(0,Math.min(1,x));
 const ease=x=>1-Math.pow(1-x,3);
 function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
@@ -51,7 +51,7 @@ function draw(t){
   ctx.fillStyle=sh; ctx.fillRect(ix,iy,iw,ih);
   ctx.restore();
   // red state label while battery is empty
-  if(t<START[0]){
+  if(t<START[0]+0.1){
     ctx.save(); ctx.textAlign='center'; ctx.lineJoin='round';
     ctx.font='bold 46px '+F; ctx.lineWidth=12; ctx.strokeStyle=INK; ctx.fillStyle='#ffffff';
     const ry=iy+ih*0.66+ (ih*0.34)/2 + 16;
