@@ -77,7 +77,7 @@ function draw(t){
   }
 }
 const _draw=draw;
-draw=function(t){ _draw(t); if(t>=7.6){ const a=Math.min(1,(t-7.6)/0.3); ctx.save(); ctx.globalAlpha=a; ctx.textAlign='center'; ctx.fillStyle=INK; ctx.font='bold 46px '+F; ctx.fillText('Kurš solis tev vēl trūkst?', W/2, 1290); ctx.fillStyle=GREEN; ctx.font='bold 40px '+F; ctx.fillText('Komentē ar numuru 1, 2 vai 3', W/2, 1348); ctx.restore(); } };
+draw=function(t){ _draw(t); if(t>=7.6){ const a=Math.min(1,(t-7.6)/0.3); ctx.save(); ctx.globalAlpha=a; ctx.textAlign='center'; ctx.fillStyle=INK; ctx.font='bold 46px '+F; ctx.fillText('Kurš solis tev vēl trūkst?', W/2, 1225); ctx.fillStyle=GREEN; ctx.font='bold 40px '+F; ctx.fillText('Komentē ar numuru 1, 2 vai 3', W/2, 1292); ctx.restore(); } };
 window.render=(t)=>{ draw(t); return cv.toDataURL('image/jpeg',0.92); };
 window.ready=document.fonts.ready;
 </script></body></html>`;
