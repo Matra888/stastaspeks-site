@@ -103,6 +103,14 @@ function slide(s) {
       <div class="feat" style="margin-top:48px">${s.items.map(i => `<div class="card"><div class="chk" style="width:52px;height:52px;font-size:28px">✓</div><div class="lbl" style="font-size:38px">${i}</div></div>`).join('')}</div>
       </div></div>`;
   }
+  if (s.type === 'question' && s.midLayout) {
+    return `<div class="s bg-${s.bg || 'paper'}">
+      <div style="position:absolute;left:110px;right:110px;top:50%;transform:translateY(-50%);text-align:center">
+        <div class="display" style="font-size:${s.headlineSize || 88}px;line-height:1.1;font-weight:700">${s.headline}</div>
+      </div>
+      <div style="position:absolute;left:110px;right:110px;bottom:150px;text-align:center;font-size:${s.subSize || 68}px;line-height:1.2;color:${C.ink};font-weight:400">${s.sub}</div>
+      </div>`;
+  }
   if (s.type === 'question') {
     const top = s.top ? `<div class="display" style="font-size:${s.topSize || 76}px;margin-bottom:44px">${s.top}</div>` : '';
     const head = s.plain ? `<div class="display" style="font-size:${s.headlineSize || 120}px;line-height:${s.headLH || 1.04};font-weight:${s.headWeight || 700}">${s.headline}</div>` : `<div class="qpill">${s.headline}</div>`;

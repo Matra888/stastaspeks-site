@@ -16,12 +16,11 @@
       "type": "question",
       "bg": "paper",
       "plain": true,
-      "headlineSize": 96,
-      "headline": "Samaksāt par reklāmu ir viens. Saņemt peļņu ir pavisam kas cits.",
-      "sub": "<span style=\"font-size:40px;color:#1D1D1F;font-weight:400;line-height:1.25\">Kur lietas parasti noiet greizi?</span>",
-      "subGap": 26,
-      "headWeight": 400,
-      "headLH": 1.1
+      "midLayout": true,
+      "headlineSize": 88,
+      "subSize": 68,
+      "headline": "Samaksāt par reklāmu ir viens.<br>Saņemt peļņu ir pavisam kas cits.",
+      "sub": "Kur lietas parasti noiet greizi?"
     },
     {
       "type": "problem",
