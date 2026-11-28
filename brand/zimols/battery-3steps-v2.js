@@ -1,0 +1,91 @@
+// 9 s fast video: 3D glossy battery (red base) fills green per Meta ad step; step text shown inside the battery.
+// Usage: node battery-3steps-v2.js <framesDir>
+const { chromium } = require('playwright');
+const fs = require('fs'), path = require('path');
+const dir = process.argv[2];
+const DUR = 9, FPS = 30, N = DUR * FPS;
+const html = `<!doctype html><html><body style="margin:0;background:#000">
+<canvas id="c" width="1080" height="1350"></canvas>
+<script>
+const W=1080,H=1350,INK='#1D1D1F',PAPER='#F5F5F7',GREEN='#128C4A',RED='#E5484D',MUTED='#6E6E73';
+const F='"Liberation Sans", Arial, sans-serif';
+const cv=document.getElementById('c'), ctx=cv.getContext('2d');
+const STEPS=[
+ {t:'Testē reklāmas organiski'},
+ {t:'Tērē naudu uz labākajām'},
+ {t:'Remārketings un e-pasti'}
+];
+const START=[0.4,3.0,5.6], FILL=0.45;
+const clamp=x=>Math.max(0,Math.min(1,x));
+const ease=x=>1-Math.pow(1-x,3);
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+function draw(t){
+  ctx.fillStyle=PAPER; ctx.fillRect(0,0,W,H);
+  ctx.textAlign='center'; ctx.textBaseline='alphabetic';
+  ctx.fillStyle=INK; ctx.font='bold 84px '+F; ctx.fillText('Reklāmas 3 soļi', W/2, 200);
+  const bx=190, by=330, bw=700, bh=900, R=90;
+  // ground shadow
+  ctx.save(); ctx.translate(W/2, by+bh+40); ctx.scale(1,0.12);
+  const gs=ctx.createRadialGradient(0,0,0,0,0,bw*0.7); gs.addColorStop(0,'rgba(29,29,31,0.35)'); gs.addColorStop(1,'rgba(29,29,31,0)');
+  ctx.fillStyle=gs; ctx.beginPath(); ctx.arc(0,0,bw*0.7,0,Math.PI*2); ctx.fill(); ctx.restore();
+  // terminal cap (3D)
+  const cg=ctx.createLinearGradient(W/2-90,0,W/2+90,0); cg.addColorStop(0,'#4a4a4e'); cg.addColorStop(0.5,'#9a9aa0'); cg.addColorStop(1,'#4a4a4e');
+  ctx.fillStyle=cg; rr(W/2-90, by-64, 180, 80, 20); ctx.fill();
+  // body outer (dark bezel with 3D gradient)
+  const bg=ctx.createLinearGradient(bx,0,bx+bw,0);
+  bg.addColorStop(0,'#2a2a2e'); bg.addColorStop(0.5,'#111113'); bg.addColorStop(1,'#2a2a2e');
+  ctx.save(); ctx.shadowColor='rgba(0,0,0,0.35)'; ctx.shadowBlur=40; ctx.shadowOffsetY=20;
+  ctx.fillStyle=bg; rr(bx,by,bw,bh,R); ctx.fill(); ctx.restore();
+  // inner screen
+  const ix=bx+30, iy=by+30, iw=bw-60, ih=bh-60, ir=60;
+  ctx.save(); rr(ix,iy,iw,ih,ir); ctx.clip();
+  ctx.fillStyle='#ffffff'; ctx.fillRect(ix,iy,iw,ih);
+  // red base (empty charge)
+  const rg=ctx.createLinearGradient(0,iy+ih*0.66,0,iy+ih); rg.addColorStop(0,'#ff6b6f'); rg.addColorStop(1,RED);
+  ctx.fillStyle=rg; ctx.fillRect(ix,iy+ih*0.66,iw,ih*0.34);
+  // green fill, thirds, bottom-up
+  let level=0; for(let i=0;i<3;i++){ level += ease(clamp((t-START[i])/FILL))/3; }
+  if(level>0){
+    const gy=iy+ih*(1-level);
+    const gg=ctx.createLinearGradient(0,gy,0,iy+ih); gg.addColorStop(0,'#3fd58a'); gg.addColorStop(0.5,GREEN); gg.addColorStop(1,'#0c6a38');
+    ctx.fillStyle=gg; ctx.fillRect(ix,gy,iw,ih*level);
+    // glossy highlight
+    ctx.fillStyle='rgba(255,255,255,0.22)'; ctx.fillRect(ix,gy,iw,10);
+  }
+  // 3D gloss + side shading on screen
+  const sh=ctx.createLinearGradient(ix,0,ix+iw,0);
+  sh.addColorStop(0,'rgba(0,0,0,0.28)'); sh.addColorStop(0.12,'rgba(0,0,0,0)'); sh.addColorStop(0.88,'rgba(0,0,0,0)'); sh.addColorStop(1,'rgba(0,0,0,0.28)');
+  ctx.fillStyle=sh; ctx.fillRect(ix,iy,iw,ih);
+  const gl=ctx.createLinearGradient(0,iy,0,iy+ih*0.4); gl.addColorStop(0,'rgba(255,255,255,0.22)'); gl.addColorStop(1,'rgba(255,255,255,0)');
+  ctx.fillStyle=gl; ctx.fillRect(ix,iy,iw,ih*0.4);
+  ctx.restore();
+  // step text inside battery center on a white card
+  let cur=-1; for(let i=0;i<3;i++){ if(t>=START[i]) cur=i; }
+  if(cur>=0){
+    const local=t-START[cur];
+    const a=clamp(local/0.2), sc=0.85+0.15*ease(clamp(local/0.25));
+    ctx.save(); ctx.globalAlpha=a; ctx.translate(W/2, by+bh/2); ctx.scale(sc,sc);
+    ctx.shadowColor='rgba(0,0,0,0.25)'; ctx.shadowBlur=30; ctx.shadowOffsetY=10;
+    ctx.fillStyle='#ffffff'; rr(-400,-150,800,300,40); ctx.fill();
+    ctx.shadowColor='transparent';
+    ctx.fillStyle=GREEN; ctx.font='bold 42px '+F; ctx.fillText('SOLIS '+(cur+1), 0, -60);
+    ctx.fillStyle=INK; ctx.font='bold 56px '+F; ctx.fillText(STEPS[cur].t, 0, 30);
+    ctx.restore();
+  }
+}
+window.render=(t)=>{ draw(t); return cv.toDataURL('image/jpeg',0.92); };
+window.ready=document.fonts.ready;
+</script></body></html>`;
+(async () => {
+  fs.mkdirSync(dir, { recursive: true });
+  const browser = await chromium.launch({ args: ['--no-sandbox'] });
+  const page = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
+  await page.setContent(html, { waitUntil: 'load' });
+  await page.evaluate(() => window.ready);
+  for (let i = 0; i < N; i++) {
+    const url = await page.evaluate(t => window.render(t), i / FPS);
+    fs.writeFileSync(path.join(dir, `f_${String(i).padStart(4, '0')}.jpg`), Buffer.from(url.split(',')[1], 'base64'));
+  }
+  await browser.close();
+  console.log('done', N);
+})().catch(e => { console.error(e); process.exit(1); });
