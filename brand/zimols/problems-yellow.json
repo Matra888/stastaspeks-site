@@ -1,0 +1,40 @@
+{
+  "name": "problems-yellow",
+  "format": "ig_carousel",
+  "slides": [
+    {
+      "type": "problem",
+      "label": "Problēma 1",
+      "headline": "Reklāma vizuāli nepiesaista. Nauda tiek dedzināta.",
+      "sub": "Risinājums",
+      "items": [
+        "Vispirms testē reklāmas kā organiskus postus",
+        "Tērē naudu tikai tām, kas jau labi darbojas organiski"
+      ],
+      "photo": "assets/p7.jpg"
+    },
+    {
+      "type": "problem",
+      "label": "Problēma 2",
+      "headline": "Auditorija ieiet mājas lapā, bet nepērk.",
+      "sub": "Risinājums",
+      "items": [
+        "Pārbaudi savu mājas lapu",
+        "Vāc e-pastus, lai atkārtoti nosūtītu piedāvājumu",
+        "Lielākā daļa nepērk ar pirmo reizi, ja zīmolu vēl nepazīst"
+      ],
+      "photo": "assets/p7.jpg"
+    },
+    {
+      "type": "problem",
+      "label": "Problēma 3",
+      "headline": "Remarketings nedarbojas.",
+      "sub": "Risinājums",
+      "items": [
+        "Pārbaudi, vai pikselis strādā",
+        "Izveido atkārtotu reklāmu auditorijai, kas jau ir ieinteresēta"
+      ],
+      "photo": "assets/p7.jpg"
+    }
+  ]
+}
