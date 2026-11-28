@@ -96,7 +96,7 @@ function slide(s) {
       ${s.footer ? `<div class="footer">${s.footer}</div>` : ''}</div></div>`;
   }
   if (s.type === 'problem') {
-    const ph = s.photo ? `<img src="data:image/jpeg;base64,${b64(s.photo)}" style="position:absolute;left:0;top:0;width:100%;height:470px;object-fit:cover;object-position:50% 0%">` : '';
+    const ph = s.photo ? `<img src="data:image/jpeg;base64,${b64(s.photo)}" style="position:absolute;left:0;top:0;width:100%;height:470px;object-fit:cover;object-position:50% 50%">` : '';
     const top = s.photo ? 520 : 150;
     return `<div class="s" style="background:${s.bg || '#F5B800'};color:#1D1D1F">${ph}<div class="pad" style="top:${top}px;bottom:auto">
       <div class="eyebrow" style="margin-bottom:24px;color:#1D1D1F">${s.label}</div>

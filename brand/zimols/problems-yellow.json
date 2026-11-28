@@ -11,7 +11,7 @@
         "Vispirms testē reklāmas kā organiskus postus",
         "Tērē naudu tikai tām, kas jau labi darbojas organiski"
       ],
-      "photo": "assets/p7.jpg"
+      "photo": "assets/problem-band.jpg"
     },
     {
       "type": "problem",
@@ -23,7 +23,7 @@
         "Vāc e-pastus, lai atkārtoti nosūtītu piedāvājumu",
         "Lielākā daļa nepērk ar pirmo reizi, ja zīmolu vēl nepazīst"
       ],
-      "photo": "assets/p7.jpg"
+      "photo": "assets/problem-band.jpg"
     },
     {
       "type": "problem",
@@ -34,7 +34,7 @@
         "Pārbaudi, vai pikselis strādā",
         "Izveido atkārtotu reklāmu auditorijai, kas jau ir ieinteresēta"
       ],
-      "photo": "assets/p7.jpg"
+      "photo": "assets/problem-band.jpg"
     }
   ]
 }
