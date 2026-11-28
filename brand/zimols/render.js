@@ -95,6 +95,14 @@ function slide(s) {
       <div class="feat">${s.items.map(i => `<div class="card"><div class="chk">✓</div><div class="lbl">${i}</div></div>`).join('')}</div>
       ${s.footer ? `<div class="footer">${s.footer}</div>` : ''}</div></div>`;
   }
+  if (s.type === 'problem') {
+    return `<div class="s bg-${s.bg || 'paper'}"><div class="pad" style="top:150px;bottom:auto">
+      <div class="eyebrow" style="margin-bottom:40px">${s.label}</div>
+      <div class="display" style="font-size:84px;line-height:1.08;height:${3*84*1.08}px;margin:0">${s.headline}</div>
+      <div style="margin-top:56px"><span class="pill" style="font-size:34px;padding:12px 28px">${s.sub}</span></div>
+      <div class="feat" style="margin-top:48px">${s.items.map(i => `<div class="card"><div class="chk" style="width:52px;height:52px;font-size:28px">✓</div><div class="lbl" style="font-size:38px">${i}</div></div>`).join('')}</div>
+      </div></div>`;
+  }
   if (s.type === 'question') {
     const top = s.top ? `<div class="display" style="font-size:${s.topSize || 76}px;margin-bottom:44px">${s.top}</div>` : '';
     const head = s.plain ? `<div class="display" style="font-size:${s.headlineSize || 120}px">${s.headline}</div>` : `<div class="qpill">${s.headline}</div>`;

@@ -2,20 +2,65 @@
   "name": "meta-ads",
   "format": "ig_carousel",
   "slides": [
-    { "type": "cover", "photo": "assets/p2.jpg", "emoji": "😱",
-      "headline": ["Meta reklāmas", "nestrādā."],
-      "sub": "Kurš ir vainīgs?" },
-    { "type": "question", "bg": "paper", "plain": true, "headlineSize": 96,
+    {
+      "type": "cover",
+      "photo": "assets/p2.jpg",
+      "emoji": "😱",
+      "headline": [
+        "Meta reklāmas",
+        "nestrādā."
+      ],
+      "sub": "Kurš ir vainīgs?"
+    },
+    {
+      "type": "question",
+      "bg": "paper",
+      "plain": true,
+      "headlineSize": 96,
       "headline": "Samaksāt par reklāmu ir viens. Saņemt peļņu ir pavisam kas cits.",
-      "sub": "Kur lietas parasti noiet greizi?" },
-    { "type": "features", "bg": "paper", "headline": "Problēma 1: Reklāma vizuāli nepiesaista. Nauda tiek dedzināta.", "headlineSize": 76,
+      "sub": "Kur lietas parasti noiet greizi?"
+    },
+    {
+      "type": "problem",
+      "bg": "paper",
+      "label": "Problēma 1",
+      "headline": "Reklāma vizuāli nepiesaista. Nauda tiek dedzināta.",
       "sub": "Risinājums",
-      "items": ["Vispirms testē reklāmas kā organiskus postus", "Tērē naudu tikai tām, kas jau labi darbojas organiski"] },
-    { "type": "features", "bg": "paper", "headline": "Problēma 2: Auditorija ieiet mājas lapā, bet nepērk.", "headlineSize": 76,
+      "items": [
+        "Vispirms testē reklāmas kā organiskus postus",
+        "Tērē naudu tikai tām, kas jau labi darbojas organiski"
+      ]
+    },
+    {
+      "type": "problem",
+      "bg": "paper",
+      "label": "Problēma 2",
+      "headline": "Auditorija ieiet mājas lapā, bet nepērk.",
       "sub": "Risinājums",
-      "items": ["Pārbaudi savu mājas lapu", "Vāc e-pastus, lai atkārtoti nosūtītu piedāvājumu", "Lielākā daļa nepērk ar pirmo reizi, ja zīmolu vēl nepazīst"] },
-    { "type": "features", "bg": "paper", "headline": "Problēma 3: Remarketings nedarbojas.", "headlineSize": 84,
+      "items": [
+        "Pārbaudi savu mājas lapu",
+        "Vāc e-pastus, lai atkārtoti nosūtītu piedāvājumu",
+        "Lielākā daļa nepērk ar pirmo reizi, ja zīmolu vēl nepazīst"
+      ]
+    },
+    {
+      "type": "problem",
+      "bg": "paper",
+      "label": "Problēma 3",
+      "headline": "Remarketings nedarbojas.",
       "sub": "Risinājums",
-      "items": ["Pārbaudi, vai pikselis strādā", "Izveido atkārtotu reklāmu auditorijai, kas jau ir ieinteresēta"] }
+      "items": [
+        "Pārbaudi, vai pikselis strādā",
+        "Izveido atkārtotu reklāmu auditorijai, kas jau ir ieinteresēta"
+      ]
+    },
+    {
+      "type": "question",
+      "bg": "paper",
+      "plain": true,
+      "headlineSize": 96,
+      "headline": "Kas tev vislabāk darbojas Meta reklāmās?",
+      "sub": "Komentē zem posta."
+    }
   ]
 }

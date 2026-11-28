@@ -79,3 +79,11 @@ NODE_PATH=$(npm root -g) node spin-7en.js <framesDir>   # then ffmpeg to mp4
 - [ ] Correct language for the channel.
 - [ ] Numbers sourced.
 - [ ] Commit and push to `claude/affectionate-hopper-gd4vc1`.
+
+## Problem / solution slides (`type: "problem"`)
+- Use one shared layout for every problem slide in a series so they line up.
+- Eyebrow label "PROBLĒMA n" in green, letter-spaced, 30 px.
+- Headline 84 px, box reserved for 3 lines (`height = 3 × 84 × 1.08`), so the cards start at the same y on every slide regardless of headline length.
+- Small pill "Risinājums" at 34 px (clearly smaller than the headline), 48-56 px gap above it.
+- Cards at 38 px, check circles at 52 px.
+- Closing slide of a series: a question headline that names the topic (e.g. "Kas tev vislabāk darbojas Meta reklāmās?") and a short comment invite.
