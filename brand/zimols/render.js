@@ -105,8 +105,8 @@ function slide(s) {
   }
   if (s.type === 'question') {
     const top = s.top ? `<div class="display" style="font-size:${s.topSize || 76}px;margin-bottom:44px">${s.top}</div>` : '';
-    const head = s.plain ? `<div class="display" style="font-size:${s.headlineSize || 120}px">${s.headline}</div>` : `<div class="qpill">${s.headline}</div>`;
-    return `<div class="s bg-${s.bg || 'paper'}"><div class="pad">${top}${head}${s.sub ? `<div class="sub" style="margin-top:40px">${s.sub}</div>` : ''}${s.sub2 ? `<div style="margin-top:36px;font-size:42px;font-weight:400;color:${C.ink}">${s.sub2}</div>` : ''}</div></div>`;
+    const head = s.plain ? `<div class="display" style="font-size:${s.headlineSize || 120}px;line-height:1.04">${s.headline}</div>` : `<div class="qpill">${s.headline}</div>`;
+    return `<div class="s bg-${s.bg || 'paper'}"><div class="pad">${top}${head}${s.sub ? `<div class="sub" style="margin-top:${s.subGap ?? 40}px">${s.sub}</div>` : ''}${s.sub2 ? `<div style="margin-top:36px;font-size:42px;font-weight:400;color:${C.ink}">${s.sub2}</div>` : ''}</div></div>`;
   }
   throw new Error('unknown slide type ' + s.type);
 }
