@@ -9,8 +9,7 @@
       "items": [
         "Testē reklāmas vispirms kā organiskus postus",
         "Tērē naudu tikai uz tām, kas jau darbojas"
-      ],
-      "photo": "assets/problem-band.jpg"
+      ]
     },
     {
       "type": "problem",
@@ -19,18 +18,16 @@
       "items": [
         "Pārbaudi savu mājas lapu",
         "Vāc e-pastus atkārtotiem piedāvājumiem"
-      ],
-      "photo": "assets/problem-band.jpg"
+      ]
     },
     {
       "type": "problem",
-      "headline": "Remarketings nedarbojas.",
+      "headline": "Remārketings nedarbojas.",
       "sub": "Risinājums",
       "items": [
         "Pārbaudi, vai pikselis strādā",
         "Izveido atkārtotu reklāmu ieinteresētajiem"
-      ],
-      "photo": "assets/problem-band.jpg"
+      ]
     }
   ]
 }
